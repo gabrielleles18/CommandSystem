@@ -1,0 +1,50 @@
+@import "config";
+@import "scrollbar";
+
+.sidebar {
+  width: 256px;
+  height: 100vh;
+  background-color: $color_gray_escuro;
+  position: fixed;
+  left: 0;
+  overflow: auto;
+
+  .logo {
+    height: 56px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 21, .2);
+  }
+
+  ul {
+    color: #fff;
+
+    li {
+      display: flex;
+      align-items: center;
+      padding: 13px 20px;
+
+      &:hover {
+        background-color: #303C50;
+      }
+
+      i {
+        margin-right: 15px;
+      }
+
+      .icon-home:before {
+        font-size: 20px;
+      }
+
+      .icon-mesa:before {
+        font-size: 20px;
+      }
+
+      .icon-history {
+        font-size: 24px;
+      }
+    }
+  }
+}
