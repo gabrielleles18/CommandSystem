@@ -2,7 +2,8 @@
     <div class="logo">Logo</div>
     <ul>
         <li><i class="icon-home"></i><a href="<?php echo URL; ?>">Home</a></li>
-        <li><i class="icon-mesa"></i><a href="<?php echo URL; ?>clientes">Clientes</a></li>
+        <li><i class="icon-mesa"></i><a href="<?php echo URL; ?>funcionarios">Funcionarios</a></li>
+        <li><i class="icon-mesa"></i><a href="<?php echo URL; ?>funcao">Função</a></li>
         <li><i class="icon-history"></i><a href="<?php echo URL; ?>produtos">Produtos</a></li>
         <li><i class="icon-history"></i><a href="<?php echo URL; ?>funcao">Função</a></li>
     </ul>
