@@ -20,6 +20,7 @@ class FuncionariosController {
         // receber todos os funcionarios e a quantidade de funcionarios
         $funcionarios = $funcionario->getAllFuncionarios();// Esta propriedade é recebida na view: view/funcionarios/index.php em forma de array
         $amount_of_funcionarios = $funcionario->getAmountOfFuncionarios(); // Esta propriedade também é recebida na view: view/funcionarios/index.php
+        $funcao = $funcionario->getAllFuncao();
 
         // Carregar a view funcionarios. Com as views nós podemos mostrar os $funcionarios e a $amount_of_funcionarios facilmente
         require APP . 'view/_templates/header.php';
@@ -82,6 +83,7 @@ class FuncionariosController {
             // Instanciar novo Model (Funcionario)
             $funcionario = new Funcionario();
             // fazer getFuncionario() em Model/Model.php
+            $funcao = $funcionario->getAllFuncao();
             $funcionario = $funcionario->getFuncionario($funcionario_id);
 
             // Se o funcionario não foi encontrado, então ele teria retornado falso, e precisamos exibir a página de erro
@@ -128,7 +130,6 @@ class FuncionariosController {
      * TODO documentação
      */
     public function ajaxGetStats() {
-        // Instance new Model (Funcionario)
         $funcionario = new Funcionario();
         $amount_of_funcionarios = $funcionario->getAmountOfFuncionarios();
 

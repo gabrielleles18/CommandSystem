@@ -54,7 +54,7 @@ table {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: blue;
 }
 
 body {
@@ -284,6 +284,9 @@ body {
   display: flex;
   align-items: center;
   padding: 13px 20px;
+}
+.sidebar ul li a {
+  color: #fff;
 }
 .sidebar ul li:hover {
   background-color: #303C50;

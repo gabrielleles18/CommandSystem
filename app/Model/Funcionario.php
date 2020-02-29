@@ -125,4 +125,12 @@ class Funcionario extends Model {
         // fetch() é o método do PDO que recebe exatamente um registro
         return $query->fetch()->amount_of_funcionarios;
     }
+
+    public function getAllFuncao() {
+        $sql = "SELECT idfuncao, nome FROM funcao";
+        $query = $this->db->prepare($sql);
+
+        $query->execute();
+        return $query->fetchAll();
+    }
 }

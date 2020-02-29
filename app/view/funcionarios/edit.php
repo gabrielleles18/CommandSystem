@@ -1,49 +1,71 @@
 <div class="container">
-    <h2>Você está na View: application/view/funcionarios/edit.php (tudo nesta tela vem desse arquivo)</h2>
-    <!-- add song form -->
-    <div>
-        <h3>Editar um funcioanrio</h3>
-        <form action="<?php echo URL; ?>funcionarios/update" method="POST">
-            <label>Nome</label>
-            <input autofocus type="text" name="nome"
-                   value="<?php echo htmlspecialchars($funcionario->nome, ENT_QUOTES, 'UTF-8'); ?>" required/>
-
-            <label>CPF</label>
-            <input type="text" name="cpf"
-                   value="<?php echo htmlspecialchars($funcionario->cpf, ENT_QUOTES, 'UTF-8'); ?>" required/>
-
-            <label>Telefone</label>
-            <input type="text" name="telefone"
-                   value="<?php echo htmlspecialchars($funcionario->telefone, ENT_QUOTES, 'UTF-8'); ?>" required/>
-
-            <label>Nascimento</label>
-            <input type="text" name="data_nasc"
-                   value="<?php echo htmlspecialchars($funcionario->data_nasc, ENT_QUOTES, 'UTF-8'); ?>" required/>
-
-            <label>Usuário</label>
-            <input type="text" name="usuario"
-                   value="<?php echo htmlspecialchars($funcionario->usuario, ENT_QUOTES, 'UTF-8'); ?>" required/>
-
-            <label>Senha</label>
-            <input type="text" name="senha"
-                   value="<?php echo htmlspecialchars($funcionario->senha, ENT_QUOTES, 'UTF-8'); ?>" required/>
-
-            <label>Função</label>
-            <select name="funcao_idfuncao">
-                <option value="1">Garçom</option>
-                <option value="3">Caixa</option>
-            </select>
-
-            <label>Status</label>
-            <select name="status">
-                <option value="1">Ativo</option>
-                <option value="0">Inativo</option>
-            </select>
-
-            <input type="hidden" name="funcionario_id"
-                   value="<?php echo htmlspecialchars($funcionario->idfuncionario, ENT_QUOTES, 'UTF-8'); ?>"/>
-
-            <input type="submit" name="submit_update_funcionario" value="Editar"/>
+    <!--    <h2>Você está na View: application/view/funcionarios/edit.php (tudo nesta tela vem desse arquivo)</h2>-->
+    <h1>Editar um funcioanrio</h1>
+    <div class="box">
+        <form action="<?= URL; ?>funcionarios/update" method="POST" class="form">
+            <div class="form-row">
+                <div class="col-3 col-in">
+                    <label>Nome</label>
+                    <input autofocus type="text" name="nome"
+                           value="<?= $funcionario->nome; ?>" required/>
+                </div>
+                <div class="col-3 col-in">
+                    <label>CPF</label>
+                    <input type="text" name="cpf"
+                           value="<?= $funcionario->cpf; ?>" required/>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Telefone</label>
+                    <input type="text" name="telefone"
+                           value="<?= $funcionario->telefone; ?>" required/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-3 col-in">
+                    <label>Nascimento</label>
+                    <input type="text" name="data_nasc"
+                           value="<?= $funcionario->data_nasc; ?>" required/>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Função</label>
+                    <select name="funcao_idfuncao">
+                        <?php foreach ($funcao as $v) { ?>
+                            <option value="<?= $v->idfuncao ?>" <?= ($funcionario->funcao_idfuncao == $v->idfuncao) ? 'selected' : '' ?> ><?= $v->nome ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="1" <?= ($funcionario->status == 1) ? 'selected' : '' ?>>Ativo</option>
+                        <option value="0" <?= ($funcionario->status == 0) ? 'selected' : '' ?>>Inativo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-3 col-in">
+                    <label>Usuário</label>
+                    <input type="text" name="usuario"
+                           value="<?= $funcionario->usuario; ?>" required/>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Senha</label>
+                    <input type="text" name="senha"
+                           value="<?= $funcionario->senha; ?>" required/>
+                </div>
+                <!--                <div class="col-3 col-in">-->
+                <!--                    <label>Confirmar Senha</label>-->
+                <!--                    <input type="text" name="senha"-->
+                <!--                           value="--><? //= $funcionario->senha; ?><!--" required/>-->
+                <!--                </div>-->
+                <input type="hidden" name="funcionario_id"
+                       value="<?= $funcionario->idfuncionario; ?>"/>
+            </div>
+            <div class="form-row">
+                <div class="col-1 col-in">
+                    <input type="submit" name="submit_update_funcionario" value="Editar"/>
+                </div>
+            </div>
         </form>
     </div>
 </div>
