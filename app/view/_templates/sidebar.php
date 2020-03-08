@@ -6,6 +6,7 @@
         <li><i class="icon-mesa"></i><a href="<?php echo URL; ?>funcao">Função</a></li>
         <li><i class="icon-history"></i><a href="<?php echo URL; ?>produtos">Produtos</a></li>
         <li><i class="icon-history"></i><a href="<?php echo URL; ?>funcao">Função</a></li>
+        <li><i class="icon-history"></i><a href="<?php echo URL; ?>mesa">Mesa</a></li>
     </ul>
 </div>
 </main>
