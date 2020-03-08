@@ -7,15 +7,15 @@
 namespace Mini\Model;
 
 use Mini\Core\Model;
+use Mini\Libs\Helper;
+use PDO;
 
-class Produto extends Model
-{
+class Produto extends Model {
     /**
      * Get all Produtos from database
      */
-    public function getAllProdutos()
-    {
-        $sql = "SELECT id, descricao, unidade FROM produtos";
+    public function getAllProdutos() {
+        $sql = "SELECT idproduto, nome, preco, tamanho, categoria_idcat, unidmed_idunid  FROM produto";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -31,13 +31,14 @@ class Produto extends Model
      * @param string $descricao Descrição
      * @param string $unidade Unidade
      */
-    public function add($descricao, $unidade)
-    {
-        $sql = "INSERT INTO produtos (descricao, unidade) VALUES (:descricao, :unidade)";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':descricao' => $descricao, ':unidade' => $unidade);
+    public function add($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat) {
+        $sql = "INSERT INTO produto (nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat ) 
+                VALUES (:nome, :preco, :tamanho, :descricao, :borda_idborda, :unidmed_idunid, :categoria_idcat )";
 
-        // útil para debugar: você pode ver o SQL atrás da construção usando:
+        $query = $this->db->prepare($sql);
+        $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao,
+            ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat);
+
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
@@ -49,13 +50,11 @@ class Produto extends Model
      * add/update/delete equipe!
      * @param int $produto_id Id do Produto
      */
-    public function delete($produto_id)
-    {
-        $sql = "DELETE FROM produtos WHERE id = :produto_id";
+    public function delete($produto_id) {
+        $sql = "DELETE FROM produto WHERE idproduto = :produto_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':produto_id' => $produto_id);
 
-        // útil para debugar: você pode ver o SQL atrás da construção usando:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
@@ -65,18 +64,14 @@ class Produto extends Model
      * Receber um Produto do banco
      * @param integer $produto_id
      */
-    public function getProduto($produto_id)
-    {
-        $sql = "SELECT id, descricao, unidade FROM produtos WHERE id = :produto_id LIMIT 1";
+    public function getProduto($produto_id) {
+        $sql = "SELECT idproduto, nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat  FROM produto WHERE idproduto = :produto_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':produto_id' => $produto_id);
 
-        // útil para debugar: você pode ver o SQL atrás da construção usando:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
-
-        // fetch() é o método do PDO que recebe exatamente um registro
         return ($query->rowcount() ? $query->fetch() : false);
     }
 
@@ -86,15 +81,14 @@ class Produto extends Model
      * @param string $unidade Unidade
      * @param int $produto_id Id
      */
-    public function update($descricao, $unidade, $produto_id)
-    {
-        $sql = "UPDATE produtos SET descricao = :descricao, unidade = :unidade WHERE id = :produto_id";
+    public function update($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat, $produto_id) {
+        $sql = "UPDATE produto SET nome = :nome, preco = :preco,  tamanho = :tamanho, descricao = :descricao, borda_idborda = :borda_idborda,
+                    unidmed_idunid  = :unidmed_idunid, categoria_idcat = :categoria_idcat  WHERE idproduto = :produto_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':descricao' => $descricao, ':unidade' => $unidade, ':produto_id' => $produto_id);
+        $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao,
+            ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat, ':produto_id' => $produto_id);
 
-        // útil para debugar: você pode ver o SQL atrás da construção usando:
-        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
-
+//         echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
         $query->execute($parameters);
     }
 
@@ -103,13 +97,36 @@ class Produto extends Model
      * como usar mais de um modelo em um controlador
      * (veja application/controller/produtos.php para detalhes)
      */
-    public function getAmountOfProdutos()
-    {
-        $sql = "SELECT COUNT(id) AS amount_of_produtos FROM produtos";
+    public function getAmountOfProdutos() {
+        $sql = "SELECT COUNT(idproduto) AS amount_of_produtos FROM produto";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         // fetch() é o método do PDO que recebe exatamente um registro
         return $query->fetch()->amount_of_produtos;
+    }
+
+    public function getAllCategoria() {
+        $sql = "SELECT idcat, nome FROM categoria";
+        $query = $this->db->prepare($sql);
+
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function getAllUnidade() {
+        $sql = "SELECT idunid, nome FROM unidmed";
+        $query = $this->db->prepare($sql);
+
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function getForenkey($tabela, $id, $value) {
+        $sql = "SELECT t.nome FROM {$tabela} t WHERE t.{$id} = {$value}";
+
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchColumn();
     }
 }

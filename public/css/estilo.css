@@ -97,7 +97,7 @@ body .container .box .form .form-row .col-in label {
   color: #3C4B64;
   margin-bottom: 10px;
 }
-body .container .box .form .form-row .col-in input, body .container .box .form .form-row .col-in select {
+body .container .box .form .form-row .col-in input, body .container .box .form .form-row .col-in select, body .container .box .form .form-row .col-in textarea {
   min-height: 35px;
   border: 1px solid #D8DBE0;
   border-radius: 5px;

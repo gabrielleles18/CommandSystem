@@ -15,11 +15,13 @@ class ProdutosController {
      * Este método manipula o que acontece quando acessa http://localhost/produtos/index
      */
     public function index() {
-        // Instanciar novo Model (Produto)
         $Produto = new Produto();
-        // receber todos os produtos e a quantidade de produtos
+
         $produtos = $Produto->getAllProdutos();
         $amount_of_produtos = $Produto->getAmountOfProdutos();
+        $categoria = $Produto->getAllCategoria();
+        $unidade = $Produto->getAllUnidade();
+
 
         // carregar a view produtos. com as views nós podemos mostrar os $produtos e a $amount_of_produtos facilmente
         require APP . 'view/_templates/header.php';
@@ -36,12 +38,10 @@ class ProdutosController {
      * Este é um exemplo de como lidar com uma solicitação POST.
      */
     public function add() {
-        // se tivermos dados POST para criar uma nova entrada do produto
         if (isset($_POST["submit_add_produto"])) {
-            // Instanciar novo Model (Produto)
             $Produto = new Produto();
-            // do add() em Model/Model.php
-            $Produto->add($_POST["descricao"], $_POST["unidade"]);
+            $Produto->add($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"],
+                $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"]);
         }
 
         // onde ir depois que o produto foi adicionado
@@ -58,11 +58,8 @@ class ProdutosController {
      * @param int $produto_id Id do produto para excluir
      */
     public function delete($produto_id) {
-        // se temos um id de um produto que deve ser deletado
         if (isset($produto_id)) {
-            // Instanciar novo Model (Produto)
             $Produto = new Produto();
-            // fazer delete() em Model/Model.php
             $Produto->delete($produto_id);
         }
 
@@ -76,12 +73,12 @@ class ProdutosController {
      * @param int $produto_id Id do produto a editar
      */
     public function edit($produto_id) {
-        // se temos um id de um produto que deve ser editado
         if (isset($produto_id)) {
-            // Instanciar novo Model (Produto)
             $Produto = new Produto();
-            // fazer getProduto() em Model/Model.php
             $produto = $Produto->getProduto($produto_id);
+
+            $categoria = $Produto->getAllCategoria();
+            $unidade = $Produto->getAllUnidade();
 
             // Se o produto não foi encontrado, então ele teria retornado falso, e precisamos exibir a página de erro
             if ($produto === false) {
@@ -94,7 +91,6 @@ class ProdutosController {
                 require APP . 'view/_templates/sidebar.php';
             }
         } else {
-            // redirecionar o usuário para a página de índice do produto (pois não temos um produto_id)
             header('location: ' . URL . 'produtos/index');
         }
     }
@@ -108,12 +104,11 @@ class ProdutosController {
      * Este é um exemplo de como lidar com uma solicitação POST.
      */
     public function update() {
-        // se tivermos dados POST para criar uma nova entrada do produto
         if (isset($_POST["submit_update_produto"])) {
-            // Instanciar novo Model (Produto)
             $Produto = new Produto();
-            // fazer update() do Model/Model.php
-            $Produto->update($_POST["descricao"], $_POST["unidade"], $_POST['produto_id']);
+
+            $Produto->update($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"],
+                $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $_POST['produto_id']);
         }
 
         // onde ir depois que o produto foi adicionado
@@ -125,7 +120,6 @@ class ProdutosController {
      * TODO documentação
      */
     public function ajaxGetStats() {
-        // Instance new Model (Produto)
         $Produto = new Produto();
         $amount_of_produtos = $Produto->getAmountOfProdutos();
 

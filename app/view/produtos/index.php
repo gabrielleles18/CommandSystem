@@ -1,44 +1,85 @@
 <div class="container">
-    <h1>Produto</h1>
-    <h2>Você está na View: app/view/produtos/index.php (tudo nesta tela vem desse arquivo)</h2>
-    <!-- form add produto -->
+    <h1>Produtos</h1>
     <div class="box">
-        <h3>Adicionar um produto</h3>
-        <form action="<?php echo URL; ?>produtos/add" method="POST">
-            <label>Descrição</label>
-            <input type="text" name="descricao" value="" required />
-            <label>Unidade</label>
-            <input type="text" name="unidade" value="" required />
-            <input type="submit" name="submit_add_produto" value="Enviar" />
+        <form action="<?= URL; ?>produtos/add" method="POST" class="form">
+            <div class="form-row">
+                <div class="col-3 col-in">
+                    <label>Nome</label>
+                    <input type="text" name="nome" value="" required/>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Preço</label>
+                    <input type="text" name="preco" value=""/>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Tamanho</label>
+                    <input type="text" name="tamanho" value=""/>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-3 col-in">
+                    <label>Unidade Medida</label>
+                    <select name="unidmed_idunid">
+                        <option selected value=""> -- select an option --</option>
+                        <?php foreach ($unidade as $v) { ?>
+                            <option value="<?= $v->idunid ?>"><?= $v->nome ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Categoria</label>
+                    <select name="categoria_idcat">
+                        <option selected value=""> -- select an option --</option>
+                        <?php foreach ($categoria as $v) { ?>
+                            <option value="<?= $v->idcat ?>"><?= $v->nome ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Descrição</label>
+                    <textarea name="descricao" rows="1"></textarea>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-3 col-in">
+                    <input type="hidden" name="borda_idborda" value="0"/>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-1 col-in">
+                    <input type="submit" name="submit_add_produto" value="Enviar"/>
+                </div>
+            </div>
         </form>
     </div>
-    <!-- main content output -->
     <div class="box">
-        <h3>Total de produtos: <?php echo $amount_of_produtos; ?></h3>
-        <h3>Total de produtos (via AJAX)</h3>
-        <div id="javascript-ajax-result-box"></div>
-        <div>
-            <button id="javascript-ajax-button">Clique aqui para obter a quantidade de produtos via Ajax (será exibido em # javascript-ajax-result-box acima)</button>
-        </div>
-        <h3>Lista de produtos (dados do model)</h3>
+        <h3>Total de produtos: <?= $amount_of_produtos; ?></h3>
         <table>
             <thead style="background-color: #ddd; font-weight: bold;">
             <tr>
-                <td>ID</td>
-                <td>Descrição</td>
-                <td>Unidade</td>
+                <td>Nome</td>
+                <td>Preço</td>
+                <td>Categoria</td>
+                <td>Tamanho</td>
+                <td>Uni. medida</td>
                 <td>Excluir</td>
-                <td>Atualizar</td>
+                <td>Editar</td>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($produtos as $produto) { ?>
+            <?php foreach ($produtos as $v) {
+                ?>
                 <tr>
-                    <td><?php if (isset($produto->id)) echo htmlspecialchars($produto->id, ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php if (isset($produto->descricao)) echo htmlspecialchars($produto->descricao, ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php if (isset($produto->unidade)) echo htmlspecialchars($produto->unidade, ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><a href="<?php echo URL . 'produtos/delete/' . htmlspecialchars($produto->id, ENT_QUOTES, 'UTF-8'); ?>">Excluir</a></td>
-                    <td><a href="<?php echo URL . 'produtos/edit/' . htmlspecialchars($produto->id, ENT_QUOTES, 'UTF-8'); ?>">Editar</a></td>
+                    <td><?php if (isset($v->nome)) echo $v->nome; ?></td>
+                    <td>R$: <?php if (isset($v->preco)) echo $v->preco; ?></td>
+                    <td><?php if (isset($v->categoria_idcat)) echo $Produto->getForenkey('categoria', 'idcat', $v->categoria_idcat) ?></td>
+                    <td><?php if (isset($v->tamanho)) echo $v->tamanho ?></td>
+                    <td><?php if (isset($v->unidmed_idunid)) echo $Produto->getForenkey('unidmed', 'idunid', $v->unidmed_idunid) ?></td>
+                    <td><a href="<?= URL . 'produtos/delete/' . $v->idproduto; ?>">Excluir</a></td>
+                    <td><a href="<?= URL . 'produtos/edit/' . $v->idproduto; ?>">Editar</a></td>
                 </tr>
             <?php } ?>
             </tbody>
