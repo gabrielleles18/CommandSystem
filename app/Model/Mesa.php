@@ -6,7 +6,7 @@ namespace Mini\Model;
 use Mini\Core\Model;
 
 class Mesa extends Model{
-    public function getAllFuncao() {
+    public function getAllMessa() {
         $sql = "SELECT idmesa, numero, descricao, status  FROM mesa";
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -55,4 +55,13 @@ class Mesa extends Model{
 
         return $query->fetch()->amount_of_mesa;
     }
+
+    public function getMessa($status){
+        $sql = "SELECT idmesa, numero, descricao, status  FROM mesa where status = {$status}";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
 }

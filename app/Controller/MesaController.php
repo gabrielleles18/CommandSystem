@@ -9,7 +9,7 @@ use Mini\Model\Mesa;
 class MesaController {
     public function index() {
         $mesa = new Mesa();
-        $mesas = $mesa->getAllFuncao();
+        $mesas = $mesa->getAllMessa();
         $amount_of_mesa = $mesa->getAmountOfMesa();
 
         require APP . 'view/_templates/header.php';
@@ -61,5 +61,10 @@ class MesaController {
         }
 
         header('location: ' . URL . 'mesa/index');
+    }
+
+    public function getMessa($status){
+        $mesa = new Mesa();
+        $mesas = $mesa->getMessa($status);
     }
 }

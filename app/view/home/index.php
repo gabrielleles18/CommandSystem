@@ -1,7 +1,24 @@
 <div class="container">
-    <h1>Início</h1>
-    <h2>Você está na View: application/view/home/index.php</h2>
-    <p>Em uma aplicação real esta pode ser a homepage inicial com conteúdo customizado ou então pode ser removida e
-        tornar a inicial um dos outros.</p>
+    <h1>Mesa Disponíveis</h1>
+    <div class="mesas">
+        <?php foreach ($mesasfree as $id => $v) { ?>
+            <a href="<?= URL . 'pedido/?id=' . $v->idmesa?>">
+                <h6>Mesa <?= $v->numero ?></h6>
+                <i class="icon"></i>
+            </a>
+        <?php } ?>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Mesa Ocupadas</h1>
+    <div class="mesas">
+        <?php foreach ($mesasbusy as $id => $v) { ?>
+            <a href="<?= URL . 'pedido/?id=' . $v->idmesa?>">
+                <h6>Mesa <?= $v->numero ?></h6>
+                <i class="icon iconbusy"></i>
+            </a>
+        <?php } ?>
+    </div>
 </div>
 </div>
