@@ -127,4 +127,21 @@ class ProdutosController {
         echo $amount_of_produtos;
     }
 
+
+    public function listar() {
+        $Produto = new Produto();
+
+        $categorias = $Produto->getAllCategoria();
+        if (!empty($categorias)) {
+            foreach ($categorias as $is => $valor) {
+                $produtos_by_cat[$valor->nome] = $Produto->getProdutoByCat($valor->idcat);
+            }
+        }
+
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/produtos/listar.php';
+        require APP . 'view/_templates/sidebar.php';
+
+    }
+
 }

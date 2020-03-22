@@ -129,4 +129,13 @@ class Produto extends Model {
         $query->execute();
         return $query->fetchColumn();
     }
+
+    public function getProdutoByCat($id_cat) {
+        $sql = "SELECT * FROM produto WHERE categoria_idcat = {$id_cat}";
+
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
