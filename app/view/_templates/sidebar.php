@@ -12,17 +12,11 @@
 </div>
 </main>
 
-<!-- jQuery, loaded in the recommended protocol-less way -->
-<!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
 <script>
     var url = "<?= URL; ?>";
 </script>
-
-<!-- our JavaScript -->
-<script src="<?= URL; ?>js/application.js"></script>
-<script src="<?= URL; ?>js/index.js"></script>
+<script type="script" src="<?= URL ?>public/dist/scripts.js"></script>
 </body>
 </html>

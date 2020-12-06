@@ -1,8 +1,11 @@
-jQuery(document).ready(function () {
-    let arrow = $('.cat-icon .icon-arrow-down');
+import produtos from './pages/produtos';
 
-    arrow.click(function () {
-        document.querySelector('.list-produtos li ul').style.display = 'block';
-        console.log("ddd");
-    })
+((fn) => {
+    if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+})(() => {
+    produtos();
 });

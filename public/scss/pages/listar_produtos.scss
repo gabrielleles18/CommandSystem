@@ -1,5 +1,3 @@
-@import "config";
-
 main {
     .container-sidebar {
         display: flex;
@@ -27,6 +25,7 @@ main {
                             height: 60px;
                             border-bottom: 1px solid rgba(214, 212, 212, 0.5);
                             align-items: center;
+                            cursor: pointer;
 
                             .cat {
                                 color: #3C4B64;
@@ -37,7 +36,6 @@ main {
 
                             .icon-arrow-down {
                                 padding: 5px;
-                                cursor: pointer;
 
                                 &:before {
                                     color: #868B93;
@@ -46,9 +44,9 @@ main {
                             }
                         }
 
-                        ul {
+                        .itens {
                             padding: 20px 15px 0;
-                            display: none;
+                            //display: none;
 
                             li {
                                 display: flex;
@@ -95,31 +93,28 @@ main {
                                             line-height: 23px;
                                         }
 
-                                        .botoes {
+
+                                        .carrinho {
+                                            width: 80px;
+                                            min-height: 25px;
+                                            background-color: #3399FF;
+                                            border-radius: 3px;
+                                            color: #fff;
+                                            padding: 2px 7px;
                                             display: flex;
-                                            margin-top: 20px;
-                                            justify-content: flex-end;
+                                            align-items: center;
+                                            font-size: 12px;
+                                            float: right;
 
-                                            a {
-                                                min-height: 25px;
-                                                background-color: #3399FF;
-                                                border-radius: 3px;
-                                                color: #fff;
-                                                padding: 2px 7px;
-                                                display: flex;
-                                                align-items: center;
-                                                font-size: 12px;
+                                            &:first-child {
+                                                margin-right: 20px;
+                                            }
 
-                                                &:first-child {
-                                                    margin-right: 20px;
-                                                }
+                                            i {
+                                                margin-right: 5px;
 
-                                                i {
-                                                    margin-right: 5px;
-
-                                                    &:before {
-                                                        font-size: 15px;
-                                                    }
+                                                &:before {
+                                                    font-size: 15px;
                                                 }
                                             }
                                         }

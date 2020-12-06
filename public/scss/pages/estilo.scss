@@ -1,5 +1,3 @@
-@import "config";
-
 body {
     .container {
         width: calc(100% - 80px);
@@ -148,10 +146,10 @@ body {
                     width: 100%;
                     height: 60px;
                     display: flex;
-                    background: url("../img/mesafree.png") center/contain no-repeat;
+                    //background: url("../img/mesafree.png") center/contain no-repeat;
                 }
                 .iconbusy{
-                    background: url("../img/mesabusy.png") center/contain no-repeat;
+                    //background: url("../img/mesabusy.png") center/contain no-repeat;
                 }
             }
         }

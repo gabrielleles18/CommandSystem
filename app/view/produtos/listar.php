@@ -10,21 +10,19 @@
                             <h1 class="cat"><?= $id ?></h1>
                             <i class="icon-arrow-down"></i>
                         </div>
-                        <ul>
+                        <ul class="itens">
                             <?php foreach ($categorias as $value) { ?>
                                 <li>
-                                    <img src="<?= URL ?>/public/img/pizza.png" alt="">
+                                    <img src="<?= URL ?>/public/img/pizza.png" alt="" data-src="<?= URL ?>/public/img/pizza.png">
                                     <div class="conteudo">
                                         <div class="top">
-                                            <h2><?= $value['nome'] ?></h2>
-                                            <h5><?= $value['preco'] ?></h5>
+                                            <h2 data-nome="<?= $value['nome'] ?>"><?= $value['nome'] ?></h2>
+                                            <h5 data-preco="<?= $value['preco'] ?>"><?= $value['preco'] ?></h5>
                                         </div>
                                         <div class="bottom">
-                                            <p><?= $value['descricao'] ?></p>
-                                            <div class="botoes">
-                                                <a href=""><i class="icon-carrinho"></i>Adicionar</a>
-                                                <a href=""><i class="icon-meia"></i>Meio a Meio</a>
-                                            </div>
+                                            <p data-descricao="<?= $value['descricao'] ?>"><?= $value['descricao'] ?></p>
+                                            <div class="opcoes"></div>
+                                            <a href="" class="carrinho"><i class="icon-carrinho"></i>Adicionar</a>
                                         </div>
                                     </div>
                                 </li>
