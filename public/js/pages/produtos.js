@@ -1,18 +1,34 @@
-export default function () {
-    $(document).ready(function () {
-        const itensProp = $('.itens');
+import $ from 'jquery';
+import Cookies from 'js-cookie';
 
+export default function () {
+
+    const setCookies = (data) => {
+        try {
+            Cookies.set('dataCard', data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const addCard = () => {
+        const itensProp = $('.itens');
         itensProp.find('.carrinho').click((e) => {
             e.preventDefault();
+            let dataCard = JSON.stringify($(e.currentTarget).data());
 
-            const dataProd = [
-                itensProp.find('img').attr('data-src'),
-                itensProp.find('h2').attr('data-nome'),
-                itensProp.find('h5').attr('data-preco'),
-                itensProp.find('.bottom p').attr('data-descricao'),
-            ]
-
-            console.log(JSON.stringify(dataProd));
+            if (Cookies.get('dataCard')) {
+                const dataCardNew = Cookies.get('dataCard').concat(JSON.stringify($(e.currentTarget).data()));
+                setCookies(dataCardNew);
+            } else {
+                setCookies(dataCard);
+            }
         })
-    });
+    }
+
+    const construct = () => {
+        addCard();
+    };
+
+    construct()
 }

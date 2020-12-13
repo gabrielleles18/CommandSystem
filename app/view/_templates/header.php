@@ -2,11 +2,12 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>MINI3</title>
+    <title>SIGEP</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Muli:200,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= URL?>public/dist/styles.css">
+    <link rel="stylesheet" type="text/css" href="<?= URL?>public/dist/styles.css">
+    <link rel="icon" href="<? URL ?>/public/img/perfil.png" type="image/x-icon"/>
 </head>
 <body>
 <main>

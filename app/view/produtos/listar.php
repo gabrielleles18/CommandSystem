@@ -12,17 +12,22 @@
                         </div>
                         <ul class="itens">
                             <?php foreach ($categorias as $value) { ?>
-                                <li>
-                                    <img src="<?= URL ?>/public/img/pizza.png" alt="" data-src="<?= URL ?>/public/img/pizza.png">
+                                <li class="item">
+                                    <img src="<?= URL ?>/public/img/pizza.png" alt="">
                                     <div class="conteudo">
                                         <div class="top">
-                                            <h2 data-nome="<?= $value['nome'] ?>"><?= $value['nome'] ?></h2>
-                                            <h5 data-preco="<?= $value['preco'] ?>"><?= $value['preco'] ?></h5>
+                                            <h2><?= $value['nome'] ?></h2>
+                                            <h5><?= $value['preco'] ?></h5>
                                         </div>
                                         <div class="bottom">
-                                            <p data-descricao="<?= $value['descricao'] ?>"><?= $value['descricao'] ?></p>
+                                            <p><?= $value['descricao'] ?></p>
                                             <div class="opcoes"></div>
-                                            <a href="" class="carrinho"><i class="icon-carrinho"></i>Adicionar</a>
+                                            <a href="" class="carrinho"
+                                               data-src="<?= URL ?>/public/img/pizza.png"
+                                               data-nome="<?= $value['nome'] ?>"
+                                               data-preco="<?= $value['preco'] ?>"
+                                               data-descricao="<?= $value['descricao'] ?>"
+                                            ><i class="icon-carrinho"></i>Adicionar</a>
                                         </div>
                                     </div>
                                 </li>

@@ -4,7 +4,7 @@
   "description": "https://github.com/panique/mini3",
   "private": true,
   "scripts": {
-    "build": "webpack --watch",
+    "dev": "webpack --watch",
     "server": "webpack serve --mode development --env development"
   },
   "repository": {
@@ -17,6 +17,11 @@
     "url": "https://github.com/gabrielleles18/SIGEP/issues"
   },
   "homepage": "https://github.com/gabrielleles18/SIGEP#readme",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "dependencies": {
     "jquery": "^3.5.1"
   },
@@ -28,6 +33,7 @@
     "babel-preset-env": "^1.7.0",
     "css-loader": "^5.0.1",
     "file-loader": "^6.2.0",
+    "js-cookie": "^2.2.1",
     "mini-css-extract-plugin": "^1.3.2",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",

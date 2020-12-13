@@ -1,4 +1,4 @@
-## Sistema de gerenciamento de Produtos
+## Sistema de Gerenciamento de Produtos
 
 ### Get Started
 
@@ -12,8 +12,6 @@ composer dump-autoload
 
 The MIT License (MIT).<br/>
 Copyright 2020 Gabriel Leles
-
-Isto significa que você pode usar e modificar ele livremente para projetos pessoais, apenas preservando o crédito dos autores.
 
 ### Original
 
