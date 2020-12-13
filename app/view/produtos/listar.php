@@ -4,42 +4,30 @@
         <h1>Produtos</h1>
         <div class="box">
             <?php foreach ($produtos_by_cat as $id => $categorias) { ?>
-                <ul class="list-produtos">
-                    <li>
-                        <div class="cat-icon">
-                            <h1 class="cat"><?= $id ?></h1>
-                            <i class="icon-arrow-down"></i>
-                        </div>
-                        <ul class="itens">
-                            <?php foreach ($categorias as $value) { ?>
-                                <li class="item">
-                                    <img src="<?= URL ?>/public/img/pizza.png" alt="">
-                                    <div class="conteudo">
-                                        <div class="top">
-                                            <h2><?= $value['nome'] ?></h2>
-                                            <h5><?= $value['preco'] ?></h5>
-                                        </div>
-                                        <div class="bottom">
-                                            <p><?= $value['descricao'] ?></p>
-                                            <div class="opcoes"></div>
-                                            <a href="" class="carrinho"
-                                               data-src="<?= URL ?>/public/img/pizza.png"
-                                               data-nome="<?= $value['nome'] ?>"
-                                               data-preco="<?= $value['preco'] ?>"
-                                               data-descricao="<?= $value['descricao'] ?>"
-                                            ><i class="icon-carrinho"></i>Adicionar</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </li>
+                <ul class="itens itens-<?= $id ?>">
+                    <?php foreach ($categorias as $value) { ?>
+                        <li class="item">
+                            <img src="<?= URL ?>/public/img/pizza.png" alt="">
+                            <div class="conteudo">
+                                <h2><?= $value['nome'] ?></h2>
+                                <p><?= $value['descricao'] ?></p>
+                                <h5>R$ <?= $value['preco'] ?></h5>
+                                <a href="" class="carrinho"
+                                   data-id="<?= $value['idproduto'] ?>"
+                                   data-src="<?= URL ?>/public/img/pizza.png"
+                                   data-nome="<?= $value['nome'] ?>"
+                                   data-preco="<?= $value['preco'] ?>"
+                                   data-descricao="<?= $value['descricao'] ?>"
+                                ><i class="icon-carrinho"></i>Adicionar</a>
+                            </div>
+                        </li>
+                    <?php } ?>
                 </ul>
             <?php } ?>
         </div>
     </div>
     <div class="sidebar-prod">
-        Intens do carinho
+
     </div>
 </div>
 </div>

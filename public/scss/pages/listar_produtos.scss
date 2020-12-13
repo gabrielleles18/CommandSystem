@@ -13,117 +13,80 @@ main {
             margin: 0;
 
             .box {
-                .list-produtos {
-                    margin-top: 25px;
-                    border: 1px solid #D8DBE0;
+
+                .itens {
+                    padding: 20px 15px 0;
+                    display: flex;
 
                     li {
-                        .cat-icon {
-                            display: flex;
-                            padding: 0 15px;
-                            background-color: #D8DBE0;
-                            height: 60px;
-                            border-bottom: 1px solid rgba(214, 212, 212, 0.5);
-                            align-items: center;
-                            cursor: pointer;
+                        max-width: 150px;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        margin: 0 15px 20px 0;
+                        padding: 10px;
+                        box-shadow: rgba(0, 0, 0, 0.15) 0 0 2px;
 
-                            .cat {
-                                color: #3C4B64;
-                                padding-bottom: 0;
-                                box-sizing: border-box;
-                                border: none;
-                            }
-
-                            .icon-arrow-down {
-                                padding: 5px;
-
-                                &:before {
-                                    color: #868B93;
-                                    font-size: 23px;
-                                }
-                            }
+                        img {
+                            width: 100px;
+                            height: 100px;
+                            align-self: center;
                         }
 
-                        .itens {
-                            padding: 20px 15px 0;
-                            //display: none;
+                        .conteudo {
+                            display: flex;
+                            flex-direction: column;
+                            line-height: 20px;
 
-                            li {
+                            h2 {
+                                font-size: 18px;
+                                font-weight: 500;
+                                color: #4F5D73;
+                            }
+
+                            h5 {
+                                font-size: 16px;
+                                color: #4F5D73;
+                                font-weight: 600;
+                                margin-top: 5px;
+                            }
+
+                            p {
+                                color: rgb(140, 140, 140);
+                                font-size: 16px;
+                                line-height: 23px;
+                                word-break: break-word;
+                            }
+
+
+                            .carrinho {
+                                width: 80px;
+                                min-height: 25px;
+                                background-color: #3399FF;
+                                border-radius: 3px;
+                                color: #fff;
+                                padding: 2px 7px;
                                 display: flex;
-                                border-bottom: 1px solid #D6D4D4;
-                                margin-bottom: 20px;
-                                padding-bottom: 20px;
+                                align-items: center;
+                                font-size: 12px;
+                                margin-top: 10px;
 
-                                img {
-                                    width: 130px;
-                                    height: 130px;
-                                    margin-right: 20px
+                                &:first-child {
+                                    margin-right: 20px;
                                 }
 
-                                .conteudo {
-                                    width: calc(100% - 150px);
+                                i {
+                                    margin-right: 5px;
 
-                                    .top {
-                                        display: flex;
-                                        justify-content: space-between;
-                                        align-items: center;
-                                        margin-bottom: 15px;
-
-                                        &:before {
-                                            content: none;
-                                        }
-
-                                        h2 {
-                                            font-size: 25px;
-                                            font-weight: 700;
-                                            color: #4F5D73;
-                                        }
-
-                                        h5 {
-                                            font-size: 20px;
-                                            color: #F9B115;
-                                            font-weight: bold;
-                                        }
-                                    }
-
-                                    .bottom {
-                                        p {
-                                            color: #768192;
-                                            font-size: 16px;
-                                            line-height: 23px;
-                                        }
-
-
-                                        .carrinho {
-                                            width: 80px;
-                                            min-height: 25px;
-                                            background-color: #3399FF;
-                                            border-radius: 3px;
-                                            color: #fff;
-                                            padding: 2px 7px;
-                                            display: flex;
-                                            align-items: center;
-                                            font-size: 12px;
-                                            float: right;
-
-                                            &:first-child {
-                                                margin-right: 20px;
-                                            }
-
-                                            i {
-                                                margin-right: 5px;
-
-                                                &:before {
-                                                    font-size: 15px;
-                                                }
-                                            }
-                                        }
+                                    &:before {
+                                        font-size: 15px;
                                     }
                                 }
                             }
                         }
                     }
                 }
+
             }
         }
 

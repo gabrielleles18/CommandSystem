@@ -11,6 +11,16 @@ export default function () {
         }
     }
 
+    const renderCard = (data) => {
+        const card = $('.sidebar-prod');
+        let html = '';
+        let dataArray = JSON.parse(data);
+        console.log(dataArray.nome);
+
+
+        card.html(html);
+    }
+
     const addCard = () => {
         const itensProp = $('.itens');
         itensProp.find('.carrinho').click((e) => {
@@ -23,11 +33,15 @@ export default function () {
             } else {
                 setCookies(dataCard);
             }
+            renderCard(Cookies.get('dataCard'));
         })
     }
 
     const construct = () => {
         addCard();
+        if (Cookies.get('dataCard')) {
+            renderCard(Cookies.get('dataCard'));
+        }
     };
 
     construct()
