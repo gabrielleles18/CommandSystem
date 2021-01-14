@@ -18,6 +18,7 @@
                                    data-nome="<?= $value['nome'] ?>"
                                    data-preco="<?= $value['preco'] ?>"
                                    data-descricao="<?= $value['descricao'] ?>"
+                                   data-qt="1"
                                 ><i class="icon-carrinho"></i>Adicionar</a>
                             </div>
                         </li>
@@ -27,7 +28,6 @@
         </div>
     </div>
     <div class="sidebar-prod">
-
     </div>
 </div>
 </div>

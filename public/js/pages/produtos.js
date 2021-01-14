@@ -13,10 +13,13 @@ export default function () {
 
     const renderCard = (data) => {
         const card = $('.sidebar-prod');
-        let html = '';
         let dataArray = JSON.parse(data);
-        console.log(dataArray.nome);
+        let html = '';
 
+        dataArray.forEach((value, index) => {
+            // console.log(value);
+            html += `<p>${value.qt} ${value.nome} $ ${value.preco} </p>`;
+        });
 
         card.html(html);
     }
@@ -25,11 +28,24 @@ export default function () {
         const itensProp = $('.itens');
         itensProp.find('.carrinho').click((e) => {
             e.preventDefault();
-            let dataCard = JSON.stringify($(e.currentTarget).data());
+            let dataCard = JSON.stringify([$(e.currentTarget).data()]);
 
             if (Cookies.get('dataCard')) {
-                const dataCardNew = Cookies.get('dataCard').concat(JSON.stringify($(e.currentTarget).data()));
-                setCookies(dataCardNew);
+                let datacookie = JSON.parse(Cookies.get('dataCard'));
+                let dataclick = $(e.currentTarget).data();
+
+                datacookie.forEach((value) => {
+                    if (value.id == dataclick.id) {
+                        let qt = value.qt + dataclick.qt;
+                        value.qt = qt;
+
+                        setCookies(JSON.stringify(datacookie));
+
+                    } else {
+                        const dataCardNew = datacookie.concat([$(e.currentTarget).data()]);
+                        setCookies(JSON.stringify(dataCardNew));
+                    }
+                })
             } else {
                 setCookies(dataCard);
             }
