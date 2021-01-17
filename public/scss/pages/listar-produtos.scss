@@ -1,0 +1,103 @@
+main {
+    .container.produtos {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &:after {
+            content: none;
+        }
+
+
+        .produtos {
+            width: 100%;
+            margin: 0;
+
+            .box {
+
+                .itens {
+                    padding: 20px 0;
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    li {
+                        max-width: 190px;
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        margin: 0 12px 20px 12px;
+                        padding: 10px;
+                        border: 1px solid #E2E2E2;
+                        border-radius: 3px;
+
+                        img {
+                            width: 100px;
+                            height: 100px;
+                            align-self: center;
+                            margin-bottom: 5px;
+                        }
+
+                        .conteudo {
+                            height: 100%;
+                            line-height: 20px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+
+                            hgroup {
+                                h2 {
+                                    font-size: 16px;
+                                    font-weight: 500;
+                                    color: #4F5D73;
+                                }
+
+                                p {
+                                    color: rgb(140, 140, 140);
+                                    font-size: 15px;
+                                    line-height: 20px;
+                                    word-break: break-word;
+                                    margin: 5px 0 10px 0;
+                                }
+                            }
+
+                            .preco-carrinho {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+
+                                h5 {
+                                    font-size: 16px;
+                                    color: #4F5D73;
+                                    font-weight: 600;
+                                }
+
+                                .carrinho {
+                                    background-color: #00a65a;
+                                    border-radius: 2px;
+                                    color: #fff;
+                                    padding: 2px;
+                                    display: flex;
+                                    align-items: center;
+
+                                    &:first-child {
+                                        margin-right: 20px;
+                                    }
+
+                                    i {
+                                        margin-right: 5px;
+
+                                        &:before {
+                                            font-size: 15px;
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

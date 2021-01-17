@@ -1,3 +1,23 @@
+<?php
+
+use Mini\Controller\index;
+
+$breadcrumb = Index::gerateBreadcrumb([
+    [
+        'url' => URL,
+        'text' => 'Home'
+    ],
+    [
+        'url' => URL . '/funcao',
+        'text' => 'Função'
+    ],
+    [
+        'url' => '#',
+        'text' => $funcao->nome
+    ]
+]);
+?>
+<?= $breadcrumb ?>
 <div class="container">
     <h1>Editar um funcao</h1>
     <!--    <h2>Você está na View: application/view/funcao/edit.php (tudo nesta tela vem desse arquivo)</h2>-->

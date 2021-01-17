@@ -1,3 +1,23 @@
+<?php
+
+use Mini\Controller\index;
+
+$breadcrumb = Index::gerateBreadcrumb([
+    [
+        'url' => URL,
+        'text' => 'Home'
+    ],
+    [
+        'url' => URL . '/mesa',
+        'text' => 'Mesas'
+    ],
+    [
+        'url' => '#',
+        'text' => 'Mesa:' . $mesa->numero
+    ]
+]);
+?>
+<?= $breadcrumb ?>
 <div class="container">
     <h1>Editar um Mesa</h1>
     <div class="box">

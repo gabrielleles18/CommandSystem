@@ -1,9 +1,10 @@
 .sidebar {
-    width: 256px;
+    width: 220px;
     height: 100vh;
     background-color: $color_gray_escuro;
     position: fixed;
     left: 0;
+    top: 0;
     overflow: auto;
 
     .logo {
@@ -12,11 +13,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0, 0, 21, .2);
+        background-color: #367fa9;
     }
 
     ul {
         color: #fff;
+        margin-top: 32px;
 
         li {
             display: flex;
@@ -24,16 +26,29 @@
             padding: 13px 20px;
 
             a {
-                color: #fff;
-
+                width: 100%;
+                height: 100%;
+                color: #b8c7ce;
+                display: flex;
+                align-items: center;
             }
 
             &:hover {
-                background-color: #303C50;
+                background-color: #1e282c;
+                transition: .2s;
+
+                a,
+                a i:before {
+                    color: #fff;
+                }
             }
 
             i {
                 margin-right: 15px;
+
+                &:before {
+
+                }
             }
 
             .icon-home:before {

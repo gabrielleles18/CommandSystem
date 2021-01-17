@@ -1,0 +1,35 @@
+.breadcrumb-component {
+    min-height: 33px;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #D8DBE0;
+    background-color: #d2d6de;
+
+    ul {
+        display: flex;
+        align-items: center;
+
+        li {
+            padding: 0 5px;
+
+            a {
+                color: #444;
+            }
+
+            &:last-child {
+                a {
+                    color: #777;
+                }
+
+                svg {
+                    display: none;
+                }
+            }
+        }
+
+        svg {
+            color: #a6a5aa;
+        }
+    }
+}

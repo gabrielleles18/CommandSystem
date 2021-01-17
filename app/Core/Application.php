@@ -1,9 +1,9 @@
 <?php
 /** Para mais informações sobre namespaces @veja http://php.net/manual/en/language.namespaces.importing.php */
+
 namespace Mini\Core;
 
-class Application
-{
+class Application {
     /** @var null O controller */
     private $url_controller = null;
 
@@ -17,8 +17,7 @@ class Application
      * "Iniciar" a application:
      * Analise os elementos de URL e chame o controlador / método de acordo ou o fallback
      */
-    public function __construct()
-    {
+    public function __construct() {
         // criar um array com as partes da URL em $url
         $this->splitUrl();
 
@@ -39,7 +38,7 @@ class Application
             // verifique o método: existe um método desse tipo no controller ?
             if (method_exists($this->url_controller, $this->url_action) &&
                 is_callable(array($this->url_controller, $this->url_action))) {
-                
+
                 if (!empty($this->url_params)) {
                     // Chame o método e passe argumentos para ele
                     call_user_func_array(array($this->url_controller, $this->url_action), $this->url_params);
@@ -66,8 +65,7 @@ class Application
     /**
      * Obter e separar as partes da URL
      */
-    private function splitUrl()
-    {
+    private function splitUrl() {
         if (isset($_GET['url'])) {
 
             // separar URL

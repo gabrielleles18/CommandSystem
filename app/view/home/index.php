@@ -1,3 +1,15 @@
+<?php
+
+use Mini\Controller\index;
+
+$breadcrumb = Index::gerateBreadcrumb([
+    [
+        'url' => '#',
+        'text' => 'Home'
+    ]
+]);
+?>
+<?= $breadcrumb ?>
 <div class="container">
     <h1>Mesa Disponíveis</h1>
     <div class="mesas">

@@ -1,3 +1,19 @@
+<?php
+
+use Mini\Controller\index;
+
+$breadcrumb = Index::gerateBreadcrumb([
+    [
+        'url' => URL,
+        'text' => 'Home'
+    ],
+    [
+        'url' => URL . '/funcao',
+        'text' => 'Função'
+    ]
+]);
+?>
+<?= $breadcrumb ?>
 <div class="container">
     <h1>Funções</h1>
     <div class="box">
