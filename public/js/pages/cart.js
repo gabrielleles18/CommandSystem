@@ -55,7 +55,7 @@ export default function () {
         });
 
         html += `<h5 class="total">Total: R$ ${total}</h5>
-                <a href="" class="finalizar">Finalizar Pedido</a>
+                <button class="finalizar">Finalizar Pedido</button>
                 `
 
         card.html(html);
@@ -106,13 +106,31 @@ export default function () {
         });
     }
 
+    const finalizarPedido = () => {
+        $('main .right .header .top .cart-user .sidebar-carrinho .finalizar').click(() => {
+            console.log("sw");
+            $.ajax({
+                url: 'public/index.php',
+                type: 'POST',
+                assign: false,
+                success: function () {
+                    console.log("success");
+                },
+                error: function (XMLHttpRequest, error) {
+                    console.log(error);
+                }
+            })
+        })
+    }
+
     const construct = () => {
         addCard();
+        finalizarPedido();
         openCart();
         if (Cookies.get('dataCard')) {
             renderCard(Cookies.get('dataCard'));
         }
     };
 
-    construct()
+    construct();
 }

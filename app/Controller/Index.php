@@ -19,4 +19,9 @@ class Index {
 
         return $html;
     }
+
+    static function finalizarPedido(){
+
+    }
+
 }

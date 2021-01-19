@@ -1,4 +1,4 @@
-import produtos from './pages/produtos';
+import produtos from './pages/cart';
 
 ((fn) => {
     if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {

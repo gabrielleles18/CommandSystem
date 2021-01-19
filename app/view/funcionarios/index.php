@@ -21,7 +21,13 @@ $breadcrumb = Index::gerateBreadcrumb([
             <div class="form-row">
                 <div class="col-3 col-in">
                     <label>Nome</label>
-                    <input type="text" name="nome" value="" required/>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                        </div>
+                        <input type="text" name="nome" value="" required class="form-control"
+                               id="inlineFormInputGroupUsername2" placeholder="Username">
+                    </div>
                 </div>
                 <div class="col-3 col-in">
                     <label>CPF</label>

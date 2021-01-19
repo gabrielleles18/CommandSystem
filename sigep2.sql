@@ -11,7 +11,7 @@
  Target Server Version : 100408
  File Encoding         : 65001
 
- Date: 08/03/2020 16:29:59
+ Date: 18/01/2021 21:56:10
 */
 
 SET NAMES utf8mb4;
@@ -40,13 +40,15 @@ CREATE TABLE `categoria`  (
   `idcat` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`idcat`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of categoria
 -- ----------------------------
 INSERT INTO `categoria` VALUES (1, 'Piza');
 INSERT INTO `categoria` VALUES (2, 'Bebida');
+INSERT INTO `categoria` VALUES (3, 'Sobremesa');
+INSERT INTO `categoria` VALUES (4, 'Doces');
 
 -- ----------------------------
 -- Table structure for funcao
@@ -62,7 +64,6 @@ CREATE TABLE `funcao`  (
 -- ----------------------------
 -- Records of funcao
 -- ----------------------------
-INSERT INTO `funcao` VALUES (2, 'Garçom', 0);
 INSERT INTO `funcao` VALUES (3, 'Atendente', 1);
 
 -- ----------------------------
@@ -87,7 +88,7 @@ CREATE TABLE `funcionario`  (
 -- ----------------------------
 -- Records of funcionario
 -- ----------------------------
-INSERT INTO `funcionario` VALUES (1, 'Gabriel Leles', '1', 123456, '2020-02-05', 'addasss', 'senha', 1, 3);
+INSERT INTO `funcionario` VALUES (1, 'Gabriel Leles', '13', 123456, '2020-02-05', 'addasss', 'senha', 1, 3);
 
 -- ----------------------------
 -- Table structure for mesa
@@ -105,7 +106,7 @@ CREATE TABLE `mesa`  (
 -- Records of mesa
 -- ----------------------------
 INSERT INTO `mesa` VALUES (1, 1, '3 lugares', 0);
-INSERT INTO `mesa` VALUES (3, 2, 'Dois lugares', 0);
+INSERT INTO `mesa` VALUES (3, 2, 'Dois lugares', 1);
 INSERT INTO `mesa` VALUES (4, 3, 'Descricao', 1);
 INSERT INTO `mesa` VALUES (5, 5, 'sem', 1);
 
@@ -148,14 +149,16 @@ CREATE TABLE `produto`  (
   CONSTRAINT `fk_produto_borda1` FOREIGN KEY (`borda_idborda`) REFERENCES `borda` (`idborda`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_produto_categoria1` FOREIGN KEY (`categoria_idcat`) REFERENCES `categoria` (`idcat`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_produto_unidMed1` FOREIGN KEY (`unidMed_idunid`) REFERENCES `unidmed` (`idunid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of produto
 -- ----------------------------
-INSERT INTO `produto` VALUES (16, 'Bolo', 12, 'small', 'desc', 0, 1, 1);
-INSERT INTO `produto` VALUES (17, 'Banana3e', 90, '2', 'desc', 0, 2, 2);
-INSERT INTO `produto` VALUES (18, 'Bananaqw', 90, 'grande', 'desc', 0, 1, 1);
+INSERT INTO `produto` VALUES (16, 'Bolo', 12, 'small', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ', 0, 1, 1);
+INSERT INTO `produto` VALUES (17, 'Coca cola', 7.69, '2', 'It was popularised in the 1960s with the release of', 0, 2, 2);
+INSERT INTO `produto` VALUES (18, 'Pizza Calabreza', 90, 'grande', 'It was popularised in the 1960s with the release of ', 0, 1, 1);
+INSERT INTO `produto` VALUES (19, 'Brigadeiro', 1.5, '1', 'Lorem Ipsum passages, and more recently with', 0, 1, 4);
+INSERT INTO `produto` VALUES (20, 'Sorverte', 2.5, '250', 'Lorem Ipsum passages, and more recently with', 0, 2, 3);
 
 -- ----------------------------
 -- Table structure for produto_pedido

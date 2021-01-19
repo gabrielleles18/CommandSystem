@@ -13,7 +13,6 @@ $breadcrumb = Index::gerateBreadcrumb([
     ]
 ]);
 ?>
-<link href="<?= URL; ?>css/listar_produtos.css" rel="stylesheet">
 <?= $breadcrumb ?>
 <div class="container produtos">
     <div class="produtos">
