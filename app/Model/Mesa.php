@@ -5,7 +5,7 @@ namespace Mini\Model;
 
 use Mini\Core\Model;
 
-class Mesa extends Model{
+class Mesa extends Model {
     public function getAllMessa() {
         $sql = "SELECT idmesa, numero, descricao, status  FROM mesa";
         $query = $this->db->prepare($sql);
@@ -31,7 +31,7 @@ class Mesa extends Model{
     }
 
     public function getMesa($mesa_id) {
-        $sql = "SELECT idmesa, numero, descricao, status FROM mesa WHERE idmesa = :mesa_id LIMIT 1";
+        $sql = "SELECT * FROM mesa WHERE idmesa = :mesa_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':mesa_id' => $mesa_id);
 
@@ -43,7 +43,7 @@ class Mesa extends Model{
     public function update($numero, $descricao, $status, $mesa_id) {
         $sql = "UPDATE mesa SET numero = :numero, descricao = :descricao, status = :status WHERE idmesa = :mesa_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':numero' => $numero, ':descricao' => $descricao, ':status' => $status,':mesa_id' => $mesa_id);
+        $parameters = array(':numero' => $numero, ':descricao' => $descricao, ':status' => $status, ':mesa_id' => $mesa_id);
 
         $query->execute($parameters);
     }
@@ -56,12 +56,29 @@ class Mesa extends Model{
         return $query->fetch()->amount_of_mesa;
     }
 
-    public function getMessa($status){
-        $sql = "SELECT idmesa, numero, descricao, status  FROM mesa where status = {$status}";
+    public function getMessaFree() {
+        $sql = "SELECT *  FROM mesa where status = 1";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         return $query->fetchAll();
+    }
+
+    public function getMessaBusy() {
+        $sql = "SELECT 	mesa.*,	pedido.idpedido FROM mesa
+	            INNER JOIN pedido ON mesa.idmesa = pedido.mesa_idmesa 
+                WHERE mesa.`status` = 0";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+
+    public function changeStatus($id, $status = '0') {
+        $sql = "UPDATE mesa SET status = {$status} WHERE idmesa = {$id}";
+        $query = $this->db->prepare($sql);
+
+        $query->execute();
     }
 
 }

@@ -16,8 +16,8 @@ class HomeController {
      */
     public function index() {
         $mesa = new Mesa();
-        $mesasfree = $mesa->getMessa(1);
-        $mesasbusy = $mesa->getMessa(0);
+        $mesasfree = $mesa->getMessaFree();
+        $mesasbusy = $mesa->getMessaBusy();
 
         // Carregar a view home
         require APP . 'view/_templates/header.php';

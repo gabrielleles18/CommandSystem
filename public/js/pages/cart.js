@@ -7,7 +7,7 @@ export default function () {
         try {
             Cookies.set('dataCard', data);
         } catch (err) {
-            console.log(err);
+            console.log("Error in set Cookies ".err);
         }
     }
 
@@ -17,12 +17,14 @@ export default function () {
         let html = '';
         let total = 0;
 
-        html += `<li class="itens-cart">Itens do pedido</li>`;
+        html += `<form action="https://localhost/SIGEP/pedido/add" method="POST">
+                  <input type="hidden"  name="mesa_id" value="${GET}"/>
+                <li class="itens-cart">Itens do pedido</li>`;
         dataArray.forEach((value, index) => {
             total = total + (value.qt * value.preco);
             html += `
                     <li>
-                        <img src="<?= URL ?>/public/img/pizza.png" alt="">
+                        <img src="${URL}/public/img/pizza.png" alt="">
                         <div class="center">
                             <hgroup>
                                 <h5 class="title">${value.nome}</h5>
@@ -51,12 +53,15 @@ export default function () {
                             <div class="preco">R$ ${value.qt * value.preco}</div>
                         </div>
                     </li>
-            `;
+             `;
         });
 
+        Cookies.set('total-cart', total);
+
         html += `<h5 class="total">Total: R$ ${total}</h5>
-                <button class="finalizar">Finalizar Pedido</button>
-                `
+                <button class="finalizar" type="submit" name="cadastar_pedido">Finalizar Pedido</button>
+                </form>
+                `;
 
         card.html(html);
     }
@@ -107,28 +112,17 @@ export default function () {
     }
 
     const finalizarPedido = () => {
-        $('main .right .header .top .cart-user .sidebar-carrinho .finalizar').click(() => {
-            console.log("sw");
-            $.ajax({
-                url: 'public/index.php',
-                type: 'POST',
-                assign: false,
-                success: function () {
-                    console.log("success");
-                },
-                error: function (XMLHttpRequest, error) {
-                    console.log(error);
-                }
-            })
+        $('.sidebar-carrinho .finalizar').click(() => {
+            window.location = "https://localhost/SIGEP/produtos/listar?id=12";
         })
     }
 
     const construct = () => {
         addCard();
-        finalizarPedido();
         openCart();
         if (Cookies.get('dataCard')) {
             renderCard(Cookies.get('dataCard'));
+            finalizarPedido();
         }
     };
 

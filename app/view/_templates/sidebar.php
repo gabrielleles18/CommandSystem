@@ -14,7 +14,8 @@
 
 <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
 <script>
-    var url = "<?= URL; ?>";
+    let url = "<?= URL; ?>";
+    let GET = "<?= $_GET['id'] ?>"
 </script>
 <script src="<?= URL ?>public/dist/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

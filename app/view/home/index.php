@@ -14,9 +14,12 @@ $breadcrumb = Index::gerateBreadcrumb([
     <h1>Mesa Disponíveis</h1>
     <div class="mesas">
         <?php foreach ($mesasfree as $id => $v) { ?>
-            <a href="<?= URL . 'pedido/?id=' . $v->idmesa?>">
-                <h6>Mesa <?= $v->numero ?></h6>
-                <i class="icon"></i>
+            <a href="<?= URL . 'produtos/listar?id=' . $v->idmesa ?>">
+                <img src="<?= URL . '/public/img/table.png' ?>"/>
+                <span>
+                    <h4>Mesa <?= $v->numero ?></h4>
+                    <h5>Mesa <?= $v->descricao ?></h5>
+                </span>
             </a>
         <?php } ?>
     </div>
@@ -26,9 +29,12 @@ $breadcrumb = Index::gerateBreadcrumb([
     <h1>Mesa Ocupadas</h1>
     <div class="mesas">
         <?php foreach ($mesasbusy as $id => $v) { ?>
-            <a href="<?= URL . 'pedido/?id=' . $v->idmesa?>">
-                <h6>Mesa <?= $v->numero ?></h6>
-                <i class="icon iconbusy"></i>
+            <a href="<?= URL . 'pedido/?id=' . $v->idpedido ?>" class="busy">
+                <img src="<?= URL . '/public/img/table.png' ?>"/>
+                <span>
+                    <h4>Mesa <?= $v->numero ?></h4>
+                    <h5>Mesa <?= $v->descricao ?></h5>
+                </span>
             </a>
         <?php } ?>
     </div>

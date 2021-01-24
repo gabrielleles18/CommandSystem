@@ -115,39 +115,51 @@ body {
         }
 
         .mesas {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            grid-column-gap: 10px;
-            grid-row-gap: 30px;
-            margin-top: 30px;
+            display: flex;
+            margin-top: 20px;
+            flex-wrap: wrap;
 
             a {
-                width: 100px;
+                width: 20%;
+                max-width: 50%;
+                height: 90px;
                 display: flex;
-                flex-direction: column;
                 align-items: center;
                 border: 1px solid transparent;
+                margin: 10px 20px 10px 0;
+                flex-grow: 1;
+                background-color: #00a65a;
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 
-                &:hover {
-                    border: 1px solid rgba(214, 212, 212, 0.5);
+                &.busy {
+                    background-color: #dd4b39;
                 }
 
-                h6 {
-                    font-size: 15px;
-                    line-height: 19px;
-                    color: $color_gray_escuro;
-                    margin-bottom: 15px;
+                &:last-child,
+                &:nth-child(4) {
+                    margin: 10px 0 10px 0;
                 }
 
-                .icon {
-                    width: 100%;
-                    height: 60px;
-                    display: flex;
-                    //background: url("../img/mesafree.png") center/contain no-repeat;
+                span {
+                    padding: 10px;
+                    color: #fff;
+                    line-height: 23px;
+
+                    h4 {
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+
+                    h5 {
+                        font-size: 10px;
+                    }
                 }
 
-                .iconbusy {
-                    //background: url("../img/mesabusy.png") center/contain no-repeat;
+                img {
+                    width: 90px;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.2);
+                    padding: 20px;
                 }
             }
         }

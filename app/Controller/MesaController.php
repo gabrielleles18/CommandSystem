@@ -62,9 +62,4 @@ class MesaController {
 
         header('location: ' . URL . 'mesa/index');
     }
-
-    public function getMessa($status){
-        $mesa = new Mesa();
-        $mesas = $mesa->getMessa($status);
-    }
 }

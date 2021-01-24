@@ -129,6 +129,7 @@ class ProdutosController {
 
 
     public function listar() {
+        unset($_COOKIE['dataCard']);
         $Produto = new Produto();
 
         $categorias = $Produto->getAllCategoria();
