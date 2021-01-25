@@ -95,6 +95,7 @@ export default function () {
                 setCookies(dataCard);
             }
             renderCard(Cookies.get('dataCard'));
+            removeItemCart();
         })
     }
 
@@ -129,9 +130,9 @@ export default function () {
                     posicao = index;
                 }
             });
-            console.log(posicao);
-            datacookie.indexOf(posicao);
-            console.log(datacookie);
+            datacookie.splice(posicao, 1);
+            Cookies.set('dataCard', JSON.stringify(datacookie))
+            renderCard(Cookies.get('dataCard'));
         });
     }
 
