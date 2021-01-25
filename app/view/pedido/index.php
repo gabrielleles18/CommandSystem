@@ -23,6 +23,9 @@ $breadcrumb = Index::gerateBreadcrumb([
 <?= $breadcrumb ?>
 <div class="container">
     <h1>Pedido</h1>
-    <div class="box"></div>
+    <div class="box">
+        <?php echo "<pre>";
+        print_r($pedido); ?>
+    </div>
 </div>
 </div>

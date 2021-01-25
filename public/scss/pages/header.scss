@@ -130,13 +130,15 @@ main {
                                 }
 
                                 .quantidade {
-                                    margin-top: 20px;
+                                    width: 90px;
+                                    margin-top: 5px;
                                     display: flex;
                                     align-items: center;
+                                    justify-content: space-between;
+                                    border: 1px solid #B3B3B396;
+                                    border-radius: 3px;
 
                                     svg {
-                                        border: 1px solid #B3B3B3;
-                                        border-radius: 3px;
                                         cursor: pointer;
                                     }
 
@@ -146,7 +148,7 @@ main {
 
                                     h4 {
                                         margin: 0 12px;
-                                        font-size: 16px;
+                                        font-size: 14px;
                                         color: #4F5D73;
                                     }
                                 }
@@ -181,11 +183,12 @@ main {
                             color: #4F5D73;
                             font-weight: 600;
                             margin: 3px 0 18px;
-                            align-self: flex-end;
+                            display: flex;
+                            justify-content: flex-end;
                         }
 
                         .finalizar {
-                            min-width: 120px;
+                            width: 100%;
                             min-height: 34px;
                             padding: 5px 10px;
                             background-color: #00a65a;
