@@ -1,0 +1,52 @@
+.container .box {
+    .busy {
+        width: 100%;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        border: 1px solid transparent;
+        background-color: #dd4b39;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+        span {
+            padding: 10px;
+            color: #fff;
+            line-height: 23px;
+
+            h4 {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            h5 {
+                font-size: 10px;
+            }
+        }
+
+        img {
+            width: 90px;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+    }
+
+    .pedido-item {
+        li {
+            width: 100%;
+            height: 40px;
+            min-height: 40px;
+            border-bottom: 1px solid #f4f4f4;
+            border-left: 1px solid #f4f4f4;
+            border-right: 1px solid #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+
+            &:nth-child(even) {
+                background-color: #c9d4e12e;
+            }
+        }
+    }
+}
