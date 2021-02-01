@@ -5,6 +5,7 @@ namespace Mini\Model;
 
 
 use Mini\Core\Model;
+use Mini\Libs\Helper;
 
 class ProdutoPedido extends Model {
 
@@ -14,6 +15,7 @@ class ProdutoPedido extends Model {
         $query = $this->db->prepare($sql);
         $parameters = array(':produto_idproduto' => $produto_idproduto,
             ':pedido_idpedido' => $pedido_idpedido, ':qt_prod' => $qt_prod);
+//         echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
     }

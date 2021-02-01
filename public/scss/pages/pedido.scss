@@ -32,6 +32,8 @@
     }
 
     .pedido-item {
+        margin-bottom: 50px;
+
         li {
             width: 100%;
             height: 40px;
@@ -47,6 +49,111 @@
             &:nth-child(even) {
                 background-color: #c9d4e12e;
             }
+        }
+    }
+
+    .produtos {
+        li {
+            width: 100%;
+            min-height: 60px;
+            border-bottom: 1px solid #E2E2E2;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+
+            img {
+                width: 50px;
+                height: 50px;
+                align-self: center;
+            }
+
+            .center {
+                width: 130px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .title {
+                    font-size: 14px;
+                    color: #4F5D73;
+                }
+
+                .des {
+                    color: #8c8c8c;
+                    font-size: 12px;
+                    margin: 5px 0;
+                }
+
+                .quantidade {
+                    width: 90px;
+                    margin-top: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    border: 1px solid #B3B3B396;
+                    border-radius: 3px;
+
+                    svg {
+                        cursor: pointer;
+                    }
+
+                    svg.bi-plus {
+                        color: #00a65a;
+                    }
+
+                    h4 {
+                        margin: 0 12px;
+                        font-size: 14px;
+                        color: #4F5D73;
+                    }
+                }
+            }
+
+            .right {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-end;
+
+                svg {
+                    color: #B3B3B3;
+                    cursor: pointer;
+                    transition: .2s;
+
+                    &:hover {
+                        color: #dd4b39;
+                    }
+                }
+
+                .preco {
+                    font-size: 14px;
+                    color: #4F5D73;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .total {
+            font-size: 14px;
+            color: #4F5D73;
+            font-weight: 600;
+            margin: 3px 0 18px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .finalizar {
+            width: 100%;
+            min-height: 34px;
+            padding: 5px 10px;
+            background-color: #00a65a;
+            border-radius: 3px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
         }
     }
 }

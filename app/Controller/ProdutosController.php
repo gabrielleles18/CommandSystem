@@ -39,6 +39,7 @@ class ProdutosController {
      */
     public function add() {
         if (isset($_POST["submit_add_produto"])) {
+
             $Produto = new Produto();
             $Produto->add($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"],
                 $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"]);

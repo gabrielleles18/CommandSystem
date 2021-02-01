@@ -12,6 +12,8 @@ class PedidoController {
 
     public function index() {
         $pedido = (new Pedido())->getPedido($_GET['id']);
+        $mesa = (new Mesa())->getMesa($pedido->mesa_idmesa);
+        $proutdutos = (new Pedido())->getItensPedido($_GET['id']);
 
         require APP . 'view/_templates/header.php';
         require APP . 'view/pedido/index.php';
@@ -27,14 +29,15 @@ class PedidoController {
             if (!empty($_COOKIE['dataCard'])) {
                 $dataPedido = json_decode($_COOKIE['dataCard']);
 
-                $id = $pedido->add(date("d/m/Y H:i:s"), 'observações ', $_COOKIE['total-cart'],
-                    1, $_POST["mesa_id"], 1);
+                $pedido->add(date("d/m/Y H:i:s"), 'observações ', $_COOKIE['total-cart'],
+                    1, $_POST["mesa_id"], 2);
 
                 foreach ($dataPedido as $value) {
-                    $produtoPedido->add($value->id, $id, $value->qt);
+                    $produtoPedido->add($value->id, (new Pedido)->lastID()->idpedido, $value->qt);
                 }
                 $mesa->changeStatus($_POST["mesa_id"]);
                 unset($_COOKIE['dataCard']);
+                unset($_COOKIE['total-cart']);
             } else {
                 return '';
             }
