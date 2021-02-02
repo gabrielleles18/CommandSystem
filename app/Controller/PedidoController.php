@@ -30,8 +30,10 @@ class PedidoController {
             if (!empty($_COOKIE['dataCard'])) {
                 $dataPedido = json_decode($_COOKIE['dataCard']);
 
-                $pedido->add(date("d/m/Y H:i:s"), 'observações ', $_COOKIE['total-cart'],
-                    1, $_POST["mesa_id"], 2);
+                $usuario = json_decode($_COOKIE['login']);
+
+                $pedido->add(date("d/m/Y H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'],
+                    1, $_POST["mesa_id"], $usuario->idfuncionario);
 
                 foreach ($dataPedido as $value) {
                     $produtoPedido->add($value->id, (new Pedido)->lastID()->idpedido, $value->qt);

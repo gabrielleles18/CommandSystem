@@ -1,3 +1,8 @@
+<?php
+if (empty($_COOKIE['login'])) {
+    header('location: ' . URL . 'login');
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

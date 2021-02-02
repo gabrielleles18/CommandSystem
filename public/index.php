@@ -35,3 +35,4 @@ use Mini\Core\Application;
 
 // iniciar a app
 $app = new Application();
+

@@ -141,6 +141,7 @@ class ProdutosController {
             }
         }
 
+        require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/produtos/listar.php';
         require APP . 'view/_templates/sidebar.php';
