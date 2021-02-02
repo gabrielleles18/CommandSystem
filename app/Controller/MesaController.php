@@ -12,6 +12,7 @@ class MesaController {
         $mesas = $mesa->getAllMessa();
         $amount_of_mesa = $mesa->getAmountOfMesa();
 
+        require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/mesa/index.php';
         require APP . 'view/_templates/sidebar.php';

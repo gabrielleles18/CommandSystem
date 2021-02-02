@@ -24,6 +24,7 @@ class ProdutosController {
 
 
         // carregar a view produtos. com as views nós podemos mostrar os $produtos e a $amount_of_produtos facilmente
+        require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/produtos/index.php';
         require APP . 'view/_templates/sidebar.php';

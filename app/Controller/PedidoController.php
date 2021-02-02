@@ -15,6 +15,7 @@ class PedidoController {
         $mesa = (new Mesa())->getMesa($pedido->mesa_idmesa);
         $proutdutos = (new Pedido())->getItensPedido($_GET['id']);
 
+        require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/pedido/index.php';
         require APP . 'view/_templates/sidebar.php';

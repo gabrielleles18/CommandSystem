@@ -13,6 +13,7 @@ class FuncaoController {
         $funcoes = $funcao->getAllFuncao();
         $amount_of_funcao = $funcao->getAmountOfFuncao();
 
+        require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/funcao/index.php';
         require APP . 'view/_templates/sidebar.php';
@@ -27,7 +28,7 @@ class FuncaoController {
      * Este é um exemplo de como lidar com uma solicitação POST.
      */
     public function add() {
-        if (isset($_POST["submit_add_funcao"])) {   
+        if (isset($_POST["submit_add_funcao"])) {
             $funcao = new Funcao();
             $funcao->add($_POST["nome"], $_POST["status"]);
         }

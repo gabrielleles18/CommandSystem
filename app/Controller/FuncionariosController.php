@@ -23,6 +23,7 @@ class FuncionariosController {
         $funcao = $funcionario->getAllFuncao();
 
         // Carregar a view funcionarios. Com as views nós podemos mostrar os $funcionarios e a $amount_of_funcionarios facilmente
+        require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/funcionarios/index.php';
         require APP . 'view/_templates/sidebar.php';
@@ -118,7 +119,7 @@ class FuncionariosController {
             // fazer update() do Model/Model.php
             $funcionario->update($_POST["nome"], $_POST["cpf"], $_POST["telefone"], $_POST["data_nasc"], $_POST["usuario"],
                 $_POST["senha"], $_POST["funcao_idfuncao"], $_POST["status"], $_POST['funcionario_id']);
-            
+
         }
 
         // onde ir depois que o funcionario foi adicionado
