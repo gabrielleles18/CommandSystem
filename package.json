@@ -23,6 +23,7 @@
     "os": false
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "jquery": "^3.5.1"
   },
   "devDependencies": {
