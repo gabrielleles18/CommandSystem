@@ -45,6 +45,7 @@ class MesaController {
                 $page = new \Mini\Controller\ErrorController();
                 $page->index();
             } else {
+                require APP . 'view/_templates/head.php';
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/mesa/edit.php';
                 require APP . 'view/_templates/sidebar.php';

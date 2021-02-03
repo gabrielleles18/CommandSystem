@@ -49,6 +49,26 @@
             &:nth-child(even) {
                 background-color: #c9d4e12e;
             }
+
+            select {
+                padding: 3px;
+                border: none;
+                background: #2EB85C;
+                color: #fff;
+            }
+        }
+
+        input {
+            width: 100%;
+            min-height: 34px;
+            padding: 5px 10px;
+            background-color: #00a65a;
+            border-radius: 3px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
         }
     }
 

@@ -93,6 +93,7 @@ class FuncionariosController {
                 $page->index();
             } else {
                 // carregar a view funcionarios. nas views nós podemos mostrar $funcionario facilmente
+                require APP . 'view/_templates/head.php';
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/funcionarios/edit.php';
                 require APP . 'view/_templates/sidebar.php';

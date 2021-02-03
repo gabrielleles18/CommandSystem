@@ -27,20 +27,25 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <h4>Mesa <?= $mesa->numero ?></h4>
                 <h5>Mesa <?= $mesa->descricao ?></h5>
             </span>
-            <?php
-            if ($pedido->status == 1)
-                $status = 'Aberto';
-            elseif ($pedido->status == 0)
-                $status = 'Fechado';
-            else
-                $status = 'Em andamento';
-            ?>
         </div>
         <ul class="pedido-item">
-            <li>Status <span><?= $status ?></span></li>
-            <li>Detalhes <span><?= $pedido->observacoes ?></span></li>
-            <li>Data/Hora <span><?= $pedido->data_pedido ?></span></li>
-            <li>Valor Total <span><?= $pedido->valor ?></span></li>
+            <form method="post" action="<?= URL ?>pedido/updateStatus">
+                <input type="hidden" name="idpedido" value="<?= $pedido->idpedido ?>"/>
+                <li>Status
+                    <select name="status">
+                        <?php foreach ($status as $value) { ?>
+                            <option value="<?= $value->numero ?>"
+                                <?= ($pedido->status_id == $value->id) ? 'selected' : '' ?>>
+                                <?= $value->slug ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </li>
+                <li>Detalhes <span><?= $pedido->observacoes ?></span></li>
+                <li>Data/Hora <span><?= $pedido->data_pedido ?></span></li>
+                <li>Valor Total <span><?= $pedido->valor ?></span></li>
+                <input type="submit" value="Aterar Status" name="alter_status"/>
+            </form>
         </ul>
 
         <form action="https://localhost/SIGEP/pedido/add" method="POST" class="produtos"

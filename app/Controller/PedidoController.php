@@ -7,6 +7,7 @@ namespace Mini\Controller;
 use Mini\Model\Mesa;
 use Mini\Model\Pedido;
 use Mini\Model\ProdutoPedido;
+use Mini\Model\Status;
 
 class PedidoController {
 
@@ -14,6 +15,7 @@ class PedidoController {
         $pedido = (new Pedido())->getPedido($_GET['id']);
         $mesa = (new Mesa())->getMesa($pedido->mesa_idmesa);
         $proutdutos = (new Pedido())->getItensPedido($_GET['id']);
+        $status = (new Status())->getAllStatus();
 
         require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
@@ -29,11 +31,14 @@ class PedidoController {
 
             if (!empty($_COOKIE['dataCard'])) {
                 $dataPedido = json_decode($_COOKIE['dataCard']);
-
                 $usuario = json_decode($_COOKIE['login']);
 
-                $pedido->add(date("d/m/Y H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'],
-                    1, $_POST["mesa_id"], $usuario->idfuncionario);
+                $status_id = (new Status())->getStatusAberto()->id;
+
+                if (!empty($status_id)) {
+                    $pedido->add(date("d/m/Y H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'],
+                        $status_id, $_POST["mesa_id"], $usuario->idfuncionario);
+                }
 
                 foreach ($dataPedido as $value) {
                     $produtoPedido->add($value->id, (new Pedido)->lastID()->idpedido, $value->qt);
@@ -57,7 +62,8 @@ class PedidoController {
      * Este é um exemplo de como lidar com uma solicitação GET.
      * @param int $funcao_id Id do funcao para excluir
      */
-    public function delete($funcao_id) {
+    public
+    function delete($funcao_id) {
         if (isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao->delete($funcao_id);
@@ -71,7 +77,8 @@ class PedidoController {
      * Este método lida com o que acontece quando você se move para http://localhost/projeto/funcao/edit
      * @param int $funcao_id Id do funcao a editar
      */
-    public function edit($funcao_id) {
+    public
+    function edit($funcao_id) {
         if (isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao = $funcao->getFuncao($funcao_id);
@@ -80,6 +87,7 @@ class PedidoController {
                 $page = new \Mini\Controller\ErrorController();
                 $page->index();
             } else {
+                require APP . 'view/_templates/head.php';
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/funcao/edit.php';
                 require APP . 'view/_templates/sidebar.php';
@@ -107,4 +115,13 @@ class PedidoController {
         header('location: ' . URL . 'funcao/index');
     }
 
+    public function updateStatus() {
+        if (!empty($_POST['alter_status'])) {
+            $status_id = (new Status())->getStatusAberto($_POST['status'])->id;
+
+            if (!empty($status_id)) {
+                (new Pedido())->updateStatus($_POST['idpedido'], $status_id);
+            }
+        }
+    }
 }

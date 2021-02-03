@@ -9,13 +9,13 @@ use PDO;
 
 class Pedido extends Model {
 
-    public function add($data_pedido, $observacoes, $valor, $status, $mesa_idmesa, $funcionario_idfuncionario) {
-        $sql = "INSERT INTO pedido (data_pedido, observacoes, valor, status, mesa_idmesa, funcionario_idfuncionario ) 
-                VALUES (:data_pedido, :observacoes, :valor, :status, :mesa_idmesa, :funcionario_idfuncionario)";
+    public function add($data_pedido, $observacoes, $valor, $status_id, $mesa_idmesa, $funcionario_idfuncionario) {
+        $sql = "INSERT INTO pedido (data_pedido, observacoes, valor, status_id, mesa_idmesa, funcionario_idfuncionario ) 
+                VALUES (:data_pedido, :observacoes, :valor, :status_id, :mesa_idmesa, :funcionario_idfuncionario)";
         $query = $this->db->prepare($sql);
 
         $parameters = array(':data_pedido' => $data_pedido, ':observacoes' => $observacoes, ':valor' => $valor,
-            ':status' => $status, ':mesa_idmesa' => $mesa_idmesa, ':funcionario_idfuncionario' => $funcionario_idfuncionario);
+            ':status_id' => $status_id, ':mesa_idmesa' => $mesa_idmesa, ':funcionario_idfuncionario' => $funcionario_idfuncionario);
 //         echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
@@ -51,6 +51,19 @@ class Pedido extends Model {
         $query->execute($parameters);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function updateStatus($idpedido, $status_id) {
+        $sql = "UPDATE pedido SET status_id = :status_id  WHERE idpedido = :idpedido";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':status_id' => $status_id, ':idpedido' => $idpedido);
+
+//         echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+        $query->execute($parameters);
+
+        header('location: ' . URL . 'pedido/?id=' . $idpedido);
+
+    }
+
 }
 
 

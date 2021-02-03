@@ -88,6 +88,7 @@ class ProdutosController {
                 $page->index();
             } else {
                 // carregar a view produtos. nas views nós podemos mostrar $produto facilmente
+                require APP . 'view/_templates/head.php';
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/produtos/edit.php';
                 require APP . 'view/_templates/sidebar.php';
