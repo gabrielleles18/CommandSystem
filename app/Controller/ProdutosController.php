@@ -18,7 +18,6 @@ class ProdutosController {
         $Produto = new Produto();
 
         $produtos = $Produto->getAllProdutos();
-        $amount_of_produtos = $Produto->getAmountOfProdutos();
         $categoria = $Produto->getAllCategoria();
         $unidade = $Produto->getAllUnidade();
 
@@ -117,19 +116,6 @@ class ProdutosController {
         // onde ir depois que o produto foi adicionado
         header('location: ' . URL . 'produtos/index');
     }
-
-    /**
-     * AJAX-ACTION: ajaxGetStats
-     * TODO documentação
-     */
-    public function ajaxGetStats() {
-        $Produto = new Produto();
-        $amount_of_produtos = $Produto->getAmountOfProdutos();
-
-        // simplesmente ecoar alguma coisa. Uma API supersimple seria possível fazendo eco ao JSON aqui
-        echo $amount_of_produtos;
-    }
-
 
     public function listar() {
         unset($_COOKIE['dataCard']);

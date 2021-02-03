@@ -48,14 +48,6 @@ class Mesa extends Model {
         $query->execute($parameters);
     }
 
-    public function getAmountOfMesa() {
-        $sql = "SELECT COUNT(idmesa) AS amount_of_mesa FROM mesa";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        return $query->fetch()->amount_of_mesa;
-    }
-
     public function getMessaFree() {
         $sql = "SELECT *  FROM mesa where status = 1";
         $query = $this->db->prepare($sql);

@@ -10,7 +10,6 @@ class MesaController {
     public function index() {
         $mesa = new Mesa();
         $mesas = $mesa->getAllMessa();
-        $amount_of_mesa = $mesa->getAmountOfMesa();
 
         require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';

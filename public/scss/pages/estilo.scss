@@ -88,28 +88,21 @@ body {
             table {
                 width: 100%;
                 font-size: 16px;
-                letter-spacing: 0.05em;
                 color: $color_gray_escuro;
 
                 thead {
                     tr {
-                        font-weight: 800;
-                        font-size: 18px;
-                        letter-spacing: 0.05em;
-                        background-color: $color_table;
-                    }
-
-                }
-
-                tr {
-                    &:nth-child(2n+2) {
+                        font-weight: 600;
                         background-color: $color_table;
                     }
                 }
 
                 td {
                     padding: 10px 15px;
-                    border: 1px solid #D8DBE0;
+                }
+
+                tr {
+                    border-bottom: 1px solid #dee2e6;
                 }
             }
         }

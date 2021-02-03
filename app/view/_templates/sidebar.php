@@ -10,9 +10,7 @@
     </ul>
 </div>
 </main>
-
-
-<!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
+<script src="https://kit.fontawesome.com/2909cd6cac.js" crossorigin="anonymous"></script>
 <script>
     let URL_BASE = "<?= URL; ?>";
     let GET = "<?= $_GET['id'] ?? '' ?>"

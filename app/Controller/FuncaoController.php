@@ -11,7 +11,6 @@ class FuncaoController {
     public function index() {
         $funcao = new Funcao();
         $funcoes = $funcao->getAllFuncao();
-        $amount_of_funcao = $funcao->getAmountOfFuncao();
 
         require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';

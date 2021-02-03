@@ -17,6 +17,38 @@ $breadcrumb = Index::gerateBreadcrumb([
 <div class="container">
     <h1>Mesas</h1>
     <div class="box">
+        <table>
+            <thead style="background-color: #ddd; font-weight: bold;">
+            <tr>
+                <td>#</td>
+                <td>Numero</td>
+                <td>Descrição</td>
+                <td>Status</td>
+                <td>Ações</td>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($mesas as $id => $item) { ?>
+                <tr>
+                    <td><?= ++$id ?></td>
+                    <td><?php if (isset($item->numero)) echo $item->numero; ?></td>
+                    <td><?php if (isset($item->descricao)) echo $item->descricao; ?></td>
+                    <td><?php if (isset($item->status)) echo $item->status; ?></td>
+                    <td>
+                        <a href="<?php echo URL . 'mesa/delete/' . $item->idmesa; ?>" title="Deletar">
+                            <i class="far fa-trash-alt button button-delete"></i>
+                        </a>
+                        <a href="<?php echo URL . 'mesa/edit/' . $item->idmesa; ?>" title="Excluir">
+                            <i class="fas fa-pencil-alt button button-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="box">
         <form action="<?php echo URL; ?>mesa/add" method="POST" class="form">
             <div class="form-row">
                 <div class="col-3 col-in">
@@ -41,35 +73,6 @@ $breadcrumb = Index::gerateBreadcrumb([
                 </div>
             </div>
         </form>
-    </div>
-    <div class="box">
-        <h3>Total de Mesas: <?php echo $amount_of_mesa; ?></h3>
-        <table>
-            <thead style="background-color: #ddd; font-weight: bold;">
-            <tr>
-                <td>Numero</td>
-                <td>Descrição</td>
-                <td>Status</td>
-                <td>Excluir</td>
-                <td>Editar</td>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($mesas as $item) { ?>
-                <tr>
-                    <td><?php if (isset($item->numero)) echo $item->numero; ?></td>
-                    <td><?php if (isset($item->descricao)) echo $item->descricao; ?></td>
-                    <td><?php if (isset($item->status)) echo $item->status; ?></td>
-                    <td>
-                        <a href="<?php echo URL . 'mesa/delete/' . $item->idmesa; ?>">Excluir</a>
-                    </td>
-                    <td>
-                        <a href="<?php echo URL . 'mesa/edit/' . $item->idmesa; ?>">Editar</a>
-                    </td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
     </div>
 </div>
 </div>

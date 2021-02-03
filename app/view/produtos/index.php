@@ -17,6 +17,43 @@ $breadcrumb = Index::gerateBreadcrumb([
 <div class="container">
     <h1>Produtos</h1>
     <div class="box">
+        <table>
+            <thead style="background-color: #ddd; font-weight: bold;">
+            <tr>
+                <td>#</td>
+                <td>Nome</td>
+                <td>Preço</td>
+                <td>Categoria</td>
+                <td>Tamanho</td>
+                <td>Uni. medida</td>
+                <td>Açõess</td>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($produtos as $id => $v) {
+                ?>
+                <tr>
+                    <td><?= ++$id ?></td>
+                    <td><?php if (isset($v->nome)) echo $v->nome; ?></td>
+                    <td>R$: <?php if (isset($v->preco)) echo $v->preco; ?></td>
+                    <td><?php if (isset($v->categoria_idcat)) echo $Produto->getForenkey('categoria', 'idcat', $v->categoria_idcat) ?></td>
+                    <td><?php if (isset($v->tamanho)) echo $v->tamanho ?></td>
+                    <td><?php if (isset($v->unidmed_idunid)) echo $Produto->getForenkey('unidmed', 'idunid', $v->unidmed_idunid) ?></td>
+                    <td>
+                        <a href="<?= URL . 'produtos/delete/' . $v->idproduto; ?>" title="Deletar">
+                            <i class="far fa-trash-alt button button-delete"></i>
+                        </a>
+                        <a href="<?= URL . 'produtos/edit/' . $v->idproduto; ?>" title="Excluir">
+                            <i class="fas fa-pencil-alt button button-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="box">
         <form action="<?= URL; ?>produtos/add" method="POST" class="form">
             <div class="form-row">
                 <div class="col-3 col-in">
@@ -70,36 +107,6 @@ $breadcrumb = Index::gerateBreadcrumb([
                 </div>
             </div>
         </form>
-    </div>
-    <div class="box">
-        <h3>Total de produtos: <?= $amount_of_produtos; ?></h3>
-        <table>
-            <thead style="background-color: #ddd; font-weight: bold;">
-            <tr>
-                <td>Nome</td>
-                <td>Preço</td>
-                <td>Categoria</td>
-                <td>Tamanho</td>
-                <td>Uni. medida</td>
-                <td>Excluir</td>
-                <td>Editar</td>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($produtos as $v) {
-                ?>
-                <tr>
-                    <td><?php if (isset($v->nome)) echo $v->nome; ?></td>
-                    <td>R$: <?php if (isset($v->preco)) echo $v->preco; ?></td>
-                    <td><?php if (isset($v->categoria_idcat)) echo $Produto->getForenkey('categoria', 'idcat', $v->categoria_idcat) ?></td>
-                    <td><?php if (isset($v->tamanho)) echo $v->tamanho ?></td>
-                    <td><?php if (isset($v->unidmed_idunid)) echo $Produto->getForenkey('unidmed', 'idunid', $v->unidmed_idunid) ?></td>
-                    <td><a href="<?= URL . 'produtos/delete/' . $v->idproduto; ?>">Excluir</a></td>
-                    <td><a href="<?= URL . 'produtos/edit/' . $v->idproduto; ?>">Editar</a></td>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
     </div>
 </div>
 </div>

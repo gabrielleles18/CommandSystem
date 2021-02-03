@@ -76,18 +76,4 @@ class Funcao extends Model {
 
         $query->execute($parameters);
     }
-
-    /**
-     * Obtenha "estatísticas" simples. Esta é apenas uma demonstração simples para mostrar
-     * como usar mais de um modelo em um controlador
-     * (veja application/controller/funcao.php para detalhes)
-     */
-    public function getAmountOfFuncao() {
-        $sql = "SELECT COUNT(idfuncao) AS amount_of_funcao FROM funcao";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        return $query->fetch()->amount_of_funcao;
-    }
-
 }

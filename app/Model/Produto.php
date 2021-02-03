@@ -92,20 +92,6 @@ class Produto extends Model {
         $query->execute($parameters);
     }
 
-    /**
-     * Obtenha "estatísticas" simples. Esta é apenas uma demonstração simples para mostrar
-     * como usar mais de um modelo em um controlador
-     * (veja application/controller/produtos.php para detalhes)
-     */
-    public function getAmountOfProdutos() {
-        $sql = "SELECT COUNT(idproduto) AS amount_of_produtos FROM produto";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        // fetch() é o método do PDO que recebe exatamente um registro
-        return $query->fetch()->amount_of_produtos;
-    }
-
     public function getAllCategoria() {
         $sql = "SELECT idcat, nome FROM categoria";
         $query = $this->db->prepare($sql);
