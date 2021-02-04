@@ -15,7 +15,7 @@ $breadcrumb = Index::gerateBreadcrumb([
 ?>
 <?= $breadcrumb ?>
 <div class="container">
-    <h1>Funcionarios</h1>
+    <h1>Funcionários <i class="fas fa-plus icon"></i></h1>
     <div class="box">
         <!--        <h3>Total de funcioanrios: --><? //= $amount_of_funcionarios; ?><!--</h3>-->
         <table>
@@ -51,64 +51,67 @@ $breadcrumb = Index::gerateBreadcrumb([
         </table>
     </div>
 
-    <div class="box">
+    <div class="box form">
         <form action="<?= URL; ?>funcionarios/add" method="POST" class="form">
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <label>Nome</label>
-                    <input type="text" name="nome" value="" required class="form-control"/>
+            <fieldset>
+                <legend>Adicionar Funcionário</legend>
+                <div class="form-row">
+                    <div class="col-3 col-in">
+                        <label>Nome</label>
+                        <input type="text" name="nome" value="" required/>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>CPF</label>
+                        <input type="text" name="cpf" value=""/>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>Telefone</label>
+                        <input type="text" name="telefone" value=""/>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>CPF</label>
-                    <input type="text" name="cpf" value=""/>
+                <div class="form-row">
+                    <div class="col-3 col-in">
+                        <label>Nascimento</label>
+                        <input type="text" name="data_nasc" value=""/>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>Função</label>
+                        <select name="funcao_idfuncao">
+                            <option selected value=""></option>
+                            <?php foreach ($funcao as $v) { ?>
+                                <option value="<?= $v->idfuncao ?>"><?= $v->nome ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>Status</label>
+                        <select name="status">
+                            <option selected value=""></option>
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Telefone</label>
-                    <input type="text" name="telefone" value=""/>
+                <div class="form-row">
+                    <div class="col-3 col-in">
+                        <label>Usuário</label>
+                        <input type="text" name="usuario" value=""/>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>Senha</label>
+                        <input type="text" name="senha" value=""/>
+                    </div>
+                    <!--                <div class="col-3 col-in">-->
+                    <!--                    <label>Comfirmar Senha</label>-->
+                    <!--                    <input type="text" value=""/>-->
+                    <!--                </div>-->
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <label>Nascimento</label>
-                    <input type="text" name="data_nasc" value=""/>
+                <div class="form-row">
+                    <div class="col-1 col-in">
+                        <input type="submit" name="submit_add_funcionario" value="Enviar"/>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Função</label>
-                    <select name="funcao_idfuncao">
-                        <option selected value=""> -- select an option --</option>
-                        <?php foreach ($funcao as $v) { ?>
-                            <option value="<?= $v->idfuncao ?>"><?= $v->nome ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="col-3 col-in">
-                    <label>Status</label>
-                    <select name="status">
-                        <option selected value=""> -- select an option --</option>
-                        <option value="1">Ativo</option>
-                        <option value="0">Inativo</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <label>Usuário</label>
-                    <input type="text" name="usuario" value=""/>
-                </div>
-                <div class="col-3 col-in">
-                    <label>Senha</label>
-                    <input type="text" name="senha" value=""/>
-                </div>
-                <!--                <div class="col-3 col-in">-->
-                <!--                    <label>Comfirmar Senha</label>-->
-                <!--                    <input type="text" value=""/>-->
-                <!--                </div>-->
-            </div>
-            <div class="form-row">
-                <div class="col-1 col-in">
-                    <input type="submit" name="submit_add_funcionario" value="Enviar"/>
-                </div>
-            </div>
+            </fieldset>
         </form>
     </div>
 </div>

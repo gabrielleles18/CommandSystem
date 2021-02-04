@@ -1,4 +1,5 @@
 import produtos from './pages/cart';
+import global from './global';
 
 ((fn) => {
     if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
@@ -8,4 +9,5 @@ import produtos from './pages/cart';
     }
 })(() => {
     produtos();
+    global();
 });

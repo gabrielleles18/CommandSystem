@@ -15,7 +15,7 @@ $breadcrumb = Index::gerateBreadcrumb([
 ?>
 <?= $breadcrumb ?>
 <div class="container">
-    <h1>Produtos</h1>
+    <h1>Produtos <i class="fas fa-plus icon"></i></h1>
     <div class="box">
         <table>
             <thead style="background-color: #ddd; font-weight: bold;">
@@ -53,59 +53,63 @@ $breadcrumb = Index::gerateBreadcrumb([
         </table>
     </div>
 
-    <div class="box">
+    <div class="box form">
         <form action="<?= URL; ?>produtos/add" method="POST" class="form">
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <label>Nome</label>
-                    <input type="text" name="nome" value="" required/>
+            <fieldset>
+                <legend>Adicionar Produto</legend>
+                <div class="form-row">
+                    <div class="col-2 col-in">
+                        <label>Nome</label>
+                        <input type="text" name="nome" value="" required/>
+                    </div>
+                    <div class="col-2 col-in">
+                        <label>Preço</label>
+                        <input type="text" name="preco" value=""/>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Preço</label>
-                    <input type="text" name="preco" value=""/>
-                </div>
-                <div class="col-3 col-in">
-                    <label>Tamanho</label>
-                    <input type="text" name="tamanho" value=""/>
-                </div>
-            </div>
 
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <label>Unidade Medida</label>
-                    <select name="unidmed_idunid">
-                        <option selected value=""> -- select an option --</option>
-                        <?php foreach ($unidade as $v) { ?>
-                            <option value="<?= $v->idunid ?>"><?= $v->nome ?></option>
-                        <?php } ?>
-                    </select>
+                <div class="form-row">
+                    <div class="col-3 col-in">
+                        <label>Tamanho</label>
+                        <input type="text" name="tamanho" value=""/>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>Unidade Medida</label>
+                        <select name="unidmed_idunid">
+                            <option selected value=""></option>
+                            <?php foreach ($unidade as $v) { ?>
+                                <option value="<?= $v->idunid ?>"><?= $v->nome ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>Categoria</label>
+                        <select name="categoria_idcat">
+                            <option selected value=""></option>
+                            <?php foreach ($categoria as $v) { ?>
+                                <option value="<?= $v->idcat ?>"><?= $v->nome ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Categoria</label>
-                    <select name="categoria_idcat">
-                        <option selected value=""> -- select an option --</option>
-                        <?php foreach ($categoria as $v) { ?>
-                            <option value="<?= $v->idcat ?>"><?= $v->nome ?></option>
-                        <?php } ?>
-                    </select>
+                <div class="form-row">
+                    <div class="col-2 col-in">
+                        <label>Descrição</label>
+                        <textarea name="descricao" rows="2"></textarea>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Descrição</label>
-                    <textarea name="descricao" rows="1"></textarea>
+                <div class="form-row">
+                    <div class="col-3 col-in">
+                        <input type="hidden" name="borda_idborda" value="0"/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <input type="hidden" name="borda_idborda" value="0"/>
+                <div class="form-row">
+                    <div class="col-1 col-in">
+                        <input type="submit" name="submit_add_produto" value="Enviar"/>
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-1 col-in">
-                    <input type="submit" name="submit_add_produto" value="Enviar"/>
-                </div>
-            </div>
+            </fieldset>
         </form>
     </div>
 </div>

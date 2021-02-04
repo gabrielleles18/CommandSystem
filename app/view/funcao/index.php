@@ -15,7 +15,7 @@ $breadcrumb = Index::gerateBreadcrumb([
 ?>
 <?= $breadcrumb ?>
 <div class="container">
-    <h1>Funções</h1>
+    <h1>Funções <i class="fas fa-plus icon"></i></h1>
     <div class="box">
         <table>
             <thead style="background-color: #ddd; font-weight: bold;">
@@ -46,26 +46,29 @@ $breadcrumb = Index::gerateBreadcrumb([
         </table>
     </div>
 
-    <div class="box">
+    <div class="box form">
         <form action="<?php echo URL; ?>funcao/add" method="POST" class="form">
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <label>Nome</label>
-                    <input type="text" name="nome" value="" required/>
+            <fieldset>
+                <legend>Adicionar Função</legend>
+                <div class="form-row">
+                    <div class="col-2 col-in">
+                        <label>Nome</label>
+                        <input type="text" name="nome" value="" required/>
+                    </div>
+                    <div class="col-2 col-in">
+                        <label>Status</label>
+                        <select name="status">
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Status</label>
-                    <select name="status">
-                        <option value="1">Ativo</option>
-                        <option value="0">Inativo</option>
-                    </select>
+                <div class="form-row">
+                    <div class="col-1 col-in">
+                        <input type="submit" name="submit_add_funcao" value="Enviar"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="col-1 col-in">
-                    <input type="submit" name="submit_add_funcao" value="Enviar"/>
-                </div>
-            </div>
+            </fieldset>
         </form>
     </div>
 </div>

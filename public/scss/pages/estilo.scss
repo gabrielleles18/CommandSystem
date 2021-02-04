@@ -16,49 +16,88 @@ body {
             font-size: 18px;
             color: #3C4B64;
             font-weight: 600;
+            display: flex;
             border-bottom: 1px solid rgba(214, 212, 212, 0.5);
+
+            .icon {
+                width: 22px;
+                height: 22px;
+                background: #2EB85C;
+                margin-left: 5px;
+                border-radius: 3px;
+                cursor: pointer;
+
+                &:before {
+                    height: 100%;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .box.form {
+            display: none;
         }
 
         .box {
             .form {
-                margin-top: 25px;
+                margin-top: 40px;
                 margin-bottom: 25px;
+
+                fieldset {
+                    min-width: inherit;
+                    padding: 15px;
+                    margin: inherit;
+                    border: 1px solid #b8babb;
+
+                    legend {
+                        width: inherit;
+                        font-size: 16px;
+                        color: #3C4B64;
+                        font-weight: 500;
+                    }
+                }
 
                 .form-row {
                     display: flex;
-                    margin-bottom: 25px;
+                    margin-bottom: 15px;
 
                     .col-in {
-                        &:last-child {
-                            margin-right: 0;
-                        }
 
                         label {
                             font-size: 14px;
                             line-height: 18px;
                             color: #3C4B64;
-                            margin-bottom: 10px;
+                            margin-bottom: 5px;
                         }
 
                         input, select, textarea {
-                            min-height: 35px;
-                            border: 1px solid #D8DBE0;
-                            border-radius: 5px;
+                            min-height: 32px;
+                            border: 1px solid #ced4da;
+                            border-radius: 3px;
                             padding: 0 10px;
                             font-size: 16px;
                             color: rgba(60, 75, 100, 0.6);
                             line-height: 19px;
                         }
 
+                        textarea {
+                            padding: 5px 10px;
+                        }
+
                         input[type="submit"] {
-                            width: 155px;
-                            min-height: 35px;
+                            min-width: 110px;
+                            min-height: 33px;
                             background-color: $color_gree;
                             color: #fff;
                             font-size: 16px;
                             line-height: 19px;
                             padding: 0 20px;
                             cursor: pointer;
+                            border: none;
                         }
                     }
 
@@ -66,21 +105,30 @@ body {
                         width: 100%;
                         display: flex;
                         flex-direction: column;
-                        margin-right: 30px;
+                        padding: 0 5px;
+                        max-width: inherit;
+                        flex: inherit;
+                        -ms-flex: inherit;
                     }
 
                     .col-2 {
-                        width: calc((100% - 30px) / 2);
+                        width: calc(100% / 2);
                         display: flex;
                         flex-direction: column;
-                        margin-right: 30px;
+                        padding: 0 5px;
+                        max-width: inherit;
+                        flex: inherit;
+                        -ms-flex: inherit;
                     }
 
                     .col-3 {
-                        width: calc((100% - 60px) / 3);
+                        width: calc(100% / 3);
                         display: flex;
                         flex-direction: column;
-                        margin-right: 30px;
+                        padding: 0 5px;
+                        max-width: inherit;
+                        flex: inherit;
+                        -ms-flex: inherit;
                     }
                 }
             }
@@ -88,7 +136,7 @@ body {
             table {
                 width: 100%;
                 font-size: 16px;
-                color: $color_gray_escuro;
+                color: #3C4B64;
 
                 thead {
                     tr {
@@ -103,6 +151,7 @@ body {
 
                 tr {
                     border-bottom: 1px solid #dee2e6;
+                    min-height: 51px;
                 }
             }
         }

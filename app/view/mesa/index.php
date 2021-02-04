@@ -15,7 +15,7 @@ $breadcrumb = Index::gerateBreadcrumb([
 ?>
 <?= $breadcrumb ?>
 <div class="container">
-    <h1>Mesas</h1>
+    <h1>Mesas <i class="fas fa-plus icon"></i></h1>
     <div class="box">
         <table>
             <thead style="background-color: #ddd; font-weight: bold;">
@@ -48,30 +48,35 @@ $breadcrumb = Index::gerateBreadcrumb([
         </table>
     </div>
 
-    <div class="box">
+    <div class="box form">
         <form action="<?php echo URL; ?>mesa/add" method="POST" class="form">
-            <div class="form-row">
-                <div class="col-3 col-in">
-                    <label>Numero</label>
-                    <input type="text" name="numero" value="" required/>
+            <fieldset>
+                <legend>Adicionar Messa</legend>
+                <div class="form-row">
+                    <div class="col-2 col-in">
+                        <label>Numero</label>
+                        <input type="text" name="numero" value="" required/>
+                    </div>
+                    <div class="col-2 col-in">
+                        <label>Status</label>
+                        <select name="status">
+                            <option value="1">Desculpado</option>
+                            <option value="0">Oculpado</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Descrição</label>
-                    <textarea name="descricao" rows="1"></textarea>
+                <div class="form-row">
+                    <div class="col-2 col-in">
+                        <label>Descrição</label>
+                        <textarea name="descricao" rows="2"></textarea>
+                    </div>
                 </div>
-                <div class="col-3 col-in">
-                    <label>Status</label>
-                    <select name="status">
-                        <option value="1">Desculpado</option>
-                        <option value="0">Oculpado</option>
-                    </select>
+                <div class="form-row">
+                    <div class="col-1 col-in">
+                        <input type="submit" name="submit_add_mesa" value="Enviar"/>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="col-1 col-in">
-                    <input type="submit" name="submit_add_mesa" value="Enviar"/>
-                </div>
-            </div>
+            </fieldset>
         </form>
     </div>
 </div>
