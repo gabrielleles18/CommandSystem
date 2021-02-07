@@ -19,25 +19,24 @@ $breadcrumb = Index::gerateBreadcrumb([
 ?>
 <?= $breadcrumb ?>
 <div class="container">
-    <h1>Editar um produto</h1>
+    <h1>Editar Produto</h1>
     <div class="box">
-        <form action="<?php echo URL; ?>produtos/update" method="POST" class="form">
+        <form action="<?php echo URL; ?>produtos/update" method="POST" class="form" enctype="multipart/form-data">
             <div class="form-row">
-                <div class="col-3 col-in">
+                <div class="col-2 col-in">
                     <label>Nome</label>
                     <input type="text" name="nome" value="<?= $produto->nome; ?>" required/>
                 </div>
-                <div class="col-3 col-in">
+                <div class="col-2 col-in">
                     <label>Preço</label>
                     <input type="text" name="preco" value="<?= $produto->preco; ?>"/>
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="col-3 col-in">
                     <label>Tamanho</label>
                     <input type="text" name="tamanho" value="<?= $produto->tamanho; ?>"/>
                 </div>
-            </div>
-
-            <div class="form-row">
                 <div class="col-3 col-in">
                     <label>Unidade Medida</label>
                     <select name="unidmed_idunid">
@@ -56,9 +55,15 @@ $breadcrumb = Index::gerateBreadcrumb([
                         <?php } ?>
                     </select>
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="col-3 col-in">
                     <label>Descrição</label>
-                    <textarea name="descricao" rows="1" ><?= $produto->descricao?></textarea>
+                    <textarea name="descricao" rows="2" ><?= $produto->descricao?></textarea>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Imagem</label>
+                    <input type="file" name="arquivo" accept="image/*" value="<?= $produto->image?>"/>
                 </div>
             </div>
             <div class="form-row">

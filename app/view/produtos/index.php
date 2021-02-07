@@ -54,7 +54,7 @@ $breadcrumb = Index::gerateBreadcrumb([
     </div>
 
     <div class="box form">
-        <form action="<?= URL; ?>produtos/add" method="POST" class="form">
+        <form action="<?= URL; ?>produtos/add" method="POST" class="form" enctype="multipart/form-data">
             <fieldset>
                 <legend>Adicionar Produto</legend>
                 <div class="form-row">
@@ -93,12 +93,14 @@ $breadcrumb = Index::gerateBreadcrumb([
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="col-2 col-in">
+                    <div class="col-3 col-in">
                         <label>Descrição</label>
                         <textarea name="descricao" rows="2"></textarea>
                     </div>
-                </div>
-                <div class="form-row">
+                    <div class="col-3 col-in">
+                        <label>Imagem</label>
+                        <input type="file" name="arquivo" accept="image/*"/>
+                    </div>
                     <div class="col-3 col-in">
                         <input type="hidden" name="borda_idborda" value="0"/>
                     </div>

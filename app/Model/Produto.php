@@ -31,17 +31,18 @@ class Produto extends Model {
      * @param string $descricao Descrição
      * @param string $unidade Unidade
      */
-    public function add($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat) {
-        $sql = "INSERT INTO produto (nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat ) 
-                VALUES (:nome, :preco, :tamanho, :descricao, :borda_idborda, :unidmed_idunid, :categoria_idcat )";
+    public function add($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat, $image) {
+        $sql = "INSERT INTO produto (nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat, image ) 
+                VALUES (:nome, :preco, :tamanho, :descricao, :borda_idborda, :unidmed_idunid, :categoria_idcat, :image )";
 
         $query = $this->db->prepare($sql);
         $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao,
-            ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat);
+            ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat,
+            ':image' => $image);
 
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
-        $query->execute($parameters);
+        return $query->execute($parameters);
     }
 
     /**
@@ -65,7 +66,7 @@ class Produto extends Model {
      * @param integer $produto_id
      */
     public function getProduto($produto_id) {
-        $sql = "SELECT idproduto, nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat  FROM produto WHERE idproduto = :produto_id LIMIT 1";
+        $sql = "SELECT idproduto, nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat, image  FROM produto WHERE idproduto = :produto_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':produto_id' => $produto_id);
 
@@ -86,9 +87,18 @@ class Produto extends Model {
                     unidmed_idunid  = :unidmed_idunid, categoria_idcat = :categoria_idcat  WHERE idproduto = :produto_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao,
-            ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat, ':produto_id' => $produto_id);
+            ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat,
+            ':produto_id' => $produto_id);
 
 //         echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+        $query->execute($parameters);
+    }
+
+    public function updateImage($image, $produto_id) {
+        $sql = "UPDATE produto SET image = :image WHERE idproduto = :produto_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':image' => $image, ':produto_id' => $produto_id);
+
         $query->execute($parameters);
     }
 

@@ -24,7 +24,14 @@ $breadcrumb = Index::gerateBreadcrumb([
                     foreach ($produtos_by_cat as $id => $categorias) { ?>
                         <?php foreach ($categorias as $value) { ?>
                             <li class="item itens-<?= $id ?>">
-                                <img src="<?= URL ?>/public/img/pizza.png" alt="">
+                                <?php
+                                if (!empty($value['image']))
+                                    $url_image = URL . 'public/midias/' . $value['image'];
+                                else
+                                    $url_image = URL . 'public/img/notfound.png';
+                                ?>
+                                <img src="<?= $url_image ?>"
+                                     alt="">
                                 <div class="conteudo">
                                     <hgroup>
                                         <h2><?= $value['nome'] ?></h2>
@@ -38,6 +45,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                                            data-nome="<?= $value['nome'] ?>"
                                            data-preco="<?= $value['preco'] ?>"
                                            data-descricao="<?= $value['descricao'] ?>"
+                                           data-image="<?= $url_image ?>"
                                            data-qt="1"
                                         >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
@@ -50,7 +58,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                             </li>
                         <?php } ?>
                     <?php }
-                }else{
+                } else {
                     echo "<h3>Nenhum produto encontrado!</h3>";
                 } ?>
             </ul>

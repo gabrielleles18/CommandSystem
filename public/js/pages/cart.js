@@ -24,7 +24,7 @@ export default function () {
             total = total + (value.qt * value.preco);
             html += `
                     <li>
-                        <img src="${URL_BASE}/public/img/pizza.png" alt="">
+                        <img src="${value.image}" alt="">
                         <div class="center">
                             <hgroup>
                                 <h5 class="title">${value.nome}</h5>

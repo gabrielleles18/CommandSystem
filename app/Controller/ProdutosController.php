@@ -41,8 +41,11 @@ class ProdutosController {
         if (isset($_POST["submit_add_produto"])) {
 
             $Produto = new Produto();
+            $nome = $this->trataImage('arquivo');
+
             $Produto->add($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"],
-                $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"]);
+                $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $nome);
+
         }
 
         // onde ir depois que o produto foi adicionado
@@ -109,6 +112,12 @@ class ProdutosController {
         if (isset($_POST["submit_update_produto"])) {
             $Produto = new Produto();
 
+            if (!empty($_FILES['arquivo']) && $_FILES['arquivo']['error'] == 0) {
+                $nome = $this->trataImage('arquivo');
+
+                $Produto->updateImage($nome, $_POST['produto_id']);
+            }
+
             $Produto->update($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"],
                 $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $_POST['produto_id']);
         }
@@ -133,6 +142,22 @@ class ProdutosController {
         require APP . 'view/produtos/listar.php';
         require APP . 'view/_templates/sidebar.php';
 
+    }
+
+    public function trataImage($name) {
+        if (!empty($_FILES[$name]) && $_FILES[$name]['error'] == 0) {
+
+            $hash = md5(uniqid(rand(), true));
+            $explode = explode('.', $_FILES[$name]['name']);
+            $ext = array_pop($explode);
+
+            $nome = $hash . '.' . $ext;
+
+            $uploaddir = 'C:\xampp\htdocs\SIGEP\public\midias\\' . $nome;
+            move_uploaded_file($_FILES[$name]['tmp_name'], $uploaddir);
+
+            return $nome;
+        }
     }
 
 }
