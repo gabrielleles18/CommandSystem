@@ -10,20 +10,42 @@
     display: flex;
     flex-direction: column;
 
-    input {
-        width: 100%;
-        min-height: 50px;
-        margin-bottom: 15px;
-        padding: 5px 15px;
-        background: #f2f3f4;
+    form {
 
-        &:last-child {
-            margin-bottom: 0;
+        .icon-input {
+            display: flex;
+            margin-bottom: 15px;
+
+            i {
+                background: #f2f3f4;
+
+                &:before {
+                    width: 40px;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            input {
+                width: calc(100% - 40px);
+                min-height: 50px;
+                padding: 5px 0;
+                background: #f2f3f4;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
         }
 
-        &#submit {
+        input#submit {
+            width: 100%;
+            min-height: 50px;
             background-color: #2EB85C;
             color: #fff;
+            padding: 5px 0;
             text-transform: uppercase;
         }
     }

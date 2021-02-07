@@ -2,6 +2,8 @@
 if (empty($_COOKIE['login'])) {
     header('location: ' . URL . 'login');
 }
+$user = json_decode($_COOKIE['login']);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,7 +36,12 @@ if (empty($_COOKIE['login'])) {
                         <h5 class="itens-cart">Nenhum item encontrado!</h5>
                     </ul>
                     <div class="user">
-                        <div class="info"></div>
+                        <i class="fas fa-user"></i>
+                        <div class="info">
+                            <h6><?= $user->nome ?></h6>
+                            <a href="<?= URL . 'funcionarios/edit/' . $user->idfuncionario ?>">Configurações</a>
+                            <a href="<?= URL . 'login/logoff/' ?>" id="sair"> Sair</a>
+                        </div>
                     </div>
                 </div>
             </div>

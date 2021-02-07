@@ -20,7 +20,7 @@ $breadcrumb = Index::gerateBreadcrumb([
 <?= $breadcrumb ?>
 <div class="container">
     <!--    <h2>Você está na View: application/view/funcionarios/edit.php (tudo nesta tela vem desse arquivo)</h2>-->
-    <h1>Editar um funcioanrio</h1>
+    <h1>Editar Funcionário</h1>
     <div class="box">
         <form action="<?= URL; ?>funcionarios/update" method="POST" class="form">
             <div class="form-row">
@@ -70,14 +70,14 @@ $breadcrumb = Index::gerateBreadcrumb([
                 </div>
                 <div class="col-3 col-in">
                     <label>Senha</label>
-                    <input type="text" name="senha"
+                    <input type="password" name="senha"
                            value="<?= $funcionario->senha; ?>" required/>
                 </div>
-                <!--                <div class="col-3 col-in">-->
-                <!--                    <label>Confirmar Senha</label>-->
-                <!--                    <input type="text" name="senha"-->
-                <!--                           value="--><? //= $funcionario->senha; ?><!--" required/>-->
-                <!--                </div>-->
+                <div class="col-3 col-in">
+                    <label>Confirmar Senha</label>
+                    <input type="password" name="confirmar_senha"
+                           value="" />
+                </div>
                 <input type="hidden" name="funcionario_id"
                        value="<?= $funcionario->idfuncionario; ?>"/>
             </div>

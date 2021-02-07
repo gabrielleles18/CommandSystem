@@ -21,7 +21,7 @@ class LoginController {
 
             if (!empty($return)) {
                 $data_usuario = json_encode($return);
-                setcookie('login', $data_usuario, time()+3600*24*5, '/');
+                setcookie('login', $data_usuario, time() + 3600 * 24 * 5, '/');
 
                 header('location: ' . URL);
             } else {
@@ -30,4 +30,9 @@ class LoginController {
         }
     }
 
+    public function logoff() {
+        unset($_COOKIE['login']);
+        setcookie('login', null, -1, '/');
+        header('location: ' . URL . 'login');
+    }
 }

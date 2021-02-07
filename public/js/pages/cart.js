@@ -113,6 +113,19 @@ export default function () {
         });
     }
 
+    const openUser = () => {
+        const cart = $('main .right .header .top .cart-user .user');
+        cart.click(() => {
+            cart.parent().find('.info').toggle('show');
+
+            if (!cart.hasClass('background')) {
+                cart.addClass('background');
+            } else {
+                cart.removeClass('background');
+            }
+        });
+    }
+
     const finalizarPedido = () => {
         $('.sidebar-carrinho .finalizar').click(() => {
             window.location = "https://localhost/SIGEP/produtos/listar?id=12";
@@ -140,6 +153,7 @@ export default function () {
     const construct = () => {
         addCard();
         openCart();
+        openUser();
         if (Cookies.get('dataCard')) {
             renderCard(Cookies.get('dataCard'));
             finalizarPedido();
