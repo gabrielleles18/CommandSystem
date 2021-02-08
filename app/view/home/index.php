@@ -1,6 +1,7 @@
 <?php
 
 use Mini\Controller\index;
+use Mini\Model\Pedido;
 
 $breadcrumb = Index::gerateBreadcrumb([
     [
@@ -8,6 +9,7 @@ $breadcrumb = Index::gerateBreadcrumb([
         'text' => 'Home'
     ]
 ]);
+$pedido = new Pedido();
 ?>
 <?= $breadcrumb ?>
 <div class="container">
@@ -39,7 +41,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                     <img src="<?= URL . '/public/img/table.png' ?>"/>
                     <span>
                     <h4>Mesa <?= $v->numero ?></h4>
-                    <h5>Mesa <?= $v->descricao ?></h5>
+                    <h5><?= $v->descricao ?></h5>
                 </span>
                 </a>
             <?php } ?>

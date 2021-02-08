@@ -9,6 +9,10 @@ use Mini\Model\Login;
 class LoginController {
     public function index() {
 
+        if (!empty($_COOKIE['login'])) {
+            header('location: ' . URL);
+        }
+
         require APP . 'view/_templates/head.php';
         require APP . 'view/login/index.php';
     }

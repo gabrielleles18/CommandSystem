@@ -15,6 +15,6 @@ $breadcrumb = Index::gerateBreadcrumb([
 ?>
 <?= $breadcrumb ?>
 <div class="container">
-    <p>Página não encontrada. Será mostrada quando uma página (= controller / method) não existir.</p>
+    <p>Página não encontrada.</p>
 </div>
 </div>

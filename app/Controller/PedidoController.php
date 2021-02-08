@@ -121,7 +121,21 @@ class PedidoController {
 
             if (!empty($status_id)) {
                 (new Pedido())->updateStatus($_POST['idpedido'], $status_id);
+
+                if (!empty($_POST['mesa_idmesa'])) {
+                    (new Mesa())->changeStatus($_POST['mesa_idmesa'], 1);
+                }
             }
         }
+    }
+
+    public function listar() {
+
+        $pedidos = (new Pedido())->getAllPedidos();
+
+        require APP . 'view/_templates/head.php';
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/pedido/listar.php';
+        require APP . 'view/_templates/sidebar.php';
     }
 }

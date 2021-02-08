@@ -1,0 +1,23 @@
+.box {
+    .history {
+        color: #3C4B64;
+        font-size: 16px;
+
+        .mesa {
+            min-height: 40px;
+            background-color: #F2F2F3;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        ul {
+            li {
+                min-height: 34px !important;
+                height: 34px !important;
+            }
+        }
+    }
+}

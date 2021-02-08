@@ -39,6 +39,15 @@ class Pedido extends Model {
         return ($query->rowcount() ? $query->fetch() : false);
     }
 
+    public function getAllPedidos() {
+        $sql = "SELECT * FROM pedido";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     public function getItensPedido($idpedido) {
         $sql = "SELECT pedido.idpedido, produto.*, produto_pedido.qt_prod FROM pedido
                 INNER JOIN produto_pedido ON produto_pedido.pedido_idpedido = pedido.idpedido
@@ -64,6 +73,15 @@ class Pedido extends Model {
 
     }
 
+    public function getStatus($status_id) {
+        $sql = "select * from status where id = :status_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':status_id' => $status_id);
+
+        $query->execute($parameters);
+
+        return $query->fetch();
+    }
 }
 
 

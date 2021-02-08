@@ -59,7 +59,7 @@ class Mesa extends Model {
     public function getMessaBusy() {
         $sql = "SELECT 	mesa.*,	pedido.idpedido FROM mesa
 	            INNER JOIN pedido ON mesa.idmesa = pedido.mesa_idmesa 
-                WHERE mesa.`status` = 0";
+                WHERE mesa.`status` = 0 and pedido.status_id != 2";
         $query = $this->db->prepare($sql);
         $query->execute();
 
