@@ -1,4 +1,5 @@
 import produtos from './pages/cart';
+import pedido from './pages/list-pedido';
 import global from './global';
 
 ((fn) => {
@@ -10,4 +11,5 @@ import global from './global';
 })(() => {
     produtos();
     global();
+    pedido();
 });

@@ -11,12 +11,69 @@
             padding: 0 20px;
             align-items: center;
             font-weight: 600;
+
+            div {
+                width: 200px;
+                display: flex;
+                justify-content: space-between;
+
+                i {
+                    cursor: pointer;
+                }
+            }
         }
 
-        ul {
+        ul.pedido-item {
             li {
                 min-height: 34px !important;
                 height: 34px !important;
+
+                span {
+                    width: 200px;
+                }
+
+                i {
+                    cursor: pointer;
+                }
+            }
+
+            ul.lastul {
+                margin-top: 15px;
+                display: none;
+
+                &.show {
+                    display: block;
+                }
+
+                .prods {
+                    div {
+                        width: calc(100% / 3);
+
+                        &:last-child {
+                            width: 200px;
+                        }
+                    }
+                }
+
+                li {
+                    background-color: #fff;
+                    border-bottom: 1px solid #dee2e6;
+                    padding: 0 20px 0 30px;
+                    border-right: none;
+                    border-left: none;
+
+                    &:nth-child(2n) {
+                        background-color: #fff;
+                    }
+
+                    div {
+                        width: calc(100% / 3);
+
+                        &:last-child {
+                            width: 200px;
+                        }
+                    }
+                }
             }
         }
     }

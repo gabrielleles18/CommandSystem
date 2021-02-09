@@ -24,20 +24,37 @@ $breadcrumb = Index::gerateBreadcrumb([
         foreach ($pedidos as $id => $value) {
             $mesa = (new Mesa())->getMesa($value['mesa_idmesa']);
             $pedido = (new Pedido())->getItensPedido($value['idpedido']);
-            echo "<pre>";
-            print_r($pedido);
-            exit();
+
             ?>
             <ul class="history">
-                <li class="mesa"><span>Mesa <?= $mesa->numero ?></span> <span><?= $value['data_pedido'] ?></span></li>
+                <li class="mesa">
+                    <span>Mesa <?= $mesa->numero ?></span>
+                    <div>
+                        <span><?= $value['data_pedido'] ?></span>
+                        <i class="fas fa-plus icon"></i>
+                    </div>
+                </li>
                 <ul class="pedido-item">
                     <li>Status <span>Ativo</span></li>
                     <li>Detalhes <span><?= $value['observacoes'] ?></span></li>
                     <li>Valor Total <span>Total</span></li>
-                    <li>Show pedidos<span>icon</span></li>
-                    <ul>
-                        <?php foreach ($pedido as $v) { ?>
-                            <li></li>
+                    <li>Protudos<i class="fas fa-plus icon"></i></li>
+                    <ul class="lastul">
+                        <li class="prods">
+                            <div>Quantidade</div>
+                            <div>Nome</div>
+                            <div>Preço</div>
+                        </li>
+                        <?php
+                        $total = 0;
+                        foreach ($pedido as $v) {
+                            $total = ($v['qt_prod'] * $v['preco']);
+                            ?>
+                            <li>
+                                <div><?= $v['qt_prod'] ?></div>
+                                <div><?= $v['nome'] ?></div>
+                                <div><?= $total ?></div>
+                            </li>
                         <?php } ?>
                     </ul>
                 </ul>
