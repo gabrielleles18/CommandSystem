@@ -37,7 +37,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <ul class="pedido-item">
                     <li>Status <span>Ativo</span></li>
                     <li>Detalhes <span><?= $value['observacoes'] ?></span></li>
-                    <li>Valor Total <span>Total</span></li>
+                    <li>Valor Total <span class="total_ever"></span></li>
                     <li>Protudos<i class="fas fa-plus icon"></i></li>
                     <ul class="lastul">
                         <li class="prods">
@@ -47,8 +47,10 @@ $breadcrumb = Index::gerateBreadcrumb([
                         </li>
                         <?php
                         $total = 0;
+                        $total_ever = 0;
                         foreach ($pedido as $v) {
-                            $total = ($v['qt_prod'] * $v['preco']);
+                            $total = $v['qt_prod'] * $v['preco'];
+                            $total_ever = $total_ever + ($v['qt_prod'] * $v['preco']);
                             ?>
                             <li>
                                 <div><?= $v['qt_prod'] ?></div>
@@ -56,6 +58,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                                 <div><?= $total ?></div>
                             </li>
                         <?php } ?>
+                        <span class="total_ever_hidden" data-total="<?= $total_ever ?>"></span>
                     </ul>
                 </ul>
             </ul>
