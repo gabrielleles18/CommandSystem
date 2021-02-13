@@ -1,0 +1,179 @@
+.estatistica {
+    .box {
+        .filtro {
+            margin-bottom: 25px;
+
+            form {
+                width: 100%;
+                display: flex;
+
+                .caixa {
+                    width: 100%;
+                    max-width: 250px;
+                    min-height: 50px;
+                    background-color: #ecf0f5;
+                    padding: 10px 20px;
+                    display: flex;
+                    flex-direction: column;
+                    color: #3C4B64;
+                    margin-right: 15px;
+
+                    label {
+                        font-size: 15px;
+                        margin-bottom: 5px;
+                    }
+
+                    input {
+                        background-color: #ecf0f5;
+                        font-weight: 600;
+                        color: #3C4B64C7;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                .button {
+                    width: 90px;
+                    height: 50px;
+                    background-color: #2EB85C;
+                    color: #fff;
+                }
+            }
+        }
+
+        section {
+            display: flex;
+            margin-bottom: 15px;
+
+            .block {
+                width: 100%;
+                max-width: 250px;
+                min-height: 90px;
+                background-color: #ecf0f5;
+                display: flex;
+                color: #3C4B64;
+                box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+                margin-right: 15px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                .icon {
+                    width: 90px;
+                    height: 100%;
+                    background-color: #00c0ef;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    i:before {
+                        font-size: 35px;
+                        color: #fff;
+                    }
+                }
+
+                span {
+                    width: calc(100% - 90px);
+                    padding: 10px;
+                    line-height: 21px;
+                    font-size: 14px;
+
+                    h4 {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            &.produtos {
+                .block {
+                    background-color: #00a65a;
+                    color: #fff;
+
+                    .icon {
+                        background-color: #006b3a;
+                    }
+
+                    span {
+                        .text {
+                            font-size: 10px;
+                            line-height: 12px;
+                        }
+
+                        .linha {
+                            width: calc(100% + 20px);
+                            height: 2px;
+                            margin: 5px 0 5px -10px;
+                            background: rgba(0, 0, 0, 0.2);
+
+                            .progress {
+                                height: 100%;
+                                background: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.total {
+                .block {
+                    background-color: #f39c12;
+                    color: #fff;
+                    padding: 10px;
+                    justify-content: space-between;
+
+                    i {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        &:before {
+                            font-size: 70px;
+                            color: rgba(0, 0, 0, 0.15);
+                        }
+                    }
+
+                    span {
+                        .text {
+                            font-size: 10px;
+                            padding: 0;
+                        }
+
+                        h3 {
+                            font-size: 35px;
+                            font-weight: 700;
+                            line-height: 28px;
+                            margin-bottom: 14px;
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            .dolar {
+                                font-size: 18px;
+                            }
+                        }
+
+                        h4 {
+                            line-height: 17px;
+                            font-weight: 500;
+                        }
+
+                        .linha {
+                            width: calc(100% + 20px);
+                            height: 2px;
+                            margin: 5px 0 5px -10px;
+                            background: rgba(0, 0, 0, 0.2);
+
+                            .progress {
+                                height: 100%;
+                                background: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

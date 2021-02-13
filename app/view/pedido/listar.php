@@ -3,6 +3,7 @@
 use Mini\Controller\index;
 use Mini\Model\Mesa;
 use Mini\Model\Pedido;
+use Mini\Model\Status;
 
 $breadcrumb = Index::gerateBreadcrumb([
     [
@@ -24,7 +25,7 @@ $breadcrumb = Index::gerateBreadcrumb([
         foreach ($pedidos as $id => $value) {
             $mesa = (new Mesa())->getMesa($value['mesa_idmesa']);
             $pedido = (new Pedido())->getItensPedido($value['idpedido']);
-
+            $status = new Status();
             ?>
             <ul class="history">
                 <li class="mesa">
@@ -35,7 +36,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                     </div>
                 </li>
                 <ul class="pedido-item">
-                    <li>Status <span>Ativo</span></li>
+                    <li>Status <span><?= $status->getStatus($value['status_id'])->slug ?></span></li>
                     <li>Detalhes <span><?= $value['observacoes'] ?></span></li>
                     <li>Valor Total <span class="total_ever"></span></li>
                     <li>Protudos<i class="fas fa-plus icon"></i></li>

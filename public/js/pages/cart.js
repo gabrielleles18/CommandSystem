@@ -37,7 +37,7 @@ export default function () {
                                      viewBox="0 0 16 16">
                                     <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                                 </svg>
-                                <h4>${value.qt}</h4>
+                                <h4 class="qt" data-id="${value.id}" data-qt="${value.qt}">${value.qt}</h4>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                      fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -50,7 +50,7 @@ export default function () {
                                  viewBox="0 0 16 16">
                                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                             </svg>
-                            <div class="preco">R$ ${value.qt * value.preco}</div>
+                            <div class="preco">R$ ${(value.qt * value.preco).toFixed(2)}</div>
                         </div>
                     </li>
              `;
@@ -59,12 +59,14 @@ export default function () {
         Cookies.set('total-cart', total);
 
         html += `<textarea rows="2" name="observacoes" placeholder="Observações"></textarea>
-                 <h5 class="total">Total: R$ ${total}</h5>
+                 <h5 class="total">Total: R$ ${total.toFixed(2)}</h5>
                 <button class="finalizar" type="submit" name="cadastar_pedido">Finalizar Pedido</button>
                 </form>
                 `;
 
         card.html(html);
+        addItem();
+        removeItem();
     }
 
     const addCard = () => {
@@ -100,6 +102,42 @@ export default function () {
         })
     }
 
+    const addItem = () => {
+        const li = $('.sidebar-carrinho li');
+        li.find('.quantidade svg.bi-plus').click(function () {
+            let data = $(this).parent().find('.qt').data()
+            $(this).parent().find('.qt').html(++data.qt);
+            const datacookie = JSON.parse(Cookies.get('dataCard'));
+
+            datacookie.forEach((value) => {
+                if (value.id == data.id) {
+                    value.qt = parseInt($(this).parent().find('.qt').text());
+                }
+            })
+            Cookies.set('dataCard', JSON.stringify(datacookie))
+            renderCard(Cookies.get('dataCard'));
+        });
+    }
+
+    const removeItem = () => {
+        const li = $('.sidebar-carrinho li');
+        li.find('.quantidade svg.bi-dash').click(function () {
+            let data = $(this).parent().find('.qt').data();
+            if (data.qt > 0) {
+                $(this).parent().find('.qt').html(--data.qt);
+                const datacookie = JSON.parse(Cookies.get('dataCard'));
+
+                datacookie.forEach((value) => {
+                    if (value.id == data.id) {
+                        value.qt = parseInt($(this).parent().find('.qt').text());
+                    }
+                })
+                Cookies.set('dataCard', JSON.stringify(datacookie))
+                renderCard(Cookies.get('dataCard'));
+            }
+        });
+    }
+
     const openCart = () => {
         const cart = $('main .right .header .top .cart-user .cart');
         cart.click(() => {
@@ -133,8 +171,8 @@ export default function () {
     }
 
     const removeItemCart = () => {
-        let icon = $('.sidebar-carrinho li .right svg');
-        icon.click((e) => {
+        $('.sidebar-carrinho li .right svg.bi-x').click(function (e) {
+            console.log(e);
             let dataClose = $(e.currentTarget).data();
             let datacookie = JSON.parse(Cookies.get('dataCard'));
             let posicao = null;

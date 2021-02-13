@@ -7,7 +7,7 @@
         <li><a href="<?= URL; ?>produtos"><i class="fas fa-pizza-slice"></i> Produtos</a></li>
         <li><a href="<?= URL; ?>mesa"><i class="fas fa-square-full"></i> Mesa</a></li>
         <li><a href="<?= URL; ?>pedido/listar"><i class="fas fa-history"></i> Pedidos</a></li>
-        <li><a href="#"><i class="far fa-chart-bar"></i> Estatísticas</a></li>
+        <li><a href="<?= URL ?>estatistica"><i class="far fa-chart-bar"></i> Estatísticas</a></li>
     </ul>
 </div>
 </main>

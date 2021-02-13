@@ -24,4 +24,14 @@ class Status extends Model {
         return $query->fetch();
     }
 
+    public function getStatus($id) {
+        $sql = "SELECT *  FROM status WHERE id = :id";
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(':id' => $id);
+        $query->execute($parameters);
+
+        return $query->fetch();
+    }
+
 }

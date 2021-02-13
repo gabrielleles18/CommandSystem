@@ -99,7 +99,7 @@ class FuncaoController {
      * AJAX-ACTION: ajaxGetStats
      * TODO documentação
      */
-    public function ajaxGetStats() {
+    public function F() {
         $funcao = new Funcao();
         $amount_of_funcao = $funcao->getAmountOfFuncao();
 
