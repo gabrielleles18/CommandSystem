@@ -40,7 +40,7 @@ class Pedido extends Model {
     }
 
     public function getAllPedidos() {
-        $sql = "SELECT * FROM pedido";
+        $sql = "SELECT * FROM pedido order by pedido.idpedido DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
 
