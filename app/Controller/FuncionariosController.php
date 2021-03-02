@@ -38,16 +38,17 @@ class FuncionariosController {
      * Este é um exemplo de como lidar com uma solicitação POST.
      */
     public function add() {
-        // se tivermos dados POST para criar uma nova entrada do funcionario
-        if (isset($_POST["submit_add_funcionario"])) {
-            // Instanciar novo Model (Funcionario)
-            $funcionario = new Funcionario();
-            // do add() em Model/Model.php
-            $funcionario->add($_POST["nome"], $_POST["cpf"], $_POST["telefone"], $_POST["data_nasc"], $_POST["usuario"],
-                $_POST["senha"], $_POST["funcao_idfuncao"], $_POST["status"]);
+        if ($_POST["senha"] == $_POST['senha_comfirm']) {
+            if (isset($_POST["submit_add_funcionario"])) {
+                $funcionario = new Funcionario();
+                $funcionario->add($_POST["nome"], $_POST["cpf"], $_POST["telefone"], $_POST["data_nasc"], $_POST["usuario"],
+                    $_POST["senha"], $_POST["funcao_idfuncao"], $_POST["status"]);
+            }
+        }else{
+            echo "<pre>";
+            print_r('As senhas não se correspondem!');
+            exit();
         }
-
-        // onde ir depois que o funcionario foi adicionado
         header('location: ' . URL . 'funcionarios/index');
     }
 

@@ -24,8 +24,6 @@ class PedidoController {
     }
 
     public function add() {
-        print_r('asd');
-        exit();
         if (isset($_POST["cadastar_pedido"])) {
             $pedido = new Pedido();
             $produtoPedido = new ProdutoPedido();
@@ -64,8 +62,7 @@ class PedidoController {
      * Este é um exemplo de como lidar com uma solicitação GET.
      * @param int $funcao_id Id do funcao para excluir
      */
-    public
-    function delete($funcao_id) {
+    public function delete($funcao_id) {
         if (isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao->delete($funcao_id);
@@ -79,8 +76,7 @@ class PedidoController {
      * Este método lida com o que acontece quando você se move para http://localhost/projeto/funcao/edit
      * @param int $funcao_id Id do funcao a editar
      */
-    public
-    function edit($funcao_id) {
+    public function edit($funcao_id) {
         if (isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao = $funcao->getFuncao($funcao_id);
