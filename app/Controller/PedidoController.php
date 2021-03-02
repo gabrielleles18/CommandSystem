@@ -24,6 +24,8 @@ class PedidoController {
     }
 
     public function add() {
+        print_r('asd');
+        exit();
         if (isset($_POST["cadastar_pedido"])) {
             $pedido = new Pedido();
             $produtoPedido = new ProdutoPedido();

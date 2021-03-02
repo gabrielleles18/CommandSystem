@@ -1,6 +1,6 @@
 <?php
 
-use Mini\Controller\index;
+use Mini\Controller\Index;
 use Mini\Model\Pedido;
 
 $breadcrumb = Index::gerateBreadcrumb([
@@ -11,7 +11,7 @@ $breadcrumb = Index::gerateBreadcrumb([
 ]);
 $pedido = new Pedido();
 ?>
-<?= $breadcrumb ?>
+<?//= $breadcrumb ?>
 <div class="container">
     <h1>Mesa Disponíveis</h1>
     <div class="mesas">

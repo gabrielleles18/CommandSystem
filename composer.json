@@ -5,16 +5,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Panique",
-            "email": "panique@firemail.de"
-        },
-        {
-            "name": "John Dias",
-            "email": "joaodias@noctus.org"
-        },
-        {
-            "name": "Ribamar FS",
-            "email": "ribafs@gmail.com"
+            "name": "Gabriel Leles",
+            "email": "gabriel.leles18@gmail.com"
         }
     ],
     "minimum-stability": "dev",

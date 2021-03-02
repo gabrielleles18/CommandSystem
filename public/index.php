@@ -13,8 +13,6 @@
 /**
  * Agora MINI trablaha com namespaces + composer's autoloader (PSR-4)
  *
- * @author Joao Vitor Dias <joaodias@noctus.org>
- *
  * Para mais informações sobre namespaces @see http://php.net/manual/en/language.namespaces.importing.php
  */
 
@@ -25,14 +23,13 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('APP', ROOT . 'app' . DIRECTORY_SEPARATOR);
 
 // Este é o auto-loader para dependências do Composer (para carregar ferramentas em seu projeto).
-require ROOT . 'vendor/autoload.php';
+require ROOT . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 // carregar configuração do aplicativo (error reporting etc.)
-require APP . 'config/config.php';
+require APP . 'config' . DIRECTORY_SEPARATOR . 'config.php';
 
 // carregar a classe application
 use Mini\Core\Application;
 
 // iniciar a app
 $app = new Application();
-

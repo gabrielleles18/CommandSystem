@@ -1,6 +1,6 @@
 <?php
 
-use Mini\Controller\index;
+use Mini\Controller\Index;
 
 $breadcrumb = Index::gerateBreadcrumb([
     [

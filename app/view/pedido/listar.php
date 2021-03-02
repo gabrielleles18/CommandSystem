@@ -1,6 +1,6 @@
 <?php
 
-use Mini\Controller\index;
+use Mini\Controller\Index;
 use Mini\Model\Mesa;
 use Mini\Model\Pedido;
 use Mini\Model\Status;
