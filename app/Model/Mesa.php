@@ -57,20 +57,20 @@ class Mesa extends Model {
     }
 
     public function getMessaBusy() {
-        $sql = "SELECT 	mesa.*,	pedido.idpedido FROM mesa
+        $sql = "SELECT 	mesa.*,	pedido.idpedido, pedido.status_id FROM mesa
 	            INNER JOIN pedido ON mesa.idmesa = pedido.mesa_idmesa 
-                WHERE mesa.`status` = 0 and pedido.status_id != 2";
+                WHERE mesa.`status` != 1 and pedido.status_id != 2";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         return $query->fetchAll();
     }
 
-    public function changeStatus($id, $status = '0') {
+    public function changeStatus($id, $status = 0) {
         $sql = "UPDATE mesa SET status = {$status} WHERE idmesa = {$id}";
         $query = $this->db->prepare($sql);
 
-        $query->execute();
+        return $query->execute();
     }
 
 }

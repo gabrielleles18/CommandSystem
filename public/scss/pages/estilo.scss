@@ -20,6 +20,45 @@ body {
             display: flex;
             border-bottom: 1px solid rgba(214, 212, 212, 0.5);
 
+            &.h1-legenda {
+                justify-content: space-between;
+            }
+
+            .legenda {
+                display: flex;
+                font-size: 11px;
+                font-weight: 500;
+                align-self: center;
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 10px;
+
+                    i {
+                        width: 15px;
+                        height: 15px;
+                        background: #dd4b39;
+                        display: flex;
+                        margin-right: 2px;
+                        border-radius: 50%;
+
+                    }
+
+                    &:nth-child(2) i {
+                        background: #fb8732;
+                    }
+
+                    &:nth-child(3) i {
+                        background: #ffb70e;
+                    }
+
+                    &:nth-child(4) i {
+                        background: #35d063;
+                    }
+                }
+            }
+
             .icon {
                 width: 22px;
                 height: 22px;
@@ -83,6 +122,7 @@ body {
                             font-size: 16px;
                             color: rgba(60, 75, 100, 0.6);
                             line-height: 19px;
+                            background: #fff;
                         }
 
                         textarea {
@@ -174,8 +214,21 @@ body {
                 background-color: #00a65a;
                 box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 
-                &.busy {
+                &.busy-1 {
                     background-color: #dd4b39;
+                }
+
+                &.busy-3 {
+                    background-color: #35d063;
+                }
+
+
+                &.busy-4 {
+                    background-color: #fb8732;
+                }
+
+                &.busy-5 {
+                    background-color: #ffb70e;
                 }
 
                 &:last-child,
@@ -201,7 +254,7 @@ body {
                 img {
                     width: 90px;
                     height: 100%;
-                    background: rgba(0, 0, 0, 0.2);
+                    background: rgba(0, 0, 0, 0.1);
                     padding: 20px;
                 }
             }

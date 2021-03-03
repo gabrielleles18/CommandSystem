@@ -14,7 +14,7 @@ class Status extends Model {
         return $query->fetchAll();
     }
 
-    public function getStatusAberto($id = 1) {
+    public function getStatusAberto($id) {
         $sql = "SELECT id  FROM status WHERE numero = :id";
         $query = $this->db->prepare($sql);
 

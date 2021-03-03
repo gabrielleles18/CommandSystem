@@ -17,7 +17,7 @@ export default function () {
         let html = '';
         let total = 0;
 
-        html += `<form action="${url}pedido/add" method="POST">
+        html += `<form action="https://localhost/CommandSystem/pedido/add" method="POST">
                   <input type="hidden"  name="mesa_id" value="${GET}"/>
                 <li class="itens-cart">Itens do pedido</li>`;
         dataArray.forEach((value, index) => {
@@ -166,7 +166,7 @@ export default function () {
 
     const finalizarPedido = () => {
         $('.sidebar-carrinho .finalizar').click(() => {
-            window.location = `${url}produtos/listar?id=12`;
+            window.location = `https://localhost/CommandSystem/produtos/listar?id=12`;
         })
     }
 

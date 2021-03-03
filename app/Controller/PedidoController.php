@@ -9,9 +9,11 @@ use Mini\Model\Pedido;
 use Mini\Model\ProdutoPedido;
 use Mini\Model\Status;
 
-class PedidoController {
+class PedidoController
+{
 
-    public function index() {
+    public function index()
+    {
         $pedido = (new Pedido())->getPedido($_GET['id']);
         $mesa = (new Mesa())->getMesa($pedido->mesa_idmesa);
         $proutdutos = (new Pedido())->getItensPedido($_GET['id']);
@@ -23,7 +25,8 @@ class PedidoController {
         require APP . 'view/_templates/sidebar.php';
     }
 
-    public function add() {
+    public function add()
+    {
         if (isset($_POST["cadastar_pedido"])) {
             $pedido = new Pedido();
             $produtoPedido = new ProdutoPedido();
@@ -33,7 +36,7 @@ class PedidoController {
                 $dataPedido = json_decode($_COOKIE['dataCard']);
                 $usuario = json_decode($_COOKIE['login']);
 
-                $status_id = (new Status())->getStatusAberto()->id;
+                $status_id = (new Status())->getStatusAberto(1)->id;
 
                 if (!empty($status_id)) {
                     $pedido->add(date("d/m/Y H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'],
@@ -44,8 +47,10 @@ class PedidoController {
                     $produtoPedido->add($value->id, (new Pedido)->lastID()->idpedido, $value->qt);
                 }
                 $mesa->changeStatus($_POST["mesa_id"]);
-                unset($_COOKIE['dataCard']);
-                unset($_COOKIE['total-cart']);
+
+                setcookie('dataCard', null, -1, '/');
+                setcookie('total-cart', null, -1, '/');
+
             } else {
                 return '';
             }
@@ -53,16 +58,8 @@ class PedidoController {
         header('location: ' . URL);
     }
 
-    /**
-     * ACTION: delete
-     * Este método lida com o que acontece quando você se move para http://localhost/projeto/funcao/delete
-     * IMPORTANTE: Esta não é uma página normal, é uma ACTION. Isto é onde o botãoe "excluir um funcao" em funcao/index
-     * direciona o usuário após o clique. Este método trata de todos os dados da requisição GET (na URL!) E depois
-     * redireciona o usuário de volta para funcao/index através da última linha: header(...)
-     * Este é um exemplo de como lidar com uma solicitação GET.
-     * @param int $funcao_id Id do funcao para excluir
-     */
-    public function delete($funcao_id) {
+    public function delete($funcao_id)
+    {
         if (isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao->delete($funcao_id);
@@ -71,12 +68,9 @@ class PedidoController {
         header('location: ' . URL . 'funcao/index');
     }
 
-    /**
-     * ACTION: edit
-     * Este método lida com o que acontece quando você se move para http://localhost/projeto/funcao/edit
-     * @param int $funcao_id Id do funcao a editar
-     */
-    public function edit($funcao_id) {
+
+    public function edit($funcao_id)
+    {
         if (isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao = $funcao->getFuncao($funcao_id);
@@ -96,15 +90,9 @@ class PedidoController {
         }
     }
 
-    /**
-     * ACTION: update
-     * Este método lida com o que acontece quando você se move para http://localhost/projeto/funcao/update
-     * IMPORTANTE: Esta não é uma página normal, é uma ACTION. Isto é onde o form "atualizar um funcao" fica funcao/edit
-     * direciona o usuário após o envio do formulário. Esse método manipula todos os dados POST do formulário e, em seguida, redireciona
-     * o usuário de volta para funcao/index através da última linha: header(...)
-     * Este é um exemplo de como lidar com uma solicitação POST.
-     */
-    public function update() {
+
+    public function update()
+    {
         if (isset($_POST["submit_update_funcao"])) {
             $funcao = new Funcao();
             $funcao->update($_POST["nome"], $_POST["status"], $_POST['funcao_id']);
@@ -113,21 +101,28 @@ class PedidoController {
         header('location: ' . URL . 'funcao/index');
     }
 
-    public function updateStatus() {
+    public function updateStatus()
+    {
         if (!empty($_POST['alter_status'])) {
+
             $status_id = (new Status())->getStatusAberto($_POST['status'])->id;
 
             if (!empty($status_id)) {
                 (new Pedido())->updateStatus($_POST['idpedido'], $status_id);
 
-                if (!empty($_POST['mesa_idmesa'])) {
-                    (new Mesa())->changeStatus($_POST['mesa_idmesa'], 1);
+                if (!empty($_POST['mesa_idmesa']) && $status_id == 2) {
+                    $return = (new Mesa())->changeStatus($_POST['mesa_idmesa'], 1);
+
+                    if ($return)
+                        header('location: ' . URL);
                 }
             }
         }
     }
 
-    public function listar() {
+    public function listar()
+    {
+
 
         $pedidos = (new Pedido())->getAllPedidos();
 

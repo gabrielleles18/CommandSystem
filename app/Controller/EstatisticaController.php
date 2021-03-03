@@ -6,19 +6,28 @@ namespace Mini\Controller;
 
 use Mini\Model\Estatistica;
 
-class EstatisticaController {
+class EstatisticaController
+{
 
-    public function index() {
-        $pedidobyuser = (new Estatistica())->getAllPedidosByUser();
-        $produto = (new Estatistica())->geQtProduto();
-        $totalprod = (new Estatistica())->getTotalProd();
-        $totalpedido = (new Estatistica())->getTotalPedido();
-        $totalvalorpedido = (new Estatistica())->getValorTotalPedido();
+    public function index()
+    {
 
-        if (!empty($totalprod)) {
-            $total = 0;
-            foreach ($totalprod as $value) {
-                $total += $value->soma_prod;
+        if (isset($_POST['submit_estatistic'])) {
+            echo "<pre>";
+            print_r($_POST);
+            exit();
+
+            $pedidobyuser = (new Estatistica())->getAllPedidosByUser();
+            $produto = (new Estatistica())->geQtProduto();
+            $totalprod = (new Estatistica())->getTotalProd();
+            $totalpedido = (new Estatistica())->getTotalPedido();
+            $totalvalorpedido = (new Estatistica())->getValorTotalPedido();
+
+            if (!empty($totalprod)) {
+                $total = 0;
+                foreach ($totalprod as $value) {
+                    $total += $value->soma_prod;
+                }
             }
         }
 

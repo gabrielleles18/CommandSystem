@@ -1,6 +1,6 @@
 <?php
 
-use Mini\Controller\index;
+use Mini\Controller\Index;
 
 $breadcrumb = Index::gerateBreadcrumb([
     [
@@ -85,8 +85,8 @@ $breadcrumb = Index::gerateBreadcrumb([
                     </div>
                     <div class="col-3 col-in">
                         <label>Status</label>
-                        <select name="status">
-                            <option selected value="" required></option>
+                        <select name="status" required>
+                            <option selected value=""></option>
                             <option value="1">Ativo</option>
                             <option value="0">Inativo</option>
                         </select>
@@ -99,11 +99,11 @@ $breadcrumb = Index::gerateBreadcrumb([
                     </div>
                     <div class="col-3 col-in">
                         <label>Senha</label>
-                        <input type="text" name="senha" value="" required/>
+                        <input type="password" name="senha" value="" required/>
                     </div>
                     <div class="col-3 col-in">
                         <label>Comfirmar Senha</label>
-                        <input type="text" name="senha_comfirm" value="" required/>
+                        <input type="password" name="senha_comfirm" value="" required/>
                     </div>
                 </div>
                 <div class="form-row">

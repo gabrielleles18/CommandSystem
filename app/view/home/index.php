@@ -11,7 +11,7 @@ $breadcrumb = Index::gerateBreadcrumb([
 ]);
 $pedido = new Pedido();
 ?>
-<?//= $breadcrumb ?>
+<? //= $breadcrumb ?>
 <div class="container">
     <h1>Mesa Disponíveis</h1>
     <div class="mesas">
@@ -34,10 +34,18 @@ $pedido = new Pedido();
 
 <?php if (!empty($mesasbusy)) { ?>
     <div class="container">
-        <h1>Mesa Ocupadas</h1>
+        <h1 class="h1-legenda">
+            <div>Mesa Ocupadas</div>
+            <ul class="legenda">
+                <li><i></i>Aberto</li>
+                <li><i></i>Em preparo</li>
+                <li><i></i>Preparo finalizado</li>
+                <li><i></i>Entregue a mesa</li>
+            </ul>
+        </h1>
         <div class="mesas">
             <?php foreach ($mesasbusy as $id => $v) { ?>
-                <a href="<?= URL . 'pedido/?id=' . $v->idpedido ?>" class="busy">
+                <a href="<?= URL . 'pedido/?id=' . $v->idpedido ?>" class="busy-<?= $v->status_id ?>">
                     <img src="<?= URL . '/public/img/table.png' ?>"/>
                     <span>
                     <h4>Mesa <?= $v->numero ?></h4>

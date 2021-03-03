@@ -9,12 +9,11 @@ namespace Mini\Controller;
 
 use Mini\Model\Produto;
 
-class ProdutosController {
-    /**
-     * Action: index
-     * Este método manipula o que acontece quando acessa http://localhost/produtos/index
-     */
-    public function index() {
+class ProdutosController
+{
+
+    public function index()
+    {
         $Produto = new Produto();
 
         $produtos = $Produto->getAllProdutos();
@@ -22,22 +21,14 @@ class ProdutosController {
         $unidade = $Produto->getAllUnidade();
 
 
-        // carregar a view produtos. com as views nós podemos mostrar os $produtos e a $amount_of_produtos facilmente
         require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/produtos/index.php';
         require APP . 'view/_templates/sidebar.php';
     }
 
-    /**
-     * ACTION: add
-     * Este método manipula o que acontece quando acessamos http://localhost/projeto/produtos/add
-     * IMPORTANTE: Isto não é uma página normal, isto é um ACTION. Isto é onde está o form "adicionar um produto" em produtos/index
-     * direciona o usuário após o envio do formulário. Esse método manipula todos os dados POST do formulário e, em seguida, redireciona
-     * o usuário de volta para produtos/index através da última linha: header(...)
-     * Este é um exemplo de como lidar com uma solicitação POST.
-     */
-    public function add() {
+    public function add()
+    {
 
         if (isset($_POST["submit_add_produto"])) {
 
@@ -54,16 +45,9 @@ class ProdutosController {
         header('location: ' . URL . 'produtos/index');
     }
 
-    /**
-     * ACTION: delete
-     * Este método lida com o que acontece quando você se move para http://localhost/produtos/delete
-     * IMPORTANTE: Esta não é uma página normal, é uma ACTION. Isto é onde o botãoe "excluir um produto" em produtos/index
-     * direciona o usuário após o clique. Este método trata de todos os dados da requisição GET (na URL!) E depois
-     * redireciona o usuário de volta para produtos/index através da última linha: header(...)
-     * Este é um exemplo de como lidar com uma solicitação GET.
-     * @param int $produto_id Id do produto para excluir
-     */
-    public function delete($produto_id) {
+
+    public function delete($produto_id)
+    {
         if (isset($produto_id)) {
             $Produto = new Produto();
             $Produto->delete($produto_id);
@@ -73,12 +57,9 @@ class ProdutosController {
         header('location: ' . URL . 'produtos/index');
     }
 
-    /**
-     * ACTION: edit
-     * Este método lida com o que acontece quando você se move para http://localhost/projeto/produtos/edit
-     * @param int $produto_id Id do produto a editar
-     */
-    public function edit($produto_id) {
+
+    public function edit($produto_id)
+    {
         if (isset($produto_id)) {
             $Produto = new Produto();
             $produto = $Produto->getProduto($produto_id);
@@ -102,15 +83,9 @@ class ProdutosController {
         }
     }
 
-    /**
-     * ACTION: update
-     * Este método lida com o que acontece quando você se move para http://localhost/projeto/produtos/update
-     * IMPORTANTE: Esta não é uma página normal, é uma ACTION. Isto é onde o form "atualizar um produto" fica produtos/edit
-     * direciona o usuário após o envio do formulário. Esse método manipula todos os dados POST do formulário e, em seguida, redireciona
-     * o usuário de volta para produtos/index através da última linha: header(...)
-     * Este é um exemplo de como lidar com uma solicitação POST.
-     */
-    public function update() {
+
+    public function update()
+    {
         if (isset($_POST["submit_update_produto"])) {
             $Produto = new Produto();
 
@@ -128,8 +103,9 @@ class ProdutosController {
         header('location: ' . URL . 'produtos/index');
     }
 
-    public function listar() {
-        unset($_COOKIE['dataCard']);
+    public function listar()
+    {
+
         $Produto = new Produto();
 
         $categorias = $Produto->getAllCategoria();
@@ -146,7 +122,8 @@ class ProdutosController {
 
     }
 
-    public function trataImage($name) {
+    public function trataImage($name)
+    {
         if (!empty($_FILES[$name]) && $_FILES[$name]['error'] == 0) {
 
             $hash = md5(uniqid(rand(), true));
