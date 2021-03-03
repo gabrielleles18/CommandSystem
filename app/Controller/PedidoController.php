@@ -1,5 +1,8 @@
 <?php
-
+/*
+ * Alter type of pedido.data_pedido for DATETIME
+ * DATE_FORMAT( pedido.data_pedido, "%Y-%m-%d" ) AS data_ped,
+ * */
 
 namespace Mini\Controller;
 
@@ -39,7 +42,7 @@ class PedidoController
                 $status_id = (new Status())->getStatusAberto(1)->id;
 
                 if (!empty($status_id)) {
-                    $pedido->add(date("d/m/Y H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'],
+                    $pedido->add(date("Y/m/d H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'],
                         $status_id, $_POST["mesa_id"], $usuario->idfuncionario);
                 }
 
