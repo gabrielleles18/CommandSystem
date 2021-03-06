@@ -16,9 +16,6 @@ class HomeController {
         $mesasfree = $mesa->getMessaFree();
         $mesasbusy = $mesa->getMessaBusy();
 
-//        echo "<pre>";
-//        print_r($mesasbusy);
-//        exit();
 
         // Carregar a view home
         require APP . 'view/_templates/head.php';

@@ -2,16 +2,7 @@
 
 use Mini\Controller\Index;
 
-$breadcrumb = Index::gerateBreadcrumb([
-    [
-        'url' => URL,
-        'text' => 'Home'
-    ],
-    [
-        'url' => URL . '/mesa',
-        'text' => 'Mesas'
-    ]
-]);
+$breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' => URL . '/mesa', 'text' => 'Mesas']]);
 ?>
 <?= $breadcrumb ?>
 <div class="container">
@@ -33,7 +24,17 @@ $breadcrumb = Index::gerateBreadcrumb([
                     <td><?= ++$id ?></td>
                     <td><?php if (isset($item->numero)) echo $item->numero; ?></td>
                     <td><?php if (isset($item->descricao)) echo $item->descricao; ?></td>
-                    <td><?php if (isset($item->status)) echo $item->status; ?></td>
+                    <?php
+                    $status = '';
+                    if (isset($item->status)) {
+                        if ($item->status == 1) {
+                            $status = "<td style='color: green'>Desculpado</td>";
+                        } elseif ($item->status == 0) {
+                            $status = "<td style='color: red'>Oculpado</td>";
+                        }
+                    }
+                    ?>
+                    <?= $status ?>
                     <td>
                         <a href="<?php echo URL . 'mesa/delete/' . $item->idmesa; ?>" title="Deletar">
                             <i class="far fa-trash-alt button button-delete"></i>

@@ -14,9 +14,9 @@ class Pedido extends Model {
                 VALUES (:data_pedido, :observacoes, :valor, :status_id, :mesa_idmesa, :funcionario_idfuncionario)";
         $query = $this->db->prepare($sql);
 
+
         $parameters = array(':data_pedido' => $data_pedido, ':observacoes' => $observacoes, ':valor' => $valor,
             ':status_id' => $status_id, ':mesa_idmesa' => $mesa_idmesa, ':funcionario_idfuncionario' => $funcionario_idfuncionario);
-//         echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
     }
@@ -82,6 +82,7 @@ class Pedido extends Model {
 
         return $query->fetch();
     }
+
 }
 
 

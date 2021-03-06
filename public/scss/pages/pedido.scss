@@ -89,7 +89,6 @@
                 min-height: 60px;
                 border-bottom: 1px solid #E2E2E2;
                 display: flex;
-                justify-content: space-between;
                 padding-bottom: 10px;
                 margin-bottom: 10px;
 
@@ -97,6 +96,8 @@
                     width: 50px;
                     height: 50px;
                     align-self: center;
+                    object-fit: contain;
+                    margin-right: 15px;
                 }
 
                 .center {
@@ -128,7 +129,7 @@
                         svg {
                             cursor: pointer;
 
-                            &.hidden{
+                            &.hidden {
                                 cursor: auto;
                                 opacity: 0.15;
                             }
@@ -144,14 +145,22 @@
                             font-size: 14px;
                             color: #4F5D73;
                         }
+
+                        input {
+                            width: 25px;
+                            text-align: center;
+                            background: #fff;
+                            font-size: 14px;
+                            color: #4F5D73;
+                        }
                     }
                 }
 
                 .right {
-                    width: auto;
+                    width: 100px;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
+                    justify-content: flex-end;
                     align-items: flex-end;
 
                     svg {
@@ -185,20 +194,26 @@
                 justify-content: flex-end;
             }
 
-            .finalizar {
+            .buttons {
                 width: 100%;
-                min-height: 34px;
-                padding: 5px 10px;
-                background-color: #00a65a;
-                border-radius: 3px;
-                color: #fff;
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 16px;
+                justify-content: space-between;
 
-                &.hidden {
-                    display: none;
+                .finalizar {
+                    width: calc(50% - 10px);
+                    min-height: 34px;
+                    padding: 5px 10px;
+                    background-color: #00a65a;
+                    border-radius: 3px;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 16px;
+
+                    &.hidden {
+                        display: none;
+                    }
                 }
             }
         }

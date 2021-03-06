@@ -16,9 +16,15 @@ export default function () {
         let dataArray = JSON.parse(data);
         let html = '';
         let total = 0;
+        let input = '';
+
+        if(GET_PED !== undefined){
+            input = `<input type="hidden"  name="pedido_id" value="${GET_PED}"/>`
+        }
 
         html += `<form action="https://localhost/CommandSystem/pedido/add" method="POST">
                   <input type="hidden"  name="mesa_id" value="${GET}"/>
+                  ${input}
                 <li class="itens-cart">Itens do pedido</li>`;
         dataArray.forEach((value, index) => {
             total = total + (value.qt * value.preco);

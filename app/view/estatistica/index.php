@@ -15,20 +15,23 @@ $breadcrumb = Index::gerateBreadcrumb([
 ?>
 <?= $breadcrumb ?>
 <div class="container estatistica ">
+    <h1>Estatísticas Geral</h1>
     <div class="box">
-        <section class="filtro">
-            <form method="post" action="<?= URL ?>estatistica">
-                <div class="caixa">
-                    <label for="inicio">Início</label>
-                    <input type="date" id="inicio" name="inicio"/>
-                </div>
-                <div class="caixa">
-                    <label for="fim">Fim</label>
-                    <input type="date" id="fim" name="fim"/>
-                </div>
-                <button type="submit" name="submit_estatistic" class="button">Filtrar</button>
-            </form>
-        </section>
+
+<!--        <section class="filtro">-->
+<!--            <form method="post" action="--><?//= URL ?><!--estatistica">-->
+<!--                <div class="caixa">-->
+<!--                    <label for="inicio">Início</label>-->
+<!--                    <input type="date" id="inicio" name="inicio"/>-->
+<!--                </div>-->
+<!--                <div class="caixa">-->
+<!--                    <label for="fim">Fim</label>-->
+<!--                    <input type="date" id="fim" name="fim"/>-->
+<!--                </div>-->
+<!--                <button type="submit" name="submit_estatistic" class="button">Filtrar</button>-->
+<!--            </form>-->
+<!--        </section>-->
+
         <?php if (!empty($pedidobyuser)) { ?>
             <section class="funcionario">
                 <?php foreach ($pedidobyuser as $value) { ?>

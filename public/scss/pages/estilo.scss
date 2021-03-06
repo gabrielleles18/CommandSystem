@@ -204,7 +204,7 @@ body {
 
             a {
                 width: 20%;
-                max-width: 50%;
+                max-width: calc(50% - 10px);
                 height: 90px;
                 display: flex;
                 align-items: center;
@@ -232,7 +232,7 @@ body {
                 }
 
                 &:last-child,
-                &:nth-child(4) {
+                &:nth-child(4n) {
                     margin: 10px 0 10px 0;
                 }
 

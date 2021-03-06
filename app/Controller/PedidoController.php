@@ -1,11 +1,6 @@
 <?php
-/*
- * Alter type of pedido.data_pedido for DATETIME
- * DATE_FORMAT( pedido.data_pedido, "%Y-%m-%d" ) AS data_ped,
- * */
 
 namespace Mini\Controller;
-
 
 use Mini\Model\Mesa;
 use Mini\Model\Pedido;
@@ -31,6 +26,7 @@ class PedidoController
     public function add()
     {
         if (isset($_POST["cadastar_pedido"])) {
+
             $pedido = new Pedido();
             $produtoPedido = new ProdutoPedido();
             $mesa = new Mesa();
@@ -41,15 +37,22 @@ class PedidoController
 
                 $status_id = (new Status())->getStatusAberto(1)->id;
 
-                if (!empty($status_id)) {
-                    $pedido->add(date("Y/m/d H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'],
-                        $status_id, $_POST["mesa_id"], $usuario->idfuncionario);
+                if (empty($_POST['pedido_id'])) {
+                    if (!empty($status_id)) {
+                        $pedido->add(date("Y-m-d H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'], $status_id, $_POST["mesa_id"], $usuario->idfuncionario);
+                    }
+                    $mesa->changeStatus($_POST["mesa_id"]);
+                }
+
+                if (!empty($_POST['pedido_id'])) {
+                    $id_pedido = $_POST['pedido_id'];
+                } else {
+                    $id_pedido = (new Pedido)->lastID()->idpedido;
                 }
 
                 foreach ($dataPedido as $value) {
-                    $produtoPedido->add($value->id, (new Pedido)->lastID()->idpedido, $value->qt);
+                    $produtoPedido->add($value->id, $id_pedido, $value->qt);
                 }
-                $mesa->changeStatus($_POST["mesa_id"]);
 
                 setcookie('dataCard', null, -1, '/');
                 setcookie('total-cart', null, -1, '/');
@@ -58,7 +61,12 @@ class PedidoController
                 return '';
             }
         }
-        header('location: ' . URL);
+        if (!empty($_POST['pedido_id'])) {
+            header('location: ' . URL . 'pedido/?id=' . $_POST['pedido_id']);
+
+        } else {
+            header('location: ' . URL);
+        }
     }
 
     public function delete($funcao_id)
@@ -70,7 +78,6 @@ class PedidoController
 
         header('location: ' . URL . 'funcao/index');
     }
-
 
     public function edit($funcao_id)
     {
@@ -116,8 +123,7 @@ class PedidoController
                 if (!empty($_POST['mesa_idmesa']) && $status_id == 2) {
                     $return = (new Mesa())->changeStatus($_POST['mesa_idmesa'], 1);
 
-                    if ($return)
-                        header('location: ' . URL);
+                    if ($return) header('location: ' . URL);
                 }
             }
         }
@@ -125,13 +131,43 @@ class PedidoController
 
     public function listar()
     {
-
-
         $pedidos = (new Pedido())->getAllPedidos();
 
         require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/pedido/listar.php';
         require APP . 'view/_templates/sidebar.php';
+    }
+
+    public function updateqt()
+    {
+        if (isset($_POST["submit_updateqt"])) {
+            $data = [];
+            $i = 0;
+            $count = 0;
+            foreach ($_POST as $id => $value) {
+                if ($count > 2) {
+                    $i++;
+                    $count = 0;
+                }
+
+                if (!empty(explode('-', $id)[1]) == $i) {
+                    $data[$i][explode('-', $id)[0]] = $value;
+                }
+                $count++;
+            }
+
+
+            $produto = new ProdutoPedido();
+            foreach ($data as $value) {
+                $produto->updateqt($value['idpedido'], $value["idproduto"], $value['qt_prod']);
+            }
+
+            if (!empty($_POST['idpedido-0'])) {
+                header('location: ' . URL . 'pedido/?id=' . $_POST['idpedido-0']);
+            } else {
+                header('location: ' . URL);
+            }
+        }
     }
 }

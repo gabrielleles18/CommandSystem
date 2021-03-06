@@ -38,7 +38,17 @@ $breadcrumb = Index::gerateBreadcrumb([
                     <td><?php if (isset($funcionario->cpf)) echo $funcionario->cpf; ?></td>
                     <td><?php if (isset($funcionario->telefone)) echo $funcionario->telefone; ?></td>
                     <td><?php if (isset($funcionario->funcao)) echo $funcionario->funcao; ?></td>
-                    <td><?php if (isset($funcionario->status)) echo $funcionario->status; ?></td>
+                    <?php
+                    $status = '';
+                    if (isset($funcionario->status)) {
+                        if ($funcionario->status == 1) {
+                            $status = "<td style='color: green'>Ativo</td>";
+                        } elseif ($funcionario->status == 0) {
+                            $status = "<td style='color: red'>Inativo</td>";
+                        }
+                    }
+                    ?>
+                    <?= $status ?>
                     <td>
                         <a href="<?= URL . 'funcionarios/delete/' . $funcionario->idfuncionario; ?>" title="Deletar">
                             <i class="far fa-trash-alt button button-delete"></i></a>

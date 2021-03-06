@@ -31,7 +31,17 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <tr>
                     <td><?= ++$id ?></td>
                     <td><?php if (isset($item->nome)) echo $item->nome; ?></td>
-                    <td><?php if (isset($item->status)) echo $item->status; ?></td>
+                    <?php
+                    $status = '';
+                    if (isset($item->status)) {
+                        if ($item->status == 1) {
+                            $status = "<td style='color: green'>Ativo</td>";
+                        } elseif ($item->status == 0) {
+                            $status = "<td style='color: red'>Inativo</td>";
+                        }
+                    }
+                    ?>
+                    <?= $status ?>
                     <td>
                         <a href="<?php echo URL . 'funcao/delete/' . $item->idfuncao; ?>" title="Deletar">
                             <i class="far fa-trash-alt button button-delete"></i>

@@ -15,6 +15,7 @@
 <script>
     let URL_BASE = "<?= URL; ?>";
     let GET = "<?= $_GET['id'] ?? '' ?>"
+    let GET_PED = "<?= $_GET['id_ped'] ?? '' ?>"
 </script>
 <script src="<?= URL ?>public/dist/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

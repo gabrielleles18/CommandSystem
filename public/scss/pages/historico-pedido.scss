@@ -14,12 +14,12 @@
             font-weight: 600;
 
             div {
-                width: 200px;
                 display: flex;
                 justify-content: space-between;
 
                 i {
                     cursor: pointer;
+                    margin-left: 10px;
                 }
             }
         }

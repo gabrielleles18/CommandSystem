@@ -12,10 +12,7 @@ class EstatisticaController
     public function index()
     {
 
-        if (isset($_POST['submit_estatistic'])) {
-            echo "<pre>";
-            print_r($_POST);
-            exit();
+//        if (isset($_POST['submit_estatistic'])) {
 
             $pedidobyuser = (new Estatistica())->getAllPedidosByUser();
             $produto = (new Estatistica())->geQtProduto();
@@ -29,7 +26,7 @@ class EstatisticaController
                     $total += $value->soma_prod;
                 }
             }
-        }
+//        }
 
         require APP . 'view/_templates/head.php';
         require APP . 'view/_templates/header.php';

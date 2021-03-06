@@ -11,5 +11,27 @@ export default function () {
         })
     }
 
-    openFrom()
+    const addQt = () => {
+        const item = $('.produtos fieldset li .center .quantidade');
+
+        item.find('svg.bi-plus').click(function () {
+            let input = $(this).parent().find('input');
+            input.val(parseInt(input.val()) + 1);
+        });
+    }
+
+    const removeQt = () => {
+        const item = $('.produtos fieldset li .center .quantidade');
+
+        item.find('svg.bi-dash').click(function () {
+            let input = $(this).parent().find('input');
+            if (input.val() > 0) {
+                input.val(parseInt(input.val()) - 1);
+            }
+        });
+    }
+
+    addQt();
+    removeQt();
+    openFrom();
 }

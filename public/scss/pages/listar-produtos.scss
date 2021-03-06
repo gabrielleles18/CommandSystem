@@ -21,7 +21,7 @@ main {
                     flex-wrap: wrap;
 
                     li {
-                        max-width: 190px;
+                        max-width: 185px;
                         width: 100%;
                         display: flex;
                         flex-direction: column;
@@ -29,6 +29,10 @@ main {
                         padding: 10px;
                         border: 1px solid #E2E2E2;
                         border-radius: 3px;
+
+                        &:nth-child(5n) {
+                            margin-right: 0;
+                        }
 
                         img {
                             width: 100%;
@@ -54,8 +58,8 @@ main {
 
                                 p {
                                     color: rgb(140, 140, 140);
-                                    font-size: 15px;
-                                    line-height: 20px;
+                                    font-size: 14px;
+                                    line-height: 17px;
                                     word-break: break-word;
                                     margin: 5px 0 10px 0;
                                 }
