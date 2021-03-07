@@ -23,7 +23,8 @@
     "os": false
   },
   "dependencies": {
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "jquery-mask-plugin": "^1.14.16"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

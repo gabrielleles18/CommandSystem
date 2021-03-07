@@ -59,7 +59,14 @@ class FuncaoController {
     public function update() {
         if(isset($_POST["submit_update_funcao"])) {
             $funcao = new Funcao();
-            $funcao->update($_POST["nome"], $_POST["status"], $_POST['funcao_id']);
+            $return = $funcao->update($_POST["nome"], $_POST["status"], $_POST['funcao_id']);
+        }
+
+        if($return) {
+            $data = [
+                'tipo' => 1,
+                'mensagem' => 'Informações da função: ' . $_POST["nome"] . ', foram alteradas com sucesso!'];
+            setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
         }
 
         header('location: ' . URL . 'funcao/index');

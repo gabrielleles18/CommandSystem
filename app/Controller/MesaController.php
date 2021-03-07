@@ -55,9 +55,15 @@ class MesaController {
     public function update() {
         if(isset($_POST["submit_update_mesa"])) {
             $mesa = new Mesa();
-            $mesa->update($_POST["numero"], $_POST["descricao"], $_POST["status"], $_POST['mesa_id']);
+            $return = $mesa->update($_POST["numero"], $_POST["descricao"], $_POST["status"], $_POST['mesa_id']);
         }
 
+        if($return) {
+            $data = [
+                'tipo' => 1,
+                'mensagem' => 'Informações da mesa ' . $_POST["numero"] . ', foram alteradas com sucesso!'];
+            setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+        }
         header('location: ' . URL . 'mesa/index');
     }
 }

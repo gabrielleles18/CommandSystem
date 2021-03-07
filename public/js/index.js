@@ -1,5 +1,7 @@
 import produtos from './pages/cart';
 import pedido from './pages/list-pedido';
+import mask from './pages/mask';
+import modal from './pages/modal';
 import global from './global';
 
 ((fn) => {
@@ -12,4 +14,6 @@ import global from './global';
     produtos();
     global();
     pedido();
+    mask();
+    modal();
 });

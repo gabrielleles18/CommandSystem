@@ -116,6 +116,13 @@ class PedidoController {
                 if(!empty($_POST['mesa_idmesa']) && $status_id == 2) {
                     $return = (new Mesa())->changeStatus($_POST['mesa_idmesa'], 1);
 
+                    if($return) {
+                        $data = [
+                            'tipo' => 1,
+                            'mensagem' => 'Status do pedido foi alterado com sucesso!'];
+                        setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+                    }
+
                     if($return) header('location: ' . URL);
                 }
             }
@@ -150,7 +157,14 @@ class PedidoController {
 
             $produto = new ProdutoPedido();
             foreach($data as $value) {
-                $produto->updateqt($value['idpedido'], $value["idproduto"], $value['qt_prod']);
+                $return = $produto->updateqt($value['idpedido'], $value["idproduto"], $value['qt_prod']);
+            }
+
+            if($return) {
+                $data = [
+                    'tipo' => 1,
+                    'mensagem' => 'Quantidade de produto foi alterado com sucesso!'];
+                setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
             }
 
             if(!empty($_POST['idpedido-0'])) {

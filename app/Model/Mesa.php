@@ -45,7 +45,7 @@ class Mesa extends Model {
         $query = $this->db->prepare($sql);
         $parameters = array(':numero' => $numero, ':descricao' => $descricao, ':status' => $status, ':mesa_id' => $mesa_id);
 
-        $query->execute($parameters);
+        return $query->execute($parameters);
     }
 
     public function getMessaFree() {

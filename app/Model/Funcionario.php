@@ -63,7 +63,7 @@ class Funcionario extends Model {
         $query = $this->db->prepare($sql);
         $parameters = array(':nome' => $nome, ':cpf' => $cpf, ':telefone' => $telefone, ':data_nasc' => $data_nasc, ':usuario' => $usuario, ':senha' => $senha, ':funcao_idfuncao' => $funcao_idfuncao, ':status' => $status, ':funcionario_id' => $funcionario_id);
 
-        $query->execute($parameters);
+        return $query->execute($parameters);
     }
 
     public function getAllFuncao() {

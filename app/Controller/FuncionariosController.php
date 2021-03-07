@@ -68,8 +68,14 @@ class FuncionariosController {
     public function update() {
         if(isset($_POST["submit_update_funcionario"])) {
             $funcionario = new Funcionario();
-            $funcionario->update($_POST["nome"], $_POST["cpf"], $_POST["telefone"], $_POST["data_nasc"], $_POST["usuario"], $_POST["senha"], $_POST["funcao_idfuncao"], $_POST["status"], $_POST['funcionario_id']);
+            $return = $funcionario->update($_POST["nome"], $_POST["cpf"], $_POST["telefone"], $_POST["data_nasc"], $_POST["usuario"], $_POST["senha"], $_POST["funcao_idfuncao"], $_POST["status"], $_POST['funcionario_id']);
+        }
 
+        if($return) {
+            $data = [
+                'tipo' => 1,
+                'mensagem' => 'Informações do funcionario: ' . $_POST["nome"] . ', foram alteradas com sucesso!'];
+            setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
         }
 
         header('location: ' . URL . 'funcionarios/index');

@@ -51,7 +51,7 @@ class Produto extends Model {
         $query = $this->db->prepare($sql);
         $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao, ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat, ':produto_id' => $produto_id);
 
-        $query->execute($parameters);
+        return $query->execute($parameters);
     }
 
     public function updateImage($image, $produto_id) {

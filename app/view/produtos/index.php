@@ -64,7 +64,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                     </div>
                     <div class="col-2 col-in">
                         <label>Preço</label>
-                        <input type="text" name="preco" value=""/>
+                        <input type="text" name="preco" value="" id="preco"/>
                     </div>
                 </div>
 

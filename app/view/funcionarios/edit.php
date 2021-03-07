@@ -2,20 +2,7 @@
 
 use Mini\Controller\Index;
 
-$breadcrumb = Index::gerateBreadcrumb([
-    [
-        'url' => URL,
-        'text' => 'Home'
-    ],
-    [
-        'url' => URL . '/funcionarios',
-        'text' => 'Funcionarios'
-    ],
-    [
-        'url' => '#',
-        'text' => $funcionario->nome
-    ]
-]);
+$breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' => URL . '/funcionarios', 'text' => 'Funcionarios'], ['url' => '#', 'text' => $funcionario->nome]]);
 ?>
 <?= $breadcrumb ?>
 <div class="container">
@@ -32,12 +19,12 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <div class="col-3 col-in">
                     <label>CPF</label>
                     <input type="text" name="cpf"
-                           value="<?= $funcionario->cpf; ?>" required/>
+                           value="<?= $funcionario->cpf; ?>" required id="cpf"/>
                 </div>
                 <div class="col-3 col-in">
                     <label>Telefone</label>
                     <input type="text" name="telefone"
-                           value="<?= $funcionario->telefone; ?>" required/>
+                           value="<?= $funcionario->telefone; ?>" required id="telefone"/>
                 </div>
             </div>
             <div class="form-row">
@@ -49,7 +36,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <div class="col-3 col-in">
                     <label>Função</label>
                     <select name="funcao_idfuncao">
-                        <?php foreach ($funcao as $v) { ?>
+                        <?php foreach($funcao as $v) { ?>
                             <option value="<?= $v->idfuncao ?>" <?= ($funcionario->funcao_idfuncao == $v->idfuncao) ? 'selected' : '' ?> ><?= $v->nome ?></option>
                         <?php } ?>
                     </select>
@@ -76,7 +63,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <div class="col-3 col-in">
                     <label>Confirmar Senha</label>
                     <input type="password" name="confirmar_senha"
-                           value="" />
+                           value=""/>
                 </div>
                 <input type="hidden" name="funcionario_id"
                        value="<?= $funcionario->idfuncionario; ?>"/>

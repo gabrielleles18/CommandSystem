@@ -47,6 +47,6 @@ class Funcao extends Model {
         $query = $this->db->prepare($sql);
         $parameters = array(':nome' => $nome, ':status' => $status, ':funcao_id' => $funcao_id);
 
-        $query->execute($parameters);
+        return $query->execute($parameters);
     }
 }

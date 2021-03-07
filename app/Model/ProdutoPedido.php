@@ -22,6 +22,6 @@ class ProdutoPedido extends Model {
         $query = $this->db->prepare($sql);
         $parameters = array(':qt_prod' => $qt_prod, ':pedido_idpedido' => $pedido_idpedido, ':produto_idproduto' => $produto_idproduto);
 
-        $query->execute($parameters);
+        return $query->execute($parameters);
     }
 }

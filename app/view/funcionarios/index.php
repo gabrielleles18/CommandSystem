@@ -2,16 +2,7 @@
 
 use Mini\Controller\Index;
 
-$breadcrumb = Index::gerateBreadcrumb([
-    [
-        'url' => URL,
-        'text' => 'Home'
-    ],
-    [
-        'url' => URL . '/funcionarios',
-        'text' => 'Funcionarios'
-    ]
-]);
+$breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' => URL . '/funcionarios', 'text' => 'Funcionarios']]);
 ?>
 <?= $breadcrumb ?>
 <div class="container">
@@ -30,19 +21,19 @@ $breadcrumb = Index::gerateBreadcrumb([
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($funcionarios as $id => $funcionario) { ?>
+            <?php foreach($funcionarios as $id => $funcionario) { ?>
                 <tr>
                     <td><?= ++$id ?></td>
-                    <td><?php if (isset($funcionario->nome)) echo $funcionario->nome; ?></td>
-                    <td><?php if (isset($funcionario->cpf)) echo $funcionario->cpf; ?></td>
-                    <td><?php if (isset($funcionario->telefone)) echo $funcionario->telefone; ?></td>
-                    <td><?php if (isset($funcionario->funcao)) echo $funcionario->funcao; ?></td>
+                    <td><?php if(isset($funcionario->nome)) echo $funcionario->nome; ?></td>
+                    <td><?php if(isset($funcionario->cpf)) echo $funcionario->cpf; ?></td>
+                    <td><?php if(isset($funcionario->telefone)) echo $funcionario->telefone; ?></td>
+                    <td><?php if(isset($funcionario->funcao)) echo $funcionario->funcao; ?></td>
                     <?php
                     $status = '';
-                    if (isset($funcionario->status)) {
-                        if ($funcionario->status == 1) {
+                    if(isset($funcionario->status)) {
+                        if($funcionario->status == 1) {
                             $status = "<td style='color: green'>Ativo</td>";
-                        } elseif ($funcionario->status == 0) {
+                        } elseif($funcionario->status == 0) {
                             $status = "<td style='color: red'>Inativo</td>";
                         }
                     }
@@ -71,11 +62,14 @@ $breadcrumb = Index::gerateBreadcrumb([
                     </div>
                     <div class="col-3 col-in">
                         <label>CPF</label>
-                        <input type="text" name="cpf" class="form-control cpf-mask"  placeholder="Ex.: 000.000.000-00" value="" required/>
+                        <input type="text" name="cpf" id="cpf" class="form-control cpf-mask"
+                               placeholder="Ex.: 000.000.000-00"
+                               value="" required/>
                     </div>
                     <div class="col-3 col-in">
                         <label>Telefone</label>
-                        <input type="text" name="telefone" placeholder="Ex.: (00) 0000-0000" class="phone-ddd-mask" value="" required/>
+                        <input type="text" name="telefone" id="telefone" placeholder="Ex.: (00) 0 0000-0000"
+                               class="phone-ddd-mask" value="" required/>
                     </div>
                 </div>
                 <div class="form-row">
@@ -87,7 +81,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                         <label>Função</label>
                         <select name="funcao_idfuncao" required>
                             <option selected value=""></option>
-                            <?php foreach ($funcao as $v) { ?>
+                            <?php foreach($funcao as $v) { ?>
                                 <option value="<?= $v->idfuncao ?>"><?= $v->nome ?></option>
                             <?php } ?>
                         </select>
