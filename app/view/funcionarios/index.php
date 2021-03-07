@@ -17,7 +17,6 @@ $breadcrumb = Index::gerateBreadcrumb([
 <div class="container">
     <h1>Funcionários <i class="fas fa-plus icon"></i></h1>
     <div class="box">
-        <!--        <h3>Total de funcioanrios: --><? //= $amount_of_funcionarios; ?><!--</h3>-->
         <table>
             <thead>
             <tr>

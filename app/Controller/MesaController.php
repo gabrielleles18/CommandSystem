@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mini\Controller;
-
 
 use Mini\Model\Mesa;
 
@@ -18,7 +16,7 @@ class MesaController {
     }
 
     public function add() {
-        if (isset($_POST["submit_add_mesa"])) {
+        if(isset($_POST["submit_add_mesa"])) {
             $mesa = new Mesa();
             $mesa->add($_POST["numero"], $_POST["descricao"], $_POST["status"]);
         }
@@ -27,8 +25,8 @@ class MesaController {
     }
 
     public function delete($mesa_id) {
-        if (isset($mesa_id)) {
-            $mesa= new Mesa();
+        if(isset($mesa_id)) {
+            $mesa = new Mesa();
             $mesa->delete($mesa_id);
         }
 
@@ -36,11 +34,11 @@ class MesaController {
     }
 
     public function edit($mesa_id) {
-        if (isset($mesa_id)) {
+        if(isset($mesa_id)) {
             $mesa = new Mesa();
             $mesa = $mesa->getMesa($mesa_id);
 
-            if ($mesa === false) {
+            if($mesa === false) {
                 $page = new \Mini\Controller\ErrorController();
                 $page->index();
             } else {
@@ -50,13 +48,12 @@ class MesaController {
                 require APP . 'view/_templates/sidebar.php';
             }
         } else {
-            // redirecionar o usuário para a página de índice do funcao (pois não temos um funcao_id)
             header('location: ' . URL . 'mesa/index');
         }
     }
 
     public function update() {
-        if (isset($_POST["submit_update_mesa"])) {
+        if(isset($_POST["submit_update_mesa"])) {
             $mesa = new Mesa();
             $mesa->update($_POST["numero"], $_POST["descricao"], $_POST["status"], $_POST['mesa_id']);
         }

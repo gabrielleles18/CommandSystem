@@ -45,7 +45,6 @@ class Pedido extends Model {
         $query->execute();
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
     public function getItensPedido($idpedido) {
@@ -70,7 +69,6 @@ class Pedido extends Model {
         $query->execute($parameters);
 
         header('location: ' . URL . 'pedido/?id=' . $idpedido);
-
     }
 
     public function getStatus($status_id) {
@@ -82,7 +80,6 @@ class Pedido extends Model {
 
         return $query->fetch();
     }
-
 }
 
 

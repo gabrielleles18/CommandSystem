@@ -1,13 +1,18 @@
+<?php $user = json_decode($_COOKIE['login']); ?>
 <div class="sidebar">
     <div class="logo">Logo</div>
     <ul>
         <li><a href="<?= URL; ?>"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="<?= URL; ?>funcionarios"><i class="fas fa-user-friends"></i></i> Funcionarios</a></li>
-        <li><a href="<?= URL; ?>funcao"><i class="fas fa-people-carry"></i> Função</a></li>
+        <?php if($user->funcao_idfuncao == 1) { ?>
+            <li><a href="<?= URL; ?>funcionarios"><i class="fas fa-user-friends"></i></i> Funcionarios</a></li>
+            <li><a href="<?= URL; ?>funcao"><i class="fas fa-people-carry"></i> Função</a></li>
+        <?php } ?>
         <li><a href="<?= URL; ?>produtos"><i class="fas fa-pizza-slice"></i> Produtos</a></li>
         <li><a href="<?= URL; ?>mesa"><i class="fas fa-square-full"></i> Mesa</a></li>
         <li><a href="<?= URL; ?>pedido/listar"><i class="fas fa-history"></i> Pedidos</a></li>
-        <li><a href="<?= URL ?>estatistica"><i class="far fa-chart-bar"></i> Estatísticas</a></li>
+        <?php if($user->funcao_idfuncao == 1) { ?>
+            <li><a href="<?= URL ?>estatistica"><i class="far fa-chart-bar"></i> Estatísticas</a></li>
+        <?php } ?>
     </ul>
 </div>
 </main>

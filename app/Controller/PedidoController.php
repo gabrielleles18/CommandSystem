@@ -7,11 +7,9 @@ use Mini\Model\Pedido;
 use Mini\Model\ProdutoPedido;
 use Mini\Model\Status;
 
-class PedidoController
-{
+class PedidoController {
 
-    public function index()
-    {
+    public function index() {
         $pedido = (new Pedido())->getPedido($_GET['id']);
         $mesa = (new Mesa())->getMesa($pedido->mesa_idmesa);
         $proutdutos = (new Pedido())->getItensPedido($_GET['id']);
@@ -23,34 +21,33 @@ class PedidoController
         require APP . 'view/_templates/sidebar.php';
     }
 
-    public function add()
-    {
-        if (isset($_POST["cadastar_pedido"])) {
+    public function add() {
+        if(isset($_POST["cadastar_pedido"])) {
 
             $pedido = new Pedido();
             $produtoPedido = new ProdutoPedido();
             $mesa = new Mesa();
 
-            if (!empty($_COOKIE['dataCard'])) {
+            if(!empty($_COOKIE['dataCard'])) {
                 $dataPedido = json_decode($_COOKIE['dataCard']);
                 $usuario = json_decode($_COOKIE['login']);
 
                 $status_id = (new Status())->getStatusAberto(1)->id;
 
-                if (empty($_POST['pedido_id'])) {
-                    if (!empty($status_id)) {
+                if(empty($_POST['pedido_id'])) {
+                    if(!empty($status_id)) {
                         $pedido->add(date("Y-m-d H:i:s"), $_POST['observacoes'], $_COOKIE['total-cart'], $status_id, $_POST["mesa_id"], $usuario->idfuncionario);
                     }
                     $mesa->changeStatus($_POST["mesa_id"]);
                 }
 
-                if (!empty($_POST['pedido_id'])) {
+                if(!empty($_POST['pedido_id'])) {
                     $id_pedido = $_POST['pedido_id'];
                 } else {
                     $id_pedido = (new Pedido)->lastID()->idpedido;
                 }
 
-                foreach ($dataPedido as $value) {
+                foreach($dataPedido as $value) {
                     $produtoPedido->add($value->id, $id_pedido, $value->qt);
                 }
 
@@ -61,7 +58,7 @@ class PedidoController
                 return '';
             }
         }
-        if (!empty($_POST['pedido_id'])) {
+        if(!empty($_POST['pedido_id'])) {
             header('location: ' . URL . 'pedido/?id=' . $_POST['pedido_id']);
 
         } else {
@@ -69,9 +66,8 @@ class PedidoController
         }
     }
 
-    public function delete($funcao_id)
-    {
-        if (isset($funcao_id)) {
+    public function delete($funcao_id) {
+        if(isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao->delete($funcao_id);
         }
@@ -79,13 +75,12 @@ class PedidoController
         header('location: ' . URL . 'funcao/index');
     }
 
-    public function edit($funcao_id)
-    {
-        if (isset($funcao_id)) {
+    public function edit($funcao_id) {
+        if(isset($funcao_id)) {
             $funcao = new Funcao();
             $funcao = $funcao->getFuncao($funcao_id);
 
-            if ($funcao === false) {
+            if($funcao === false) {
                 $page = new \Mini\Controller\ErrorController();
                 $page->index();
             } else {
@@ -101,9 +96,8 @@ class PedidoController
     }
 
 
-    public function update()
-    {
-        if (isset($_POST["submit_update_funcao"])) {
+    public function update() {
+        if(isset($_POST["submit_update_funcao"])) {
             $funcao = new Funcao();
             $funcao->update($_POST["nome"], $_POST["status"], $_POST['funcao_id']);
         }
@@ -111,26 +105,24 @@ class PedidoController
         header('location: ' . URL . 'funcao/index');
     }
 
-    public function updateStatus()
-    {
-        if (!empty($_POST['alter_status'])) {
+    public function updateStatus() {
+        if(!empty($_POST['alter_status'])) {
 
             $status_id = (new Status())->getStatusAberto($_POST['status'])->id;
 
-            if (!empty($status_id)) {
+            if(!empty($status_id)) {
                 (new Pedido())->updateStatus($_POST['idpedido'], $status_id);
 
-                if (!empty($_POST['mesa_idmesa']) && $status_id == 2) {
+                if(!empty($_POST['mesa_idmesa']) && $status_id == 2) {
                     $return = (new Mesa())->changeStatus($_POST['mesa_idmesa'], 1);
 
-                    if ($return) header('location: ' . URL);
+                    if($return) header('location: ' . URL);
                 }
             }
         }
     }
 
-    public function listar()
-    {
+    public function listar() {
         $pedidos = (new Pedido())->getAllPedidos();
 
         require APP . 'view/_templates/head.php';
@@ -139,31 +131,29 @@ class PedidoController
         require APP . 'view/_templates/sidebar.php';
     }
 
-    public function updateqt()
-    {
-        if (isset($_POST["submit_updateqt"])) {
+    public function updateqt() {
+        if(isset($_POST["submit_updateqt"])) {
             $data = [];
             $i = 0;
             $count = 0;
-            foreach ($_POST as $id => $value) {
-                if ($count > 2) {
+            foreach($_POST as $id => $value) {
+                if($count > 2) {
                     $i++;
                     $count = 0;
                 }
 
-                if (!empty(explode('-', $id)[1]) == $i) {
+                if(!empty(explode('-', $id)[1]) == $i) {
                     $data[$i][explode('-', $id)[0]] = $value;
                 }
                 $count++;
             }
 
-
             $produto = new ProdutoPedido();
-            foreach ($data as $value) {
+            foreach($data as $value) {
                 $produto->updateqt($value['idpedido'], $value["idproduto"], $value['qt_prod']);
             }
 
-            if (!empty($_POST['idpedido-0'])) {
+            if(!empty($_POST['idpedido-0'])) {
                 header('location: ' . URL . 'pedido/?id=' . $_POST['idpedido-0']);
             } else {
                 header('location: ' . URL);

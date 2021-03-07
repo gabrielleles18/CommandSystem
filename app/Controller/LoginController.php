@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Mini\Controller;
 
 use Mini\Model\Login;
 
-
 class LoginController {
     public function index() {
 
-        if (!empty($_COOKIE['login'])) {
+        if(!empty($_COOKIE['login'])) {
             header('location: ' . URL);
         }
 
@@ -18,12 +16,12 @@ class LoginController {
     }
 
     public function verify() {
-        if (!empty($_POST['verify_usuario'])) {
+        if(!empty($_POST['verify_usuario'])) {
             $login = new Login();
 
             $return = $login->verify($_POST['usuario'], $_POST['senha']);
 
-            if (!empty($return)) {
+            if(!empty($return)) {
                 $data_usuario = json_encode($return);
                 setcookie('login', $data_usuario, time() + 3600 * 24 * 5, '/');
 

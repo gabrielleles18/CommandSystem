@@ -1,5 +1,5 @@
 <?php
-if (empty($_COOKIE['login'])) {
+if(empty($_COOKIE['login'])) {
     header('location: ' . URL . 'login');
 }
 $user = json_decode($_COOKIE['login']);

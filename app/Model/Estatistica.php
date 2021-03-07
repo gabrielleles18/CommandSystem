@@ -17,7 +17,7 @@ class  Estatistica extends Model {
         return $query->fetchAll();
     }
 
-    public function geQtProduto (){
+    public function geQtProduto() {
         $sql = "SELECT produto_pedido.*, produto.nome, sum(produto_pedido.qt_prod)as soma_prod 
                 FROM produto_pedido LEFT JOIN produto on produto_pedido.produto_idproduto = produto.idproduto 
                 GROUP BY 1 ORDER BY soma_prod DESC  LIMIT 3 ";
@@ -27,7 +27,7 @@ class  Estatistica extends Model {
         return $query->fetchAll();
     }
 
-    public function getTotalProd (){
+    public function getTotalProd() {
         $sql = "SELECT produto.nome, sum(produto_pedido.qt_prod)as soma_prod 
                 FROM produto_pedido LEFT JOIN produto on produto_pedido.produto_idproduto = produto.idproduto 
                 GROUP BY 1 ";
@@ -37,7 +37,7 @@ class  Estatistica extends Model {
         return $query->fetchAll();
     }
 
-    public function getTotalPedido (){
+    public function getTotalPedido() {
         $sql = "SELECT COUNT(*) as total_pedido FROM pedido";
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -45,7 +45,7 @@ class  Estatistica extends Model {
         return $query->fetch();
     }
 
-    public function getValorTotalPedido (){
+    public function getValorTotalPedido() {
         $sql = "SELECT sum(pedido.valor) as total FROM pedido ";
         $query = $this->db->prepare($sql);
         $query->execute();

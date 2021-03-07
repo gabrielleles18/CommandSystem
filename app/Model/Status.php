@@ -33,5 +33,4 @@ class Status extends Model {
 
         return $query->fetch();
     }
-
 }
