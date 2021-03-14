@@ -11,9 +11,20 @@
         height: 56px;
         color: #fff;
         display: flex;
-        align-items: center;
         justify-content: center;
         background-color: #367fa9;
+        flex-direction: column;
+        padding: 10px 15px 10px 20px;
+
+        span {
+            font-size: 24px;
+            margin-bottom: 3px;
+        }
+
+        p {
+            font-size: 9px;
+        }
+
     }
 
     ul {

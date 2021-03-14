@@ -121,6 +121,11 @@ class PedidoController {
                             'tipo' => 1,
                             'mensagem' => 'Status do pedido foi alterado com sucesso!'];
                         setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+                    }else{
+                        $data = [
+                            'tipo' => 0,
+                            'mensagem' => 'Erro inesperado!'];
+                        setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
                     }
 
                     if($return) header('location: ' . URL);
@@ -164,6 +169,11 @@ class PedidoController {
                 $data = [
                     'tipo' => 1,
                     'mensagem' => 'Quantidade de produto foi alterado com sucesso!'];
+                setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+            }else{
+                $data = [
+                    'tipo' => 0,
+                    'mensagem' => 'Erro inesperado!'];
                 setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
             }
 

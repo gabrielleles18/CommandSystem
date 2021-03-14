@@ -38,7 +38,8 @@ if (!empty($user->funcao_idfuncao) && $user->funcao_idfuncao == 4) {
                 </li>
                 <li>Detalhes <span><?= $pedido->observacoes ?></span></li>
                 <li>Data/Hora <span><?= $pedido->data_pedido ?></span></li>
-                <li>Valor Total <span><?= $pedido->valor ?></span></li>
+                <?php $valor = ($pedido->valor * 0.05) + $pedido->valor ?>
+                <li>Valor Total <span>R$ <?= number_format($valor, 2, ',', '.') ?></span></li>
                 <input type="submit" value="Aterar Status" name="alter_status"/>
 
             </form>
@@ -90,7 +91,7 @@ if (!empty($user->funcao_idfuncao) && $user->funcao_idfuncao == 4) {
                         </li>
                     <?php }
                 } ?>
-                <h5 class="total">Total: R$ <?= $total ?></h5>
+                <h5 class="total">Total: R$ <?= number_format((($total * 0.05) + $total), 2,',', '.') ?></h5>
                 <div class="buttons">
                     <button class="finalizar <?= $class ?>" type="submit" name="submit_updateqt">Salvar</button>
                     <a class="finalizar <?= $class ?>" type="submit"
@@ -101,4 +102,4 @@ if (!empty($user->funcao_idfuncao) && $user->funcao_idfuncao == 4) {
         </form>
     </div>
 </div>
-</div>
+</div>s

@@ -9,7 +9,7 @@ $user = json_decode($_COOKIE['login']);
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>SIGEP</title>
+    <title>SGP - Sistema de Gerenciamento de Pedido</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>

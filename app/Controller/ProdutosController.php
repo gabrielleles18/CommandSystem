@@ -73,10 +73,13 @@ class ProdutosController {
             $return = $Produto->update($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"], $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $_POST['produto_id']);
         }
 
-        $data = [
-            'tipo' => 1,
-            'mensagem' => 'Informações do produto: ' . $_POST["nome"] .', foi alterado com sucesso!'];
-        setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+        if(!empty($return)) {
+            $data = ['tipo' => 1, 'mensagem' => 'Informações do produto: ' . $_POST["nome"] . ', foi alterado com sucesso!'];
+            setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+        } else {
+            $data = ['tipo' => 0, 'mensagem' => 'Erro inesperado!'];
+            setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+        }
 
         header('location: ' . URL . 'produtos/index');
     }

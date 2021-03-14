@@ -64,8 +64,10 @@ export default function () {
 
         Cookies.set('total-cart', total);
 
+        let total_garco = (total * 0.05) + total;
+
         html += `<textarea rows="2" name="observacoes" placeholder="Observações"></textarea>
-                 <h5 class="total">Total: R$ ${total.toFixed(2)}</h5>
+                 <h5 class="total">Total: R$ ${total_garco.toFixed(2)}</h5>
                 <button class="finalizar" type="submit" name="cadastar_pedido">Finalizar Pedido</button>
                 </form>
                 `;

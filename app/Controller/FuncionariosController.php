@@ -76,8 +76,23 @@ class FuncionariosController {
                 'tipo' => 1,
                 'mensagem' => 'Informações do funcionario: ' . $_POST["nome"] . ', foram alteradas com sucesso!'];
             setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+        }else{
+            $data = [
+                'tipo' => 0,
+                'mensagem' => 'Erro inesperado!'];
+            setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
         }
 
         header('location: ' . URL . 'funcionarios/index');
+    }
+
+    public function getFuncionario($funcionario_id) {
+        $sql = "SELECT * FROM funcionario WHERE funcionario_id = :funcionario_id LIMIT 1";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':funcionario_id' => $funcionario_id);
+
+        $query->execute($parameters);
+
+        return ($query->rowcount() ? $query->fetch() : false);
     }
 }

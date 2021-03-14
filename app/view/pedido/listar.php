@@ -1,6 +1,7 @@
 <?php
 
 use Mini\Controller\Index;
+use Mini\Model\Funcionario;
 use Mini\Model\Mesa;
 use Mini\Model\Pedido;
 use Mini\Model\Status;
@@ -16,6 +17,7 @@ $breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' 
         foreach($pedidos as $id => $value) {
             $mesa = (new Mesa())->getMesa($value['mesa_idmesa']);
             $pedido = (new Pedido())->getItensPedido($value['idpedido']);
+            $funcionario = (new Funcionario())->getFuncionario($value['funcionario_idfuncionario']);
             $status = new Status();
             ?>
             <ul class="history">
@@ -30,6 +32,7 @@ $breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' 
                     <li>Status <span><?= $status->getStatus($value['status_id'])->slug ?></span></li>
                     <li>Detalhes <span><?= $value['observacoes'] ?></span></li>
                     <li>Valor Total <span class="total_ever"></span></li>
+                    <li>Funcionário <span><?= $funcionario->nome  ?></span></li>
                     <li>Protudos<i class="fas fa-plus icon"></i></li>
                     <ul class="lastul">
                         <li class="prods">
@@ -47,11 +50,11 @@ $breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' 
                                 <li>
                                     <div><?= $v['qt_prod'] ?></div>
                                     <div><?= $v['nome'] ?></div>
-                                    <div><?= $total ?></div>
+                                    <div>R$ <?= number_format($total, 2, ',','.') ?></div>
                                 </li>
                             <?php }
                         } ?>
-                        <span class="total_ever_hidden" data-total="<?= $total_ever ?>"></span>
+                        <span class="total_ever_hidden" data-total="<?= 'R$ ' . number_format((($total_ever * 0.05) + $total_ever), 2, ',', '.') ?>"></span>
                     </ul>
                 </ul>
             </ul>

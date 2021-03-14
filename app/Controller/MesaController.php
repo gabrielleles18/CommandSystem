@@ -63,7 +63,13 @@ class MesaController {
                 'tipo' => 1,
                 'mensagem' => 'Informações da mesa ' . $_POST["numero"] . ', foram alteradas com sucesso!'];
             setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
+        }else{
+            $data = [
+                'tipo' => 0,
+                'mensagem' => 'Erro inesperado!'];
+            setcookie('alert', json_encode($data), time() + 3600 * 24 * 5, '/');
         }
+
         header('location: ' . URL . 'mesa/index');
     }
 }

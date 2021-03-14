@@ -28,7 +28,10 @@ if(!empty($alert)) { ?>
 
 
 <div class="sidebar">
-    <div class="logo">Logo</div>
+    <div class="logo">
+        <span>SGP</span>
+        <p>Sistema de Gerenciamento de Pedido</p>
+    </div>
     <ul>
         <li><a href="<?= URL; ?>"><i class="fas fa-home"></i> Home</a></li>
         <?php if($user->funcao_idfuncao == 1) { ?>

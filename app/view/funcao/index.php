@@ -43,9 +43,9 @@ $breadcrumb = Index::gerateBreadcrumb([
                     ?>
                     <?= $status ?>
                     <td>
-                        <a href="<?php echo URL . 'funcao/delete/' . $item->idfuncao; ?>" title="Deletar">
-                            <i class="far fa-trash-alt button button-delete"></i>
-                        </a>
+<!--                        <a href="--><?php //echo URL . 'funcao/delete/' . $item->idfuncao; ?><!--" title="Deletar">-->
+<!--                            <i class="far fa-trash-alt button button-delete"></i>-->
+<!--                        </a>-->
                         <a href="<?php echo URL . 'funcao/edit/' . $item->idfuncao; ?>" title="Excluir">
                             <i class="fas fa-pencil-alt button button-edit"></i>
                         </a>

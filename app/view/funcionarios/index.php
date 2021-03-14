@@ -40,8 +40,8 @@ $breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' 
                     ?>
                     <?= $status ?>
                     <td>
-                        <a href="<?= URL . 'funcionarios/delete/' . $funcionario->idfuncionario; ?>" title="Deletar">
-                            <i class="far fa-trash-alt button button-delete"></i></a>
+<!--                        <a href="--><?//= URL . 'funcionarios/delete/' . $funcionario->idfuncionario; ?><!--" title="Deletar">-->
+<!--                            <i class="far fa-trash-alt button button-delete"></i></a>-->
                         <a href="<?= URL . 'funcionarios/edit/' . $funcionario->idfuncionario; ?>" title="Editar">
                             <i class="fas fa-pencil-alt button button-edit"></i></a>
                     </td>

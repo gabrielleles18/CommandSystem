@@ -40,9 +40,9 @@ $breadcrumb = Index::gerateBreadcrumb([
                     <td><?php if (isset($v->tamanho)) echo $v->tamanho ?></td>
                     <td><?php if (isset($v->unidmed_idunid)) echo $Produto->getForenkey('unidmed', 'idunid', $v->unidmed_idunid) ?></td>
                     <td>
-                        <a href="<?= URL . 'produtos/delete/' . $v->idproduto; ?>" title="Deletar">
-                            <i class="far fa-trash-alt button button-delete"></i>
-                        </a>
+<!--                        <a href="--><?//= URL . 'produtos/delete/' . $v->idproduto; ?><!--" title="Deletar">-->
+<!--                            <i class="far fa-trash-alt button button-delete"></i>-->
+<!--                        </a>-->
                         <a href="<?= URL . 'produtos/edit/' . $v->idproduto; ?>" title="Excluir">
                             <i class="fas fa-pencil-alt button button-edit"></i>
                         </a>
