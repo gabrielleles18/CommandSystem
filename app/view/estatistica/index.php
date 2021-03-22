@@ -32,7 +32,8 @@ $breadcrumb = Index::gerateBreadcrumb([
 <!--            </form>-->
 <!--        </section>-->
 
-        <?php if (!empty($pedidobyuser)) { ?>
+        <?php
+        if (!empty($pedidobyuser)) { ?>
             <section class="funcionario">
                 <?php foreach ($pedidobyuser as $value) { ?>
                     <div class="block">
@@ -41,7 +42,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                         </div>
                         <span>
                         <h3><?= $value->nome ?></h3>
-                        <h4><?= $value->total_pedidos ?> Pedidos</h4>
+                        <h4><?= !empty($value->idpedido) ? $value->total_pedidos : '0' ?> Pedidos</h4>
                     </span>
                     </div>
                 <?php } ?>

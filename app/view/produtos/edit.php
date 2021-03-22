@@ -29,7 +29,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                 </div>
                 <div class="col-2 col-in">
                     <label>Preço</label>
-                    <input type="text" name="preco" value="<?= $produto->preco; ?>" id="preco"/>
+                    <input type="text" name="preco" value="<?= $produto->preco; ?>" placeholder="00.00"/>
                 </div>
             </div>
             <div class="form-row">
@@ -64,6 +64,13 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <div class="col-3 col-in">
                     <label>Imagem</label>
                     <input type="file" name="arquivo" accept="image/*" value="<?= $produto->image?>"/>
+                </div>
+                <div class="col-3 col-in">
+                    <label>Disponibilidade</label>
+                    <select name="disponibilidade">
+                            <option value="1" <?= $produto->disponibilidade == 1 ? 'selected' : '' ?>>Disponível</option>
+                            <option value="0" <?= $produto->disponibilidade == 0 ? 'selected' : '' ?>>Indisponível</option>
+                    </select>
                 </div>
             </div>
             <div class="form-row">

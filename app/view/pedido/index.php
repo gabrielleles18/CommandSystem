@@ -39,7 +39,7 @@ if (!empty($user->funcao_idfuncao) && $user->funcao_idfuncao == 4) {
                 <li>Detalhes <span><?= $pedido->observacoes ?></span></li>
                 <li>Data/Hora <span><?= $pedido->data_pedido ?></span></li>
                 <?php $valor = ($pedido->valor * 0.05) + $pedido->valor ?>
-                <li>Valor Total <span>R$ <?= number_format($valor, 2, ',', '.') ?></span></li>
+<!--                <li>Valor Total <span>R$ --><?//= number_format($valor, 2, ',', '.') ?><!--</span></li>-->
                 <input type="submit" value="Aterar Status" name="alter_status"/>
 
             </form>
@@ -75,6 +75,9 @@ if (!empty($user->funcao_idfuncao) && $user->funcao_idfuncao == 4) {
                                          viewBox="0 0 16 16">
                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                                     </svg>
+                                    <input type="hidden" name="qt_prod-<?= $id ?>"
+                                           value="<?= $value['qt_prod'] ?>"
+                                    />
                                     <input type="text" name="qt_prod-<?= $id ?>"
                                            value="<?= $value['qt_prod'] ?>"
                                         <?= !empty($user) ? 'disabled' : '' ?>
@@ -90,11 +93,13 @@ if (!empty($user->funcao_idfuncao) && $user->funcao_idfuncao == 4) {
                             </div>
                         </li>
                     <?php }
-                } ?>
-                <h5 class="total">Total: R$ <?= number_format((($total * 0.05) + $total), 2,',', '.') ?></h5>
+                }
+                ($total < 150) ? $total_ = ($total * 0.05) + $total : $total_ = $total;
+                ?>
+                <h5 class="total">Total: R$ <?= number_format($total_, 2, ',', '.') ?></h5>
                 <div class="buttons">
                     <button class="finalizar <?= $class ?>" type="submit" name="submit_updateqt">Salvar</button>
-                    <a class="finalizar <?= $class ?>" type="submit"
+                    <a class="finalizar <?= $class ?>"
                        href="<?= URL ?>produtos/listar?id=<?= $mesa->idmesa ?>&id_ped=<?= $pedido->idpedido ?>">Adicionar
                         Produto</a>
                 </div>

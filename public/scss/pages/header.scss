@@ -66,6 +66,13 @@ main {
                             background: rgba(0, 0, 0, 0.1);
                         }
 
+                        &.efect{
+                            -webkit-animation: swing 1s ease;
+                            animation: swing 1s ease;
+                            -webkit-animation-iteration-count: 1;
+                            animation-iteration-count: 1;
+                        }
+
                         svg {
                             color: #fff;
                         }

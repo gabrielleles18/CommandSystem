@@ -77,10 +77,19 @@ export default function () {
         removeItem();
     }
 
+
+    const efectCard = () => {
+        setTimeout(function() {
+            $('.header .top .cart-user .cart').addClass('efect')
+        }, 1000)
+    }
+
     const addCard = () => {
         const itensProp = $('.itens');
         itensProp.find('.carrinho').click((e) => {
             e.preventDefault();
+            efectCard();
+
             let dataCard = JSON.stringify([$(e.currentTarget).data()]);
 
             if (Cookies.get('dataCard')) {

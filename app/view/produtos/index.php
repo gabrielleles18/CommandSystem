@@ -2,16 +2,7 @@
 
 use Mini\Controller\Index;
 
-$breadcrumb = Index::gerateBreadcrumb([
-    [
-        'url' => URL,
-        'text' => 'Home'
-    ],
-    [
-        'url' => URL . '/produtos',
-        'text' => 'Produtos'
-    ]
-]);
+$breadcrumb = Index::gerateBreadcrumb([['url' => URL, 'text' => 'Home'], ['url' => URL . '/produtos', 'text' => 'Produtos']]);
 ?>
 <?= $breadcrumb ?>
 <div class="container">
@@ -26,6 +17,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                 <td>Categoria</td>
                 <td>Tamanho</td>
                 <td>Uni. medida</td>
+                <td>Disponibilidade</td>
                 <td>Açõess</td>
             </tr>
             </thead>
@@ -39,10 +31,21 @@ $breadcrumb = Index::gerateBreadcrumb([
                     <td><?php if (isset($v->categoria_idcat)) echo $Produto->getForenkey('categoria', 'idcat', $v->categoria_idcat) ?></td>
                     <td><?php if (isset($v->tamanho)) echo $v->tamanho ?></td>
                     <td><?php if (isset($v->unidmed_idunid)) echo $Produto->getForenkey('unidmed', 'idunid', $v->unidmed_idunid) ?></td>
+                    <?php
+                    $disponibilidade = '';
+                    if (isset($v->disponibilidade)) {
+                        if ($v->disponibilidade == 1) {
+                            $disponibilidade = "<td style='color: green'>Disponível</td>";
+                        } elseif ($v->disponibilidade == 0) {
+                            $disponibilidade = "<td style='color: red'>Indisponível</td>";
+                        }
+                    }
+                    ?>
+                    <?= $disponibilidade ?>
                     <td>
-<!--                        <a href="--><?//= URL . 'produtos/delete/' . $v->idproduto; ?><!--" title="Deletar">-->
-<!--                            <i class="far fa-trash-alt button button-delete"></i>-->
-<!--                        </a>-->
+                        <a href="<?= URL . 'produtos/delete/' . $v->idproduto; ?>" title="Deletar">
+                            <i class="far fa-trash-alt button button-delete"></i>
+                        </a>
                         <a href="<?= URL . 'produtos/edit/' . $v->idproduto; ?>" title="Excluir">
                             <i class="fas fa-pencil-alt button button-edit"></i>
                         </a>
@@ -64,7 +67,7 @@ $breadcrumb = Index::gerateBreadcrumb([
                     </div>
                     <div class="col-2 col-in">
                         <label>Preço</label>
-                        <input type="text" name="preco" value="" id="preco"/>
+                        <input type="text" name="preco" value="" placeholder="00.00"/>
                     </div>
                 </div>
 
@@ -100,6 +103,13 @@ $breadcrumb = Index::gerateBreadcrumb([
                     <div class="col-3 col-in">
                         <label>Imagem</label>
                         <input type="file" name="arquivo" accept="image/*"/>
+                    </div>
+                    <div class="col-3 col-in">
+                        <label>Disponibilidade</label>
+                        <select name="disponibilidade">
+                            <option value="1">Disponível</option>
+                            <option value="0">Indisponível</option>
+                        </select>
                     </div>
                     <div class="col-3 col-in">
                         <input type="hidden" name="borda_idborda" value="0"/>

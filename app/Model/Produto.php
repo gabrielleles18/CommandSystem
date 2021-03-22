@@ -9,19 +9,19 @@ use PDO;
 class Produto extends Model {
 
     public function getAllProdutos() {
-        $sql = "SELECT idproduto, nome, preco, tamanho, categoria_idcat, unidmed_idunid  FROM produto";
+        $sql = "SELECT * FROM produto";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         return $query->fetchAll();
     }
 
-    public function add($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat, $image) {
-        $sql = "INSERT INTO produto (nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat, image ) 
-                VALUES (:nome, :preco, :tamanho, :descricao, :borda_idborda, :unidmed_idunid, :categoria_idcat, :image )";
+    public function add($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat, $image, $disponibilidade) {
+        $sql = "INSERT INTO produto (nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat, image, disponibilidade ) 
+                VALUES (:nome, :preco, :tamanho, :descricao, :borda_idborda, :unidmed_idunid, :categoria_idcat, :image, :disponibilidade )";
 
         $query = $this->db->prepare($sql);
-        $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao, ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat, ':image' => $image);
+        $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao, ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat, ':image' => $image, ':disponibilidade' => $disponibilidade);
 
         return $query->execute($parameters);
     }
@@ -35,7 +35,7 @@ class Produto extends Model {
     }
 
     public function getProduto($produto_id) {
-        $sql = "SELECT idproduto, nome, preco, tamanho, descricao, borda_idborda, unidmed_idunid, categoria_idcat, image  FROM produto WHERE idproduto = :produto_id LIMIT 1";
+        $sql = "SELECT * FROM produto WHERE idproduto = :produto_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':produto_id' => $produto_id);
 
@@ -45,11 +45,11 @@ class Produto extends Model {
         return ($query->rowcount() ? $query->fetch() : false);
     }
 
-    public function update($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat, $produto_id) {
+    public function update($nome, $preco, $tamanho, $descricao, $borda_idborda, $unidmed_idunid, $categoria_idcat, $produto_id, $disponibilidade) {
         $sql = "UPDATE produto SET nome = :nome, preco = :preco,  tamanho = :tamanho, descricao = :descricao, borda_idborda = :borda_idborda,
-                    unidmed_idunid  = :unidmed_idunid, categoria_idcat = :categoria_idcat  WHERE idproduto = :produto_id";
+                    unidmed_idunid  = :unidmed_idunid, categoria_idcat = :categoria_idcat, disponibilidade = :disponibilidade  WHERE idproduto = :produto_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao, ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat, ':produto_id' => $produto_id);
+        $parameters = array(':nome' => $nome, ':preco' => $preco, ':tamanho' => $tamanho, ':descricao' => $descricao, ':borda_idborda' => $borda_idborda, ':unidmed_idunid' => $unidmed_idunid, ':categoria_idcat' => $categoria_idcat, ':produto_id' => $produto_id, ':disponibilidade' => $disponibilidade);
 
         return $query->execute($parameters);
     }
@@ -87,7 +87,7 @@ class Produto extends Model {
     }
 
     public function getProdutoByCat($id_cat) {
-        $sql = "SELECT * FROM produto WHERE categoria_idcat = {$id_cat}";
+        $sql = "SELECT * FROM produto WHERE categoria_idcat = {$id_cat} && disponibilidade = 1";
 
         $query = $this->db->prepare($sql);
         $query->execute();

@@ -23,10 +23,12 @@ class ProdutosController {
         if(isset($_POST["submit_add_produto"])) {
 
             $Produto = new Produto();
-            $nome = $this->trataImage('arquivo');
-            if(empty($nome)) $nome = '';
+            $image = $this->trataImage('arquivo');
+            if(empty($image)) $image = '';
 
-            $Produto->add($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"], $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $nome);
+            $Produto->add($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"],
+                $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $image,
+                $_POST['disponibilidade']);
         }
         header('location: ' . URL . 'produtos/index');
     }
@@ -70,7 +72,7 @@ class ProdutosController {
 
                 $Produto->updateImage($nome, $_POST['produto_id']);
             }
-            $return = $Produto->update($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"], $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $_POST['produto_id']);
+            $return = $Produto->update($_POST["nome"], $_POST["preco"], $_POST["tamanho"], $_POST["descricao"], $_POST["borda_idborda"], $_POST["unidmed_idunid"], $_POST["categoria_idcat"], $_POST['produto_id'], $_POST['disponibilidade']);
         }
 
         if(!empty($return)) {
@@ -110,7 +112,8 @@ class ProdutosController {
 
             $nome = $hash . '.' . $ext;
 
-            $uploaddir = 'C:\xampp\htdocs\SIGEP\public\midias\\' . $nome;
+            $uploaddir = 'midias'. DIRECTORY_SEPARATOR .$nome;
+
             move_uploaded_file($_FILES[$name]['tmp_name'], $uploaddir);
 
             return $nome;
